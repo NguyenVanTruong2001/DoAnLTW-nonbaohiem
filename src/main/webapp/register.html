@@ -14,25 +14,54 @@
     </style>
 </head>
 <body>
-<form class="text-center bg-secondary p-5 c" action="" method="">
+<!--<form class="text-center bg-secondary p-5 c" action="" method="">-->
+<!--    <p class="h3 font-weight-bold mb-4">Đăng ký</p>-->
+<!--    <div class="form-group">-->
+<!--    <input type="text" id="defaultRegisterFormName" class="form-control border border-primary py-4" placeholder="Họ và Tên">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <input type="email" id="defaultRegisterFormEmail" class="form-control border border-primary py-4" placeholder="Địa chỉ e-mail">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <input type="text" id="defaultRegisterPhone" class="form-control border border-primary py-4" placeholder="Số điện thoại">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <input type="password" id="defaultRegisterFormPassword" class="form-control border border-primary py-4" placeholder="Mật khẩu">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <input type="password" id="defaultRegisterFormConfirmPassword" class="form-control border border-primary py-4" placeholder="Nhập lại mật khẩu">-->
+<!--    </div>-->
+<!--    <div class="d-inline-block">-->
+<!--        <p>Đã có tài khoản? <a href="login.html">Đăng nhập ngay!</a></p>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button class="btn btn-primary mb-4 btn-block" type="submit">Đăng ký</button>-->
+<!--    </div>-->
+<!--</form>-->
+<!-- register.jsp -->
+
+
+
+
+<form class="text-center bg-secondary p-5 c" action="RegisterServlet" method="post">
     <p class="h3 font-weight-bold mb-4">Đăng ký</p>
     <div class="form-group">
-    <input type="text" id="defaultRegisterFormName" class="form-control border border-primary py-4" placeholder="Họ và Tên">
+        <input type="text" name="name" id="defaultRegisterFormName" class="form-control border border-primary py-4" placeholder="Họ và Tên">
     </div>
     <div class="form-group">
-        <input type="email" id="defaultRegisterFormEmail" class="form-control border border-primary py-4" placeholder="Địa chỉ e-mail">
+        <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control border border-primary py-4" placeholder="Địa chỉ e-mail">
     </div>
     <div class="form-group">
-        <input type="text" id="defaultRegisterPhone" class="form-control border border-primary py-4" placeholder="Số điện thoại">
+        <input type="text" name="phone" id="defaultRegisterPhone" class="form-control border border-primary py-4" placeholder="Số điện thoại">
     </div>
     <div class="form-group">
-        <input type="password" id="defaultRegisterFormPassword" class="form-control border border-primary py-4" placeholder="Mật khẩu">
+        <input type="password" name="password" id="defaultRegisterFormPassword" class="form-control border border-primary py-4" placeholder="Mật khẩu">
     </div>
     <div class="form-group">
-        <input type="password" id="defaultRegisterFormConfirmPassword" class="form-control border border-primary py-4" placeholder="Nhập lại mật khẩu">
+        <input type="password" name="confirmPassword" id="defaultRegisterFormConfirmPassword" class="form-control border border-primary py-4" placeholder="Nhập lại mật khẩu">
     </div>
     <div class="d-inline-block">
-        <p>Đã có tài khoản? <a href="login.html">Đăng nhập ngay!</a></p>
+        <p>Đã có tài khoản? <a href="login.jsp">Đăng nhập ngay!</a></p>
     </div>
     <div>
         <button class="btn btn-primary mb-4 btn-block" type="submit">Đăng ký</button>
