@@ -1,3 +1,4 @@
+<%@ page import="beans.UserBean" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -83,8 +84,15 @@
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
+                        <% if (session.getAttribute("user") != null) {
+                            UserBean user = (UserBean) session.getAttribute("user");
+                        %>
+                        <a href="#" class="nav-item nav-link align-content-center"> <%= user.getUsername()%> </a>
+                        <a href="register.html" class="nav-item nav-link">Đăng xuất</a>
+                        <% } else { %>
                         <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                         <a href="register.html" class="nav-item nav-link">Đăng ký</a>
+                        <% } %>
                     </div>
                 </div>
             </nav>
