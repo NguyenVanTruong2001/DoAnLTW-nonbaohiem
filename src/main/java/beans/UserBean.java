@@ -2,7 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
-public class UsersBean implements Serializable {
+public class UserBean implements Serializable {
     private int userId;
     private String username;
     private String email;

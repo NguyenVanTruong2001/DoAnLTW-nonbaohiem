@@ -10,7 +10,10 @@ create table Users(
 );
 
 insert into Users(`Username`, `Email`, `Password`, `Role`) values
-('TigerNixon', 'tigernixon@gmail.com', 'nixon', 'User');
+('Admin', 'admin@gmail.com', 'admin', 'Admin');
+insert into Users(`Username`, `Email`, `Password`) values
+('TigerNixon', 'tigernixon@gmail.com', 'nixon'),
+('GarrettWinters', 'garrettwinters@gmail.com', 'winters');
 
 select * from Users;
 drop table Users;

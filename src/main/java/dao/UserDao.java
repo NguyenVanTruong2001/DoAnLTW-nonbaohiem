@@ -1,11 +1,11 @@
 package dao;
 
-import beans.UsersBean;
+import beans.UserBean;
 
 import java.sql.*;
 
-public class UsersDao {
-    public UsersBean checkLogin(String email, String password) throws ClassNotFoundException, SQLException {
+public class UserDao {
+    public UserBean checkLogin(String email, String password) throws ClassNotFoundException, SQLException {
         String jdbcUrl = "jdbc:mysql://localhost:3306/HelmetManager";
         String dbUser = "root";
         String dbPass = "hello";
@@ -20,9 +20,9 @@ public class UsersDao {
 
         ResultSet result = statement.executeQuery();
 
-        UsersBean user = null;
+        UserBean user = null;
         if (result.next()) {
-            user = new UsersBean();
+            user = new UserBean();
             user.setUserId(result.getInt("UserID"));
             user.setUsername(result.getString("Username"));
             user.setEmail(email);
@@ -36,8 +36,8 @@ public class UsersDao {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UsersDao usersDao = new UsersDao();
-        UsersBean usersBean = usersDao.checkLogin("tigernixon@gmail.com", "nixon");
-        System.out.println(usersBean.toString());
+        UserDao userDao = new UserDao();
+        UserBean userBean = userDao.checkLogin("tigernixon@gmail.com", "nixon");
+        System.out.println(userBean.toString());
     }
 }
