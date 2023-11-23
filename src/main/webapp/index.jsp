@@ -77,7 +77,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
+                        <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
                         <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
                         <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
@@ -87,11 +87,11 @@
                         <% if (session.getAttribute("user") != null) {
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
-                        <a href="#" class="nav-item nav-link align-content-center"> <%= user.getUsername()%> </a>
+                        <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
                         <a href="LogoutController" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
                         <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
-                        <a href="register.html" class="nav-item nav-link">Đăng ký</a>
+                        <a href="register.jsp" class="nav-item nav-link">Đăng ký</a>
                         <% } %>
                     </div>
                 </div>
