@@ -88,7 +88,7 @@
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
                         <a href="#" class="nav-item nav-link align-content-center"> <%= user.getUsername()%> </a>
-                        <a href="register.html" class="nav-item nav-link">Đăng xuất</a>
+                        <a href="LogoutController" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
                         <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
                         <a href="register.html" class="nav-item nav-link">Đăng ký</a>
