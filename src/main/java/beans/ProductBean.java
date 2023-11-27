@@ -10,7 +10,7 @@ public class ProductBean implements Serializable {
     private String productDescription;
     private String productBrand;
     private String productSize;
-    private String productPrice;
+    private int productPrice;
 
     public int getProductId() {
         return productId;
@@ -68,11 +68,11 @@ public class ProductBean implements Serializable {
         this.productSize = productSize;
     }
 
-    public String getProductPrice() {
+    public int getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
 
