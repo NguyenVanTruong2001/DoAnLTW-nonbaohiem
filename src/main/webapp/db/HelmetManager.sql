@@ -88,3 +88,5 @@ insert into Products(`CategoryID`, `ProductName`, `ProductImage`, `ProductDescri
 select * from Users;
 select * from Categories;
 select * from Products;
+select * from Products limit 9 offset 0;
+select * from Products where `CategoryID` = 6 limit 9 offset 0;

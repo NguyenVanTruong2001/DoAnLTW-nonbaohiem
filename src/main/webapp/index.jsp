@@ -78,7 +78,7 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
+                        <a href="shop.jsp" class="nav-item nav-link">Sản phẩm</a>
                         <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
