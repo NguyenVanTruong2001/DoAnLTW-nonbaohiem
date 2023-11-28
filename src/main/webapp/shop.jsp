@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="beans.UserBean" %>
+<%@ page import="beans.ProductBean" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -232,6 +233,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
+                <!-- Search Product -->
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <form action="" method="">
@@ -246,6 +248,7 @@
                         </form>
                     </div>
                 </div>
+                <!-- Search Product -->
                 <!-- limit 9 offset (page-1)*9 -->
                 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
@@ -264,7 +267,8 @@
                         </div>
                     </div>
                 </div>
-                <!--  -->
+                <!-- limit 9 offset (page-1)*9 -->
+                <!-- Paginating -->
                 <div class="col-12 pb-1">
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center mb-3">
@@ -286,6 +290,7 @@
                         </ul>
                     </nav>
                 </div>
+                <!-- Paginating -->
             </div>
         </div>
         <!-- Shop Product End -->
