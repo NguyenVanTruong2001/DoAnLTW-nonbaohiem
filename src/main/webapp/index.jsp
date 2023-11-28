@@ -1,4 +1,9 @@
 <%@ page import="beans.UserBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="beans.CategoryBean" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.CategoryDao" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -58,12 +63,20 @@
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden">
-                    <a href="shop.html" class="nav-item nav-link">Mũ 3/4 đầu</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ 1/2 đầu</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ full-face</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ lật cằm</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ xe đạp</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ trẻ em</a>
+                    <%
+                        CategoryDao categoryDao = new CategoryDao();
+                        List<CategoryBean> list = null;
+                        try {
+                            list = categoryDao.getAllCategories();
+                        } catch (ClassNotFoundException | SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        for (CategoryBean c : list) {
+                    %>
+                    <a href="<c:url value="/shop?categoryId=<%= c.getCategoryId()%>"/>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
+                    <%
+                        }
+                    %>
                 </div>
             </nav>
         </div>
@@ -77,21 +90,22 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="shop.jsp" class="nav-item nav-link">Sản phẩm</a>
+                        <a href="home" class="nav-item nav-link active">Trang chủ</a>
+                        <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                         <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <% if (session.getAttribute("user") != null) {
+                        <%
+                            if (session.getAttribute("user") != null) {
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
                         <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
-                        <a href="LogoutController" class="nav-item nav-link">Đăng xuất</a>
+                        <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
-                        <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
-                        <a href="register.jsp" class="nav-item nav-link">Đăng ký</a>
+                        <a href="login" class="nav-item nav-link">Đăng nhập</a>
+                        <a href="register" class="nav-item nav-link">Đăng ký</a>
                         <% } %>
                     </div>
                 </div>

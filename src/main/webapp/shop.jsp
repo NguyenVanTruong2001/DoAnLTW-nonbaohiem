@@ -8,6 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="beans.UserBean" %>
+<%@ page import="dao.CategoryDao" %>
+<%@ page import="beans.CategoryBean" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dao.ProductDao" %>
+<%@ page import="beans.ProductBean" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,12 +70,18 @@
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                 <div class="navbar-nav w-100 overflow-hidden">
-                    <a href="shop.html" class="nav-item nav-link">Mũ 3/4 đầu</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ 1/2 đầu</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ full-face</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ lật cằm</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ xe đạp</a>
-                    <a href="shop.html" class="nav-item nav-link">Mũ trẻ em</a>
+                    <%
+                        CategoryDao categoryDao = new CategoryDao();
+                        List<CategoryBean> list = null;
+                        try {
+                            list = categoryDao.getAllCategories();
+                        } catch (ClassNotFoundException | SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        for (CategoryBean c : list) {
+                    %>
+                    <a href="<c:url value="/shop?categoryId=<%= c.getCategoryId()%>"/>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
+                    <% } %>
                 </div>
             </nav>
         </div>
@@ -83,8 +95,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.jsp" class="nav-item nav-link">Trang chủ</a>
-                        <a href="shop.jsp" class="nav-item nav-link active">Sản phẩm</a>
+                        <a href="home" class="nav-item nav-link">Trang chủ</a>
+                        <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
                         <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
@@ -94,10 +106,10 @@
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
                         <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
-                        <a href="LogoutController" class="nav-item nav-link">Đăng xuất</a>
+                        <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
-                        <a href="login.jsp" class="nav-item nav-link">Đăng nhập</a>
-                        <a href="register.jsp" class="nav-item nav-link">Đăng ký</a>
+                        <a href="login" class="nav-item nav-link">Đăng nhập</a>
+                        <a href="register" class="nav-item nav-link">Đăng ký</a>
                         <% } %>
                     </div>
                 </div>
@@ -232,6 +244,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
+                <!-- Search Product -->
                 <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <form action="" method="">
@@ -246,16 +259,27 @@
                         </form>
                     </div>
                 </div>
+                <!-- Search Product -->
                 <!-- limit 9 offset (page-1)*9 -->
+                <%
+                    ProductDao productDao = new ProductDao();
+                    List<ProductBean> list1 = null;
+                    try {
+                        list1 = productDao.getAllProducts();
+                    } catch (ClassNotFoundException | SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    for (ProductBean p : list1) {
+                %>
                 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style="height: 350px">
+                            <img class="img-fluid w-100 align-middle" src="<%= p.getProductImage()%>" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Mũ bảo hiểm</h6>
+                            <h6 class="text-truncate mb-3"><%= p.getProductName()%></h6>
                             <div class="d-flex justify-content-center">
-                                <h6>123.000đ</h6>
+                                <h6><%= p.getProductPrice()%>đ</h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
@@ -264,7 +288,9 @@
                         </div>
                     </div>
                 </div>
-                <!--  -->
+                <% } %>
+                <!-- limit 9 offset (page-1)*9 -->
+                <!-- Paginating -->
                 <div class="col-12 pb-1">
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center mb-3">
@@ -286,6 +312,7 @@
                         </ul>
                     </nav>
                 </div>
+                <!-- Paginating -->
             </div>
         </div>
         <!-- Shop Product End -->

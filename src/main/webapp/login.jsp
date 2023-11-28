@@ -42,7 +42,7 @@
         <input type="password" name="password" class="form-control border border-primary py-4" placeholder="Mật khẩu">
     </div>
     <div class="d-inline-block">
-        <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay!</a></p>
+        <p>Chưa có tài khoản? <a href="RegisterController">Đăng ký ngay!</a></p>
     </div>
     <div>
         <button class="btn btn-primary btn-block mb-4" type="submit">Đăng nhập</button>
