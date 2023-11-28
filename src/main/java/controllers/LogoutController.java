@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/LogoutController")
+@WebServlet("/logout")
 public class LogoutController extends HttpServlet {
     public LogoutController() {}
 

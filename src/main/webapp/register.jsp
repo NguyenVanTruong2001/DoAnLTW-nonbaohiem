@@ -48,7 +48,7 @@
         <input type="password" name="confirmPassword" class="form-control border border-primary py-4" placeholder="Nhập lại mật khẩu">
     </div>
     <div class="d-inline-block">
-        <p>Đã có tài khoản? <a href="login.html">Đăng nhập ngay!</a></p>
+        <p>Đã có tài khoản? <a href="LoginController">Đăng nhập ngay!</a></p>
     </div>
     <div>
         <button class="btn btn-primary mb-4 btn-block" type="submit">Đăng ký</button>

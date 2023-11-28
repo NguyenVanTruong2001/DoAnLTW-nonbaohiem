@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/RegisterController")
+@WebServlet("/register")
 public class RegisterController extends HttpServlet {
     public RegisterController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("register.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override

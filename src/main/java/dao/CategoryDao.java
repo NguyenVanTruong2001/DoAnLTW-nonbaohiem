@@ -1,7 +1,6 @@
 package dao;
 
 import beans.CategoryBean;
-import beans.ProductBean;
 
 import java.sql.*;
 import java.util.ArrayList;
