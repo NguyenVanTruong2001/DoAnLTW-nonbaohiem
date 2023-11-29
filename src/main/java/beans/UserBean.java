@@ -9,6 +9,14 @@ public class UserBean implements Serializable {
     private String password;
     private String role;
 
+    public UserBean(int userId, String username, String email, String password, String role) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     public int getUserId() {
         return userId;
     }
