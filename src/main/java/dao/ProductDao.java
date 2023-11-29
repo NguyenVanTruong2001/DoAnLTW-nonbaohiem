@@ -63,20 +63,37 @@ public class ProductDao {
         return null;
     }
 
-    public List<ProductBean> getProductByCategory(int categoryId, int page) throws ClassNotFoundException, SQLException {
+    public List<ProductBean> getProductByCategory(int categoryId) throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM Products WHERE CategoryID = " + categoryId;
 
         Connection connection = new DBConnect().connect();
 
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
+        ResultSet result = statement.executeQuery(sql);
 
-        return null;
+        List<ProductBean> productList = new ArrayList<>();
+        while (result.next()) {
+            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            product.setProductId(result.getInt(1));
+            product.setCategoryId(result.getInt(2));
+            product.setProductName(result.getString(3));
+            product.setProductImage(result.getString(4));
+            product.setProductDescription(result.getString(5));
+            product.setProductBrand(result.getString(6));
+            product.setProductSize(result.getString(7));
+            product.setProductPrice(result.getInt(8));
+            productList.add(product);
+        }
+
+        connection.close();
+        return productList;
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ProductDao productDao = new ProductDao();
-        List<ProductBean> productBeans = productDao.getAllProducts();
-        System.out.println(productBeans.size());
+        List<ProductBean> productBeans = productDao.getProductByCategory(1);
+        for (ProductBean bean : productBeans) {
+            System.out.println(bean);
+        }
     }
 }

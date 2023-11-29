@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/home")
@@ -21,7 +20,16 @@ public class IndexController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        CategoryDao categoryDao = new CategoryDao();
+        List<CategoryBean> categoryList;
+        try {
+            categoryList = categoryDao.getAllCategories();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+        CategoryBean[] categoryBeans = categoryList.toArray(new CategoryBean[0]);
+        req.setAttribute("categoryList", categoryBeans);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
     @Override

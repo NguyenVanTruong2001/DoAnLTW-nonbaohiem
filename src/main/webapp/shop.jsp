@@ -16,6 +16,9 @@
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
+<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
+<% ProductBean[] productBeans = (ProductBean[]) request.getAttribute("productList"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,17 +75,8 @@
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                 <div class="navbar-nav w-100 overflow-hidden">
-                    <%
-                        CategoryDao categoryDao = new CategoryDao();
-                        List<CategoryBean> list = null;
-                        try {
-                            list = categoryDao.getAllCategories();
-                        } catch (ClassNotFoundException | SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                        for (CategoryBean c : list) {
-                    %>
-                    <a href="<c:url value="/shop?categoryId=<%= c.getCategoryId()%>"/>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
+                    <% for (CategoryBean c : categoryList) { %>
+                        <a href="shop?categoryId=<%= c.getCategoryId()%>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
                     <% } %>
                 </div>
             </nav>
@@ -104,14 +98,15 @@
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <% if (session.getAttribute("user") != null) {
+                        <%
+                            if (session.getAttribute("user") != null) {
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
-                        <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
-                        <a href="logout" class="nav-item nav-link">Đăng xuất</a>
+                            <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
+                            <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
-                        <a href="login" class="nav-item nav-link">Đăng nhập</a>
-                        <a href="register" class="nav-item nav-link">Đăng ký</a>
+                            <a href="login" class="nav-item nav-link">Đăng nhập</a>
+                            <a href="register" class="nav-item nav-link">Đăng ký</a>
                         <% } %>
                     </div>
                 </div>
@@ -264,14 +259,7 @@
                 <!-- Search Product -->
                 <!-- limit 9 offset (page-1)*9 -->
                 <%
-                    ProductDao productDao = new ProductDao();
-                    List<ProductBean> list1 = null;
-                    try {
-                        list1 = productDao.getAllProducts();
-                    } catch (ClassNotFoundException | SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    for (ProductBean p : list1) {
+                    for (ProductBean p : productBeans) {
                 %>
                 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
