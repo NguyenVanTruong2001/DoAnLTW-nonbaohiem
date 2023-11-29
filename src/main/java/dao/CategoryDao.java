@@ -7,15 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDao {
-    String jdbcUrl = "jdbc:mysql://localhost:3306/HelmetManager";
-    String dbUser = "root";
-    String dbPass = "hello";
-
     public List<CategoryBean> getAllCategories() throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM Categories";
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPass);
+        Connection connection = new DBConnect().connect();
 
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
@@ -23,8 +18,8 @@ public class CategoryDao {
         List<CategoryBean> categoryList = new ArrayList<>();
         while (result.next()) {
             CategoryBean category = new CategoryBean();
-            category.setCategoryId(result.getInt("CategoryID"));
-            category.setCategoryName(result.getString("CategoryName"));
+            category.setCategoryId(result.getInt(1));
+            category.setCategoryName(result.getString(2));
             categoryList.add(category);
         }
 
@@ -35,6 +30,8 @@ public class CategoryDao {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CategoryDao categoryDao = new CategoryDao();
         List<CategoryBean> list = categoryDao.getAllCategories();
-        System.out.println(list);
+        for (CategoryBean bean : list) {
+            System.out.println(bean);
+        }
     }
 }

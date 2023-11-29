@@ -6,14 +6,9 @@ import java.sql.*;
 
 public class UserDao {
     public UserBean checkLogin(String email, String password) throws ClassNotFoundException, SQLException {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/HelmetManager";
-        String dbUser = "root";
-        String dbPass = "hello";
         String sql = "SELECT * FROM users WHERE email = ? and password = ?";
 
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPass);
+        Connection connection = new DBConnect().connect();
 
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, email);
@@ -37,14 +32,10 @@ public class UserDao {
     }
 
     public boolean register(String username, String email, String password) throws ClassNotFoundException, SQLException {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/HelmetManager";
-        String dbUser = "root";
-        String dbPass = "hello";
         String sql1 = "INSERT INTO Users(`Username`, `Email`, `Password`) VALUE (?, ?, ?)";
         String sql2 = "SELECT * FROM Users WHERE Email = ?";
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPass);
+        Connection connection = new DBConnect().connect();
 
         PreparedStatement statement = connection.prepareStatement(sql2);
         statement.setString(1, email);
