@@ -1,11 +1,8 @@
 <%@ page import="beans.UserBean" %>
-<%@ page import="java.util.List" %>
 <%@ page import="beans.CategoryBean" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="dao.CategoryDao" %>
-<%@ page import="java.sql.SQLException" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,20 +60,9 @@
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden">
-                    <%
-                        CategoryDao categoryDao = new CategoryDao();
-                        List<CategoryBean> list = null;
-                        try {
-                            list = categoryDao.getAllCategories();
-                        } catch (ClassNotFoundException | SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                        for (CategoryBean c : list) {
-                    %>
-                    <a href="<c:url value="/shop?categoryId=<%= c.getCategoryId()%>"/>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
-                    <%
-                        }
-                    %>
+                    <% for (CategoryBean c : categoryList) { %>
+                        <a href="shop?categoryId=<%= c.getCategoryId()%>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
+                    <% } %>
                 </div>
             </nav>
         </div>
@@ -101,7 +87,7 @@
                             if (session.getAttribute("user") != null) {
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
-                        <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
+                        <span class="nav-item nav-link"><%= user.getUsername()%></span>
                         <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
                         <a href="login" class="nav-item nav-link">Đăng nhập</a>

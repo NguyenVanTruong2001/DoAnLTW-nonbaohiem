@@ -75,13 +75,13 @@ insert into Products(`CategoryID`, `ProductName`, `ProductImage`, `ProductDescri
 (1, 'Mũ bảo hiểm Protec Viva VALWKZ', 'img/product-img/mu-bao-hiem-protec-viva-1-mau-valwkz.jpg',
     'Mũ bảo hiểm Viva VALWKZ là sản phẩm của thương hiệu Protec của Mỹ, có nhà máy tại Việt Nam. Chiếc mũ là bước đột phá mới cho kiểu mũ bảo hiểm 3/4. Protec Viva VALWKZ sở hữu nét thiết kế tinh tế với kiểu dáng thon gọn, bắt mắt. Mũ có khả năng ôm vừa vặn vào đầu người đội, kết hợp với hệ thống khe thông gió thông minh tạọ cảm giác thoải mái. Kính chắn gió được làm từ chất liệu đặc biệt không bị chói lóa giúp người dùng dễ dàng quan sát khi sử dụng. Ngoài ra chất liệu này cũng mang tới sự dẻo dai bền bỉ cho sản phẩm.',
     'Protec', 'L', 434000),
-(6, 'Mũ bảo hiểm Protec Kitty S 2 màu', 'img/product-img/mu-bao-hiem-royal-m01-tron-do.jpg',
+(6, 'Mũ bảo hiểm Protec Kitty S 2 màu', 'img/product-img/mu-bao-hiem-protec-kitty-s-2-mau-co-kinh.jpg',
     'Mũ bảo hiểm Protec là thương hiệu mũ bảo hiểm nổi tiếng được nhiều bậc phụ huynh tin tưởng lựa chọn để bảo vệ bé khỏi những chấn thương không mong muốn. Vỏ mũ bảo hiểm được làm từ nhựa ABS có độ ứng cao, chịu va đập tốt. Trên đỉnh mũ có bố trí các lỗ thông khí giúp mũ luôn thoáng và khô ráo, không ẩm ướt gây khó chịu vùng da đầu của bé. Lớp vỏ nhựa trơn bóng không bám bụi, dễ vệ sinh. Bên trong được lót lớp xốp dày để vừa giảm lực tác động lên đầu của bé vừa mang lại cảm giác êm ái cho đầu. Mũ bảo hiểm trẻ em thiết kế dây khóa gài chắc chắn, có độ đàn hồi cao, dễ chỉnh cho vừa đầu của bé. Mặt trước mũ bảo hiểm có kính che chắn bụi và được thiết kế trong suốt để không làm giảm tầm nhìn của bé.',
     'Protec', 'S', 314000),
-(3, 'Mũ bảo hiểm fullface Andes 3S-555', 'img/product-img/mu-doi-dau-cho-be-scoot-and-ride-size-s-1.jpg',
+(3, 'Mũ bảo hiểm fullface Andes 3S-555', 'img/product-img/mu-bao-hiem-fullface-andes-3s-555-s1.jpg',
     'Nếu bạn là người đề cao sự an toàn, và thường xuyên phải di chuyển quãng đường xa, thì mũ bảo hiểm fullface 3S-555 sẽ là lựa chọn hoàn toàn lý tưởng. Mũ này cũng có khả năng chịu được va đập cực tốt. Mút xốp dày, vừa vặn bám chặt với phần vỏ giúp triệt tiêu hoàn toàn xung lực mạnh từ bên ngoài tác động vào. Mũ ôm trọn vòng đầu, trọng lượng được phân tán đều không gây cảm giác nặng và đau đầu, tạo cho người đội cảm giác thoải mái và thoáng mát khi sử dụng. Vải lót bên trong được xử lý kháng khuẩn, hút ẩm tốt, tạo cảm giác êm ái và thoáng mát. Khóa và dây quai chịu lực cực mạnh, độ dài linh động phù hợp với mọi đối tượng. Kính chắn gió được làm từ vật liệu đặc biệt, cho hình ảnh rõ nét, không bị chói đèn.',
     'Andes', 'M', 555000),
-(2, 'Mũ bảo hiểm Protec Rosa 2 màu RLWF', 'img/product-img/non-bao-hiem-1-2-dau-asia-mt-105-s2.jpg',
+(2, 'Mũ bảo hiểm Protec Rosa 2 màu RLWF', 'img/product-img/mu-bao-hiem-protec-rosa-rlwf-2-mau-1.jpg',
     'Mũ bảo hiểm Protec là thương hiệu được ưa chuộng tại thị trường Việt Nam bởi độ an toàn, bền, giá cả phải chăng. Vỏ mũ bảo hiểm Protec Rosa RLWF được làm từ nhựa tổng hợp (ABS) nguyên sinh, có khả năng chịu va đập tốt, chống mài mòn hiệu quả. Mũ bảo hiểm Protec Rosa có thiết kế pha màu kiểu nửa đầu tạo sự thoải mái cho người sử dụng. Mũ bảo hiểm Protec Rosa 2 màu RLWF sử dụng lõi xốp mũ EPS hấp thu xung đột tốt, hạn chế chấn thương tối đa khi xảy ra tai nạn, va chạm. Mũ Protec đã thông qua các quy trình kiểm định nghiêm ngặt về độ va đập, độ đâm xuyên và độ ổn định của khóa mũ.',
     'Protec', 'M', 252000);
 
@@ -90,3 +90,4 @@ select * from Categories;
 select * from Products;
 select * from Products limit 9 offset 0;
 select * from Products where `CategoryID` = 6 limit 9 offset 0;
+drop table Products;
