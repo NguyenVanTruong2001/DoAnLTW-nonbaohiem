@@ -15,9 +15,9 @@ public class CategoryDao {
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
 
-        CategoryBean category = new CategoryBean(0, "");
         List<CategoryBean> categoryList = new ArrayList<>();
         while (result.next()) {
+            CategoryBean category = new CategoryBean(0, "");
             category.setCategoryId(result.getInt(1));
             category.setCategoryName(result.getString(2));
             categoryList.add(category);

@@ -15,9 +15,9 @@ public class ProductDao {
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
 
-        ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
+            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
             product.setProductId(result.getInt(1));
             product.setCategoryId(result.getInt(2));
             product.setProductName(result.getString(3));
@@ -41,9 +41,9 @@ public class ProductDao {
 //        Statement statement = connection.createStatement();
 //        ResultSet result = statement.executeQuery(sql);
 //
-//        ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
 //        List<ProductBean> productList = new ArrayList<>();
 //        while (result.next()) {
+//            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
 //            product.setProductId(result.getInt("ProductID"));
 //            product.setCategoryId(result.getInt("CategoryID"));
 //            product.setProductName(result.getString("ProductName"));

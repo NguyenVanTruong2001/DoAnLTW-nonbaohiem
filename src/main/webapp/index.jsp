@@ -1,7 +1,6 @@
 <%@ page import="beans.UserBean" %>
 <%@ page import="java.util.List" %>
 <%@ page import="beans.CategoryBean" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="dao.CategoryDao" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
@@ -101,7 +100,7 @@
                             if (session.getAttribute("user") != null) {
                             UserBean user = (UserBean) session.getAttribute("user");
                         %>
-                        <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
+                        <span class="nav-item nav-link"><%= user.getUsername()%></span>
                         <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
                         <a href="login" class="nav-item nav-link">Đăng nhập</a>
