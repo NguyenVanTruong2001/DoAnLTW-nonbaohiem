@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-<form class="text-center bg-secondary p-5 c" action="<c:url value="/RegisterController"/>" method="post">
+<form class="text-center bg-secondary p-5 c" action="<c:url value="/register"/>" method="post">
     <h3 class="font-weight-bold mb-4">Đăng ký</h3>
     <% if (message != null) { %>
     <div class="form-group alert alert-danger">
@@ -48,7 +48,7 @@
         <input type="password" name="confirmPassword" class="form-control border border-primary py-4" placeholder="Nhập lại mật khẩu">
     </div>
     <div class="d-inline-block">
-        <p>Đã có tài khoản? <a href="LoginController">Đăng nhập ngay!</a></p>
+        <p>Đã có tài khoản? <a href="login">Đăng nhập ngay!</a></p>
     </div>
     <div>
         <button class="btn btn-primary mb-4 btn-block" type="submit">Đăng ký</button>

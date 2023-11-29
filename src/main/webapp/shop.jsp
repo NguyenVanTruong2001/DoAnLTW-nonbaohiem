@@ -14,6 +14,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dao.ProductDao" %>
 <%@ page import="beans.ProductBean" %>
+<%@ page import="java.text.DecimalFormat" %>
+<% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -279,11 +281,11 @@
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3"><%= p.getProductName()%></h6>
                             <div class="d-flex justify-content-center">
-                                <h6><%= p.getProductPrice()%>đ</h6>
+                                <h6 class="text-primary"><%= format.format(p.getProductPrice())%> &#8363;</h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                            <a href="?productId=<%= p.getCategoryId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
                             <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                         </div>
                     </div>
