@@ -8,16 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="beans.UserBean" %>
-<%@ page import="dao.CategoryDao" %>
 <%@ page import="beans.CategoryBean" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.List" %>
-<%@ page import="dao.ProductDao" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<% ProductBean[] productBeans = (ProductBean[]) request.getAttribute("productList"); %>
+<% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +41,7 @@
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-primary px-3 mr-1">G41</span>Helmet</h1>
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-primary px-3 mr-1">G46</span>Helmet</h1>
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
@@ -84,7 +80,7 @@
         <div class="col-lg-9">
             <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                 <a href="" class="text-decoration-none d-block d-lg-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-primary px-3 mr-1">G41</span>Helmet</h1>
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-primary px-3 mr-1">G46</span>Helmet</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -259,7 +255,7 @@
                 <!-- Search Product -->
                 <!-- limit 9 offset (page-1)*9 -->
                 <%
-                    for (ProductBean p : productBeans) {
+                    for (ProductBean p : productList) {
                 %>
                 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
@@ -273,7 +269,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="?productId=<%= p.getCategoryId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                            <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
                             <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                         </div>
                     </div>
