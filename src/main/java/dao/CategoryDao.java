@@ -27,11 +27,26 @@ public class CategoryDao {
         return categoryList;
     }
 
+    public CategoryBean getCategoryById(int categoryId) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Categories WHERE `CategoryID` = " + categoryId;
+
+        Connection connection = new DBConnect().connect();
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        CategoryBean category = new CategoryBean(0, "");
+        while (result.next()) {
+            category.setCategoryId(result.getInt(1));
+            category.setCategoryName(result.getString(2));
+        }
+
+        connection.close();
+        return category;
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CategoryDao categoryDao = new CategoryDao();
-        List<CategoryBean> list = categoryDao.getAllCategories();
-        for (CategoryBean bean : list) {
-            System.out.println(bean);
-        }
+        System.out.println(categoryDao.getCategoryById(1));
     }
 }
