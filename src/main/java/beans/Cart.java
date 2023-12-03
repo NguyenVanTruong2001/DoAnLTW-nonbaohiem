@@ -1,31 +1,29 @@
 package beans;
 
-import java.util.Map;
+import java.io.Serializable;
 
-public class Cart {
-    private Map<ProductBean, Integer> cartList;
-    private long cartId;
+public class Cart implements Serializable {
+    private ProductBean product;
+    private int quantity;
 
-    public Cart() {}
-
-    public Cart(Map<ProductBean, Integer> cartList, long cartId) {
-        this.cartList = cartList;
-        this.cartId = cartId;
+    public Cart(ProductBean product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
     }
 
-    public Map<ProductBean, Integer> getCartList() {
-        return cartList;
+    public ProductBean getProduct() {
+        return product;
     }
 
-    public void setCartList(Map<ProductBean, Integer> cartList) {
-        this.cartList = cartList;
+    public void setProduct(ProductBean product) {
+        this.product = product;
     }
 
-    public long getCartId() {
-        return cartId;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCartId(long cartId) {
-        this.cartId = cartId;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
