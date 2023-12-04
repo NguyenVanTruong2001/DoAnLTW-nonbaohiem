@@ -88,7 +88,7 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="home" class="nav-item nav-link">Trang chủ</a>
-                        <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
+                        <a href="shop?categoryId=0" class="nav-item nav-link active">Sản phẩm</a>
                         <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
@@ -254,9 +254,7 @@
                 </div>
                 <!-- Search Product -->
                 <!-- limit 9 offset (page-1)*9 -->
-                <%
-                    for (ProductBean p : productList) {
-                %>
+                <% for (ProductBean p : productList) { %>
                 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style="height: 350px">

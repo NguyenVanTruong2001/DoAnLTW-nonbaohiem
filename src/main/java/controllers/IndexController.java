@@ -21,14 +21,22 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CategoryDao categoryDao = new CategoryDao();
+        ProductDao productDao = new ProductDao();
         List<CategoryBean> categoryList;
+        List<ProductBean> productList, productList2;
         try {
             categoryList = categoryDao.getAllCategories();
+            productList = productDao.getRecommendedProducts();
+            productList2 = productDao.getNewestProducts();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
         CategoryBean[] categoryBeans = categoryList.toArray(new CategoryBean[0]);
+        ProductBean[] productBeans = productList.toArray(new ProductBean[0]);
+        ProductBean[] productBeans2 = productList2.toArray(new ProductBean[0]);
         req.setAttribute("categoryList", categoryBeans);
+        req.setAttribute("productList", productBeans);
+        req.setAttribute("productList2", productBeans2);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 

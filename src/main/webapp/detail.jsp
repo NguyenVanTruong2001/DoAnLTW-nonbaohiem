@@ -6,6 +6,7 @@
 <%@ page import="java.text.DecimalFormat" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
+<% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
 <% CategoryBean categoryBean = (CategoryBean) request.getAttribute("categoryBean"); %>
 <% ProductBean productBean = (ProductBean) request.getAttribute("productBean"); %>
 
@@ -82,7 +83,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
+                            <a href="shop?categoryId=0" class="nav-item nav-link active">Sản phẩm</a>
                             <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
                             <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
@@ -269,81 +270,23 @@
         <div class="row px-xl-5">
             <div class="col">
                 <div class="owl-carousel related-carousel">
+                    <% for (ProductBean p : productList) { %>
                     <div class="card product-item border-0">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                            <img class="img-fluid w-100" src="<%= p.getProductImage()%>" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Mũ bảo hiểm</h6>
+                            <h6 class="text-truncate mb-3"><%= p.getProductName()%></h6>
                             <div class="d-flex justify-content-center">
-                                <h6>123.000đ</h6>
+                                <h6><%= format.format(p.getProductPrice()) %> &#8363;</h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                            <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
                             <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                         </div>
                     </div>
-                    <div class="card product-item border-0">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Mũ bảo hiểm</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>123.000đ</h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Mũ bảo hiểm</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>123.000đ</h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Mũ bảo hiểm</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>123.000đ</h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Mũ bảo hiểm</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>123.000đ</h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
         </div>

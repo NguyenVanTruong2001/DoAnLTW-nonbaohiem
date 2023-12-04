@@ -21,13 +21,19 @@ public class ShopController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("categoryId"));
         CategoryDao categoryDao = new CategoryDao();
         ProductDao productDao = new ProductDao();
         List<ProductBean> productList;
         List<CategoryBean> categoryList;
         try {
-            categoryList = categoryDao.getAllCategories();
-            productList = productDao.getAllProducts();
+            if (id == 0) {
+                categoryList = categoryDao.getAllCategories();
+                productList = productDao.getAllProducts();
+            } else {
+                categoryList = categoryDao.getAllCategories();
+                productList = productDao.getProductByCategory(id);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }

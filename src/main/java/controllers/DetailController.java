@@ -28,6 +28,7 @@ public class DetailController extends HttpServlet {
         ProductDao productDao = new ProductDao();
         CategoryDao categoryDao = new CategoryDao();
         List<CategoryBean> categoryList;
+        List<ProductBean> productList;
 
         int id = Integer.parseInt(req.getParameter("productId"));
         ProductBean productBean;
@@ -36,14 +37,17 @@ public class DetailController extends HttpServlet {
             productBean = productDao.getProductById(id);
             categoryList = categoryDao.getAllCategories();
             categoryBean = categoryDao.getCategoryById(productBean.getCategoryId());
+            productList = productDao.getRecommendedProducts();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
         CategoryBean[] categoryBeans = categoryList.toArray(new CategoryBean[0]);
+        ProductBean[] productBeans = productList.toArray(new ProductBean[0]);
         req.setAttribute("categoryList", categoryBeans);
         req.setAttribute("productBean", productBean);
         req.setAttribute("categoryBean", categoryBean);
+        req.setAttribute("productList", productBeans);
         req.getRequestDispatcher("detail.jsp").forward(req, resp);
     }
 }

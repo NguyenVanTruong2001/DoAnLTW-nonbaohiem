@@ -7,6 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao {
+    public int countProducts() throws ClassNotFoundException, SQLException {
+        int i = 0;
+        String sql = "SELECT COUNT(*) FROM Products";
+
+        Connection connection = new DBConnect().connect();
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        if (result.next())
+            i = result.getInt(1);
+
+        return i;
+    }
+
     public List<ProductBean> getAllProducts() throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM Products";
 
@@ -14,6 +28,64 @@ public class ProductDao {
 
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
+
+        List<ProductBean> productList = new ArrayList<>();
+        while (result.next()) {
+            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            product.setProductId(result.getInt(1));
+            product.setCategoryId(result.getInt(2));
+            product.setProductName(result.getString(3));
+            product.setProductImage(result.getString(4));
+            product.setProductDescription(result.getString(5));
+            product.setProductBrand(result.getString(6));
+            product.setProductSize(result.getString(7));
+            product.setProductPrice(result.getInt(8));
+            productList.add(product);
+        }
+
+        connection.close();
+        return productList;
+    }
+
+    public List<ProductBean> getNewestProducts() throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`";
+
+        Connection connection = new DBConnect().connect();
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        List<ProductBean> productList = new ArrayList<>();
+        while (result.next()) {
+            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            product.setProductId(result.getInt(1));
+            product.setCategoryId(result.getInt(2));
+            product.setProductName(result.getString(3));
+            product.setProductImage(result.getString(4));
+            product.setProductDescription(result.getString(5));
+            product.setProductBrand(result.getString(6));
+            product.setProductSize(result.getString(7));
+            product.setProductPrice(result.getInt(8));
+            productList.add(product);
+        }
+
+        connection.close();
+        return productList;
+    }
+
+    public List<ProductBean> getRecommendedProducts() throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Products WHERE `ProductID` IN (?, ?, ?, ?, ?)";
+        List<Integer> list = rng();
+
+        Connection connection = new DBConnect().connect();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, list.get(0));
+        statement.setInt(2, list.get(1));
+        statement.setInt(3, list.get(2));
+        statement.setInt(4, list.get(3));
+        statement.setInt(5, list.get(4));
+        ResultSet result = statement.executeQuery();
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
@@ -44,14 +116,14 @@ public class ProductDao {
 //        List<ProductBean> productList = new ArrayList<>();
 //        while (result.next()) {
 //            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
-//            product.setProductId(result.getInt("ProductID"));
-//            product.setCategoryId(result.getInt("CategoryID"));
-//            product.setProductName(result.getString("ProductName"));
-//            product.setProductImage(result.getString("ProductImage"));
-//            product.setProductDescription(result.getString("ProductDescription"));
-//            product.setProductBrand(result.getString("ProductBrand"));
-//            product.setProductSize(result.getString("ProductSize"));
-//            product.setProductPrice(result.getInt("ProductPrice"));
+//            product.setProductId(result.getInt(1));
+//            product.setCategoryId(result.getInt(2));
+//            product.setProductName(result.getString(3));
+//            product.setProductImage(result.getString(4));
+//            product.setProductDescription(result.getString(5));
+//            product.setProductBrand(result.getString(6));
+//            product.setProductSize(result.getString(7));
+//            product.setProductPrice(result.getInt(8));
 //            productList.add(product);
 //        }
 //
@@ -109,8 +181,23 @@ public class ProductDao {
         return product;
     }
 
+    private List<Integer> rng() throws ClassNotFoundException, SQLException {
+        List<Integer> list = new ArrayList<>();
+        list.add((int) (Math.random() * countProducts()) + 1);
+
+        while (list.size() < 5) {
+            int num = (int) (Math.random() * countProducts()) + 1;
+            if (list.isEmpty()) list.add(num);
+            if (!list.contains(num)) list.add(num);
+        }
+
+        return list;
+    }
+
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ProductDao productDao = new ProductDao();
-        System.out.println(productDao.getProductById(1));
+        for (ProductBean p : productDao.getNewestProducts()) {
+            System.out.println(p.toString());
+        }
     }
 }
