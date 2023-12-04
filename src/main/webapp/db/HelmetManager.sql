@@ -90,4 +90,5 @@ select * from Categories;
 select * from Products;
 select * from Products limit 9 offset 0;
 select * from Products where `CategoryID` = 6 limit 9 offset 0;
+SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
 drop table Products;
