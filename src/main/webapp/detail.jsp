@@ -84,7 +84,7 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
                             <a href="shop?categoryId=0" class="nav-item nav-link active">Sản phẩm</a>
-                            <a href="cart.html" class="nav-item nav-link">Giỏ hàng</a>
+                            <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
                             <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                         </div>
@@ -283,7 +283,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
                             <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                            <a href="cart.jsp" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                     <% } %>

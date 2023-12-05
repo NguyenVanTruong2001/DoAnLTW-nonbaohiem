@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="beans.UserBean" %>
+<%@ page import="beans.CategoryBean" %>
+<%@ page import="beans.ProductBean" %>
+<%@ page import="java.text.DecimalFormat" %>
+<% DecimalFormat format = new DecimalFormat("#,###.#"); %>
+<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,12 +63,9 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden">
-                        <a href="shop.html" class="nav-item nav-link">Mũ 3/4 đầu</a>
-                        <a href="shop.html" class="nav-item nav-link">Mũ 1/2 đầu</a>
-                        <a href="shop.html" class="nav-item nav-link">Mũ full-face</a>
-                        <a href="shop.html" class="nav-item nav-link">Mũ lật cằm</a>
-                        <a href="shop.html" class="nav-item nav-link">Mũ xe đạp</a>
-                        <a href="shop.html" class="nav-item nav-link">Mũ trẻ em</a>
+                        <% for (CategoryBean c : categoryList) { %>
+                        <a href="shop?categoryId=<%= c.getCategoryId()%>" class="nav-item nav-link"><%= c.getCategoryName()%></a>
+                        <% } %>
                     </div>
                 </nav>
             </div>
@@ -73,15 +79,23 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop.html" class="nav-item nav-link">Sản phẩm</a>
-                            <a href="cart.html" class="nav-item nav-link active">Giỏ hàng</a>
+                            <a href="home" class="nav-item nav-link">Trang chủ</a>
+                            <a href="shop?categoryId=0" class="nav-item nav-link">Sản phẩm</a>
+                            <a href="cart" class="nav-item nav-link active">Giỏ hàng</a>
                             <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="login.html" class="nav-item nav-link">Đăng nhập</a>
-                            <a href="register.html" class="nav-item nav-link">Đăng ký</a>
+                            <%
+                                if (session.getAttribute("user") != null) {
+                                    UserBean user = (UserBean) session.getAttribute("user");
+                            %>
+                            <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
+                            <a href="logout" class="nav-item nav-link">Đăng xuất</a>
+                            <% } else { %>
+                            <a href="login" class="nav-item nav-link">Đăng nhập</a>
+                            <a href="register" class="nav-item nav-link">Đăng ký</a>
+                            <% } %>
                         </div>
                     </div>
                 </nav>
