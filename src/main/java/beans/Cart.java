@@ -26,4 +26,8 @@ public class Cart implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int totalPrice() {
+        return this.product.getProductPrice() * this.quantity;
+    }
 }
