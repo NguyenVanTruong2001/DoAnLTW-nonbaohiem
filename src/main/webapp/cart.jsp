@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="beans.UserBean" %>
 <%@ page import="beans.CategoryBean" %>
-<%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="beans.Cart" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 
@@ -130,8 +131,8 @@
                     </thead>
                     <tbody class="align-middle">
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Mũ bảo hiểm</td>
-                            <td class="align-middle">123.000đ</td>
+                            <td class="align-middle"><img src="" alt="" style="width: 50px;"> </td>
+                            <td class="align-middle"> &#8323;</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -139,7 +140,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="1">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -147,91 +148,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Mũ bảo hiểm</td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Mũ bảo hiểm</td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Mũ bảo hiểm</td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Mũ bảo hiểm</td>
-                            <td class="align-middle">123.000đ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">123.000đ</td>
+                            <td class="align-middle"></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr>
                     </tbody>

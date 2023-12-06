@@ -2,7 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
-public class ProductBean implements Serializable, Comparable<ProductBean> {
+public class ProductBean implements Serializable {
     private int productId;
     private int categoryId;
     private String productName;
@@ -99,10 +99,5 @@ public class ProductBean implements Serializable, Comparable<ProductBean> {
                 ", productSize='" + productSize + '\'' +
                 ", productPrice='" + productPrice + '\'' +
                 '}';
-    }
-
-    @Override
-    public int compareTo(ProductBean o) {
-        return this.productId - o.productId;
     }
 }
