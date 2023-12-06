@@ -1,33 +1,61 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Cart implements Serializable {
-    private ProductBean product;
-    private int quantity;
 
-    public Cart(ProductBean product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
+    private HashMap<ProductBean, Integer> map;
+
+    public Cart(HashMap<ProductBean, Integer> map) {
+        this.map = map;
     }
 
-    public ProductBean getProduct() {
-        return product;
+    public Cart() {
+        map = new HashMap<>();
     }
 
-    public void setProduct(ProductBean product) {
-        this.product = product;
+    public HashMap<ProductBean, Integer> getMap() {
+        return map;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public void setMap(HashMap<ProductBean, Integer> map) {
+        this.map = map;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void addToCart(ProductBean product, int quantity) {
+        boolean b = map.containsKey(product);
+
+        if (b) {
+            int i = map.get(product);
+            quantity += i;
+            map.put(product, quantity);
+        } else {
+            map.put(product, quantity);
+        }
     }
 
-    public int totalPrice() {
-        return this.product.getProductPrice() * this.quantity;
+    public void subToCart(ProductBean product, int quantity) {
+        boolean b = map.containsKey(product);
+
+        if (b) {
+            int i = map.get(product);
+            quantity -= i - quantity;
+
+            if (quantity < 0) {
+                map.remove(product);
+            } else {
+                map.remove(product);
+                map.put(product, quantity);
+            }
+        }
+    }
+
+    public void removeFromCart(ProductBean product) {
+        boolean b = map.containsKey(product);
+
+        if (b) {
+            map.remove(product);
+        }
     }
 }

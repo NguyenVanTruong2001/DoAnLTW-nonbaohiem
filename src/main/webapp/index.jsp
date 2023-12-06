@@ -159,80 +159,6 @@
 <!-- Featured End -->
 
 
-<!-- Categories Start -->
-<div class="container-fluid pt-5">
-    <div class="row px-xl-5 pb-3">
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">15 sản phẩm</p>
-                <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="img/cat-1.jpg" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">Mũ 3/4 đầu</h5>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">15 sản phẩm</p>
-                <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="img/cat-2.jpg" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">Mũ 1/2 đầu</h5>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">15 sản phẩm</p>
-                <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="img/cat-3.jpg" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">Mũ full-face</h5>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">15 sản phẩm</p>
-                <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="img/cat-4.jpg" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">Mũ lật cằm</h5>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">15 sản phẩm</p>
-                <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="img/cat-5.jpg" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">Mũ xe đạp</h5>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                <p class="text-right">15 sản phẩm</p>
-                <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                    <img class="img-fluid" src="img/cat-6.jpg" alt="">
-                </a>
-                <h5 class="font-weight-semi-bold m-0">Mũ trẻ em</h5>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Categories End -->
-
-
-<!-- Offer Start -->
-<div class="container-fluid pt-5 d-flex flex-row">
-    <div class="p-4 flex-fill">
-        <img src="img/offer-1.jpg" alt="" class="img-fluid" width="700">
-    </div>
-    <div class="p-4 flex-fill">
-        <img src="img/offer-2.jpg" alt="" class="img-fluid" width="700">
-    </div>
-</div>
-<!-- Offer End -->
-
-
 <!-- Products Start -->
 <div class="container-fluid py-5">
     <div class="text-center mb-4">
@@ -254,7 +180,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a href="cart?command=add&productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                        <a href="add-to-cart?productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                     </div>
                 </div>
                 <% } %>
@@ -263,6 +189,18 @@
     </div>
 </div>
 <!-- Products End -->
+
+
+<!-- Offer Start -->
+<div class="container-fluid pt-5 d-flex flex-row">
+    <div class="p-4 flex-fill">
+        <img src="img/offer-1.jpg" alt="" class="img-fluid" width="700">
+    </div>
+    <div class="p-4 flex-fill">
+        <img src="img/offer-2.jpg" alt="" class="img-fluid" width="700">
+    </div>
+</div>
+<!-- Offer End -->
 
 
 <!-- Products Start -->
@@ -286,7 +224,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a href="cart?command=add&productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                        <a href="add-to-cart?productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                     </div>
                 </div>
                 <% } %>
