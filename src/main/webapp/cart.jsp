@@ -5,6 +5,7 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="beans.Cart" %>
+<%@ page import="beans.ProductBean" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 
@@ -132,7 +133,7 @@
                     <tbody class="align-middle">
                         <tr>
                             <td class="align-middle"><img src="" alt="" style="width: 50px;"> </td>
-                            <td class="align-middle"> &#8323;</td>
+                            <td class="align-middle"> &#8363;</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -148,7 +149,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"></td>
+                            <td class="align-middle"> &#8363;</td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr>
                     </tbody>
