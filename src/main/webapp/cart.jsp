@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="beans.UserBean" %>
-<%@ page import="beans.CategoryBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="beans.Cart" %>
-<%@ page import="beans.ProductBean" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="beans.*" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
+<%
+    Cart cart = (Cart) session.getAttribute("cart");
+    if (cart == null) {
+        cart = new Cart();
+        session.setAttribute("cart", cart);
+    }
+    Map<Integer, ProductCart> list = cart.getMap();
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,9 +137,12 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
+                    <%
+                        for (Map.Entry<Integer, ProductCart> entry : list.entrySet()) {
+                    %>
                         <tr>
-                            <td class="align-middle"><img src="" alt="" style="width: 50px;"> </td>
-                            <td class="align-middle"> &#8363;</td>
+                            <td class="align-middle"><img src="<%= entry.getValue().getProduct().getProductImage()%>" alt="" style="width: 50px;"> <%= entry.getValue().getProduct().getProductName()%></td>
+                            <td class="align-middle"><%= format.format(entry.getValue().getQuantity())%> &#8363;</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -141,7 +150,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="<%= entry.getValue().getQuantity()%>">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -149,9 +158,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"> &#8363;</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><%= format.format((long) entry.getValue().getProduct().getProductPrice() * entry.getValue().getQuantity())%> &#8363;</td>
+                            <td class="align-middle"><a class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
+                    <% } %>
                     </tbody>
                 </table>
             </div>
