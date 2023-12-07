@@ -2,6 +2,7 @@
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="dao.ProductDao" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
@@ -180,7 +181,8 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a href="add-to-cart?productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                        <a href="cart?command=insert&productId=<%= p.getProductId()%>&quantity=1"
+                           class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                     </div>
                 </div>
                 <% } %>
@@ -224,7 +226,8 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a href="add-to-cart?productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                        <a href="cart?command=insert&productId=<%= p.getProductId()%>&quantity=1"
+                           class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                     </div>
                 </div>
                 <% } %>

@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="beans.UserBean" %>
-<%@ page import="beans.CategoryBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="beans.Cart" %>
-<%@ page import="beans.ProductBean" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="beans.*" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
+<% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,9 +130,14 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
+                    <%
+                        int priceFinal = 0;
+                        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
+                            priceFinal += entry.getValue().totalPrice();
+                    %>
                         <tr>
-                            <td class="align-middle"><img src="" alt="" style="width: 50px;"> </td>
-                            <td class="align-middle"> &#8363;</td>
+                            <td class="align-middle"><img src="<%= entry.getValue().getProduct().getProductImage()%>" alt="" style="width: 50px;"> <%= entry.getValue().getProduct().getProductName()%></td>
+                            <td class="align-middle"><%= format.format(entry.getValue().getProduct().getProductPrice())%> &#8363;</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -141,7 +145,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="<%= entry.getValue().getQuantity()%>">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -149,9 +153,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"> &#8363;</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><%= format.format(entry.getValue().totalPrice())%> &#8363;</td>
+                            <td class="align-middle"><a class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
+                    <% } %>
                     </tbody>
                 </table>
             </div>
@@ -163,7 +168,7 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Thành tiền:</h5>
-                            <h5 class="font-weight-bold">123.000đ</h5>
+                            <h5 class="font-weight-bold"><%= format.format(priceFinal)%> &#8363;</h5>
                         </div>
                         <a href="checkout.html" class="btn btn-block btn-primary my-3 py-3" style="font-size: 120%">Chuyển tới Đặt hàng</a>
                     </div>

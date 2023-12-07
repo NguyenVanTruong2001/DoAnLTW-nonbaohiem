@@ -11,6 +11,7 @@
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="dao.ProductDao" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 <% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
@@ -268,7 +269,8 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
                             <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart?command=add&productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                            <a href="cart?command=insert&productId=<%= p.getProductId()%>&quantity=1"
+                               class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
