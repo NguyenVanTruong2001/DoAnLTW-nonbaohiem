@@ -147,9 +147,9 @@
                                     </div>
                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="<%= entry.getValue().getQuantity()%>">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
+                                        <a href="cart?command=insert&productId=<%= entry.getValue().getProduct().getProductId()%>&quantity=1" class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </td>
