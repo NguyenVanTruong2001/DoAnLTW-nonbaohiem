@@ -24,4 +24,8 @@ public class ProductCart {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int totalPrice() {
+        return getQuantity() * getProduct().getProductPrice();
+    }
 }

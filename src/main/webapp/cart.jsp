@@ -6,14 +6,7 @@
 <%@ page import="beans.*" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<%
-    Cart cart = (Cart) session.getAttribute("cart");
-    if (cart == null) {
-        cart = new Cart();
-        session.setAttribute("cart", cart);
-    }
-    Map<Integer, ProductCart> list = cart.getMap();
-%>
+<% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,11 +131,13 @@
                     </thead>
                     <tbody class="align-middle">
                     <%
-                        for (Map.Entry<Integer, ProductCart> entry : list.entrySet()) {
+                        int priceFinal = 0;
+                        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
+                            priceFinal += entry.getValue().totalPrice();
                     %>
                         <tr>
                             <td class="align-middle"><img src="<%= entry.getValue().getProduct().getProductImage()%>" alt="" style="width: 50px;"> <%= entry.getValue().getProduct().getProductName()%></td>
-                            <td class="align-middle"><%= format.format(entry.getValue().getQuantity())%> &#8363;</td>
+                            <td class="align-middle"><%= format.format(entry.getValue().getProduct().getProductPrice())%> &#8363;</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -158,7 +153,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"><%= format.format((long) entry.getValue().getProduct().getProductPrice() * entry.getValue().getQuantity())%> &#8363;</td>
+                            <td class="align-middle"><%= format.format(entry.getValue().totalPrice())%> &#8363;</td>
                             <td class="align-middle"><a class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
                     <% } %>
@@ -173,7 +168,7 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Thành tiền:</h5>
-                            <h5 class="font-weight-bold">123.000đ</h5>
+                            <h5 class="font-weight-bold"><%= format.format(priceFinal)%> &#8363;</h5>
                         </div>
                         <a href="checkout.html" class="btn btn-block btn-primary my-3 py-3" style="font-size: 120%">Chuyển tới Đặt hàng</a>
                     </div>

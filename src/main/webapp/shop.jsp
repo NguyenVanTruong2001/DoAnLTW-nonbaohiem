@@ -12,18 +12,9 @@
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="dao.ProductDao" %>
-<%@ page import="beans.Cart" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 <% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
-<%
-    ProductDao productDao = new ProductDao();
-    Cart cart = (Cart) session.getAttribute("cart");
-    if (cart == null) {
-        cart = new Cart();
-        session.setAttribute("cart", cart);
-    }
-%>
 
 <!DOCTYPE html>
 <html lang="en">

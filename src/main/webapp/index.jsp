@@ -3,21 +3,12 @@
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="dao.ProductDao" %>
-<%@ page import="beans.Cart" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 <% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
 <% ProductBean[] productList2 = (ProductBean[]) request.getAttribute("productList2"); %>
-<%
-    ProductDao productDao = new ProductDao();
-    Cart cart = (Cart) session.getAttribute("cart");
-    if (cart == null) {
-        cart = new Cart();
-        session.setAttribute("cart", cart);
-    }
-%>
 
 <!DOCTYPE html>
 <html lang="en">
