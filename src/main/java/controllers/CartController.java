@@ -6,6 +6,7 @@ import beans.ProductCart;
 import dao.CategoryDao;
 import dao.ProductDao;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,11 +47,14 @@ public class CartController extends HttpServlet {
             case "insert":
                 addToCart(req, resp);
                 break;
+            case "remove":
+                removeFromCart(req, resp);
+                break;
+            case null:
+                showCart(req, resp);
             default:
                 break;
         }
-
-        req.getRequestDispatcher("cart.jsp").forward(req, resp);
     }
 
     private void addToCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -79,10 +83,28 @@ public class CartController extends HttpServlet {
             }
         }
         session.setAttribute("cart", cart);
+        resp.sendRedirect("cart");
+    }
 
-        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
-            System.out.println(entry.getValue().getProduct().toString());
-            System.out.println(entry.getValue().getQuantity());
+    private void removeFromCart(HttpServletRequest req, HttpServletResponse resp) {
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+        ProductBean product;
+        try {
+            product = new ProductDao().getProductById(productId);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<>();
+        }
+        RequestDispatcher dispatcher = req.getRequestDispatcher("cart.jsp");
+        req.setAttribute("cart", cart);
+        dispatcher.forward(req, resp);
     }
 }
