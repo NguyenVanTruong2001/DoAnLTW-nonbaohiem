@@ -6,7 +6,7 @@
 <%@ page import="beans.*" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) request.getAttribute("cart"); %>
+<% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart"); %>
 <% int priceFinal = 0; %>
 
 <!DOCTYPE html>
@@ -142,7 +142,7 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <a href="cart?command=remove&productId=<%= entry.getValue().getProduct().getProductId()%>&quantity=1" class="btn btn-sm btn-primary btn-minus" >
+                                        <a href="cart?command=remove&productId=<%= entry.getValue().getProduct().getProductId()%>&quantity=1" class="btn btn-sm btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
                                         </a>
                                     </div>
@@ -155,7 +155,7 @@
                                 </div>
                             </td>
                             <td class="align-middle"><%= format.format(entry.getValue().totalPrice())%> &#8363;</td>
-                            <td class="align-middle"><a class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
+                            <td class="align-middle"><a href="cart?command=delete&productId=<%= entry.getValue().getProduct().getProductId()%>" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

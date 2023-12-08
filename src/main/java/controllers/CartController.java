@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/cart")
 public class CartController extends HttpServlet {
@@ -45,10 +44,13 @@ public class CartController extends HttpServlet {
         String command = req.getParameter("command");
         switch (command) {
             case "insert":
-                addToCart(req, resp);
+                insertToCart(req, resp);
                 break;
             case "remove":
                 removeFromCart(req, resp);
+                break;
+            case "delete":
+                deleteFromCart(req, resp);
                 break;
             case null:
                 showCart(req, resp);
@@ -57,18 +59,21 @@ public class CartController extends HttpServlet {
         }
     }
 
-    private void addToCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void insertToCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int productId = Integer.parseInt(req.getParameter("productId"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         ProductBean product;
+
         try {
             product = new ProductDao().getProductById(productId);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
+
         HttpSession session = req.getSession();
         ProductCart productCart;
         HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
         if (cart == null) {
             cart = new HashMap<>();
             productCart = new ProductCart(product, quantity);
@@ -76,20 +81,46 @@ public class CartController extends HttpServlet {
         } else {
             if (cart.containsKey(productId)) {
                 productCart = cart.get(productId);
-                productCart.setQuantity(quantity + cart.get(productId).getQuantity());
+                productCart.setQuantity(cart.get(productId).getQuantity() + quantity);
             } else {
                 productCart = new ProductCart(product, quantity);
                 cart.put(productId, productCart);
             }
         }
+
         session.setAttribute("cart", cart);
         resp.sendRedirect("cart");
     }
 
-    private void removeFromCart(HttpServletRequest req, HttpServletResponse resp) {
+    private void removeFromCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int productId = Integer.parseInt(req.getParameter("productId"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         ProductBean product;
+
+        try {
+            product = new ProductDao().getProductById(productId);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpSession session = req.getSession();
+        ProductCart productCart;
+        HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
+        if (cart.containsKey(productId)) {
+            productCart = cart.get(productId);
+            productCart.setQuantity(cart.get(productId).getQuantity() - quantity);
+        }
+
+        session.setAttribute("cart", cart);
+        resp.sendRedirect("cart");
+    }
+
+    private void deleteFromCart(HttpServletRequest req, HttpServletResponse resp) {
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+        ProductBean product;
+
         try {
             product = new ProductDao().getProductById(productId);
         } catch (ClassNotFoundException | SQLException e) {
@@ -100,11 +131,13 @@ public class CartController extends HttpServlet {
     private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
         if (cart == null) {
             cart = new HashMap<>();
         }
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("cart.jsp");
-        req.setAttribute("cart", cart);
+        session.setAttribute("cart", cart);
         dispatcher.forward(req, resp);
     }
 }
