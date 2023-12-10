@@ -2,7 +2,6 @@
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
-<%@ page import="dao.ProductDao" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
@@ -89,10 +88,8 @@
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <%
-                            if (session.getAttribute("user") != null) {
-                            UserBean user = (UserBean) session.getAttribute("user");
-                        %>
+                        <% if (session.getAttribute("user") != null) {
+                            UserBean user = (UserBean) session.getAttribute("user"); %>
                         <span class="nav-item nav-link"><%= user.getUsername()%></span>
                         <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>

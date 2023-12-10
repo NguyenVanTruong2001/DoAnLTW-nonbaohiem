@@ -95,10 +95,8 @@
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <%
-                            if (session.getAttribute("user") != null) {
-                            UserBean user = (UserBean) session.getAttribute("user");
-                        %>
+                        <% if (session.getAttribute("user") != null) {
+                            UserBean user = (UserBean) session.getAttribute("user"); %>
                             <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
                             <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>

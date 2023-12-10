@@ -88,10 +88,8 @@
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <%
-                                if (session.getAttribute("user") != null) {
-                                    UserBean user = (UserBean) session.getAttribute("user");
-                            %>
+                            <% if (session.getAttribute("user") != null) {
+                                UserBean user = (UserBean) session.getAttribute("user"); %>
                             <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
                             <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                             <% } else { %>
@@ -120,9 +118,7 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
-                <%
-                    if (!cart.isEmpty()) {
-                %>
+                <% if (!cart.isEmpty()) { %>
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -133,10 +129,8 @@
                             <th>Xóa</th>
                         </tr>
                     </thead>
-                    <%
-                        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
-                            priceFinal += entry.getValue().totalPrice();
-                    %>
+                    <% for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
+                        priceFinal += entry.getValue().totalPrice(); %>
                     <tbody class="align-middle">
                         <tr>
                             <td class="align-middle"><img src="<%= entry.getValue().getProduct().getProductImage()%>" alt="" style="width: 50px;"> <%= entry.getValue().getProduct().getProductName()%></td>
@@ -160,13 +154,9 @@
                             <td class="align-middle"><a href="cart?command=delete&productId=<%= entry.getValue().getProduct().getProductId()%>" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
                     </tbody>
-                    <%
-                        }
-                    %>
+                    <% } %>
                 </table>
-                <%
-                } else {
-                %>
+                <% } else { %>
                 <p class="text-primary text-center font-weight-bold" style="font-size: 24px">Giỏ hàng trống.</p>
                 <% } %>
             </div>
