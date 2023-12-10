@@ -154,24 +154,26 @@
                 <p class="mb-4">Kích cỡ: <%= productBean.getProductSize() %></p>
                 <div class="d-flex mb-3">
                 </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
+                <form class="d-flex align-items-center mb-4 pt-2" action="cart" method="post">
+                    <input type="hidden" name="command" value="insert">
+                    <input type="hidden" name="productId" value="<%= productBean.getProductId() %>">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" >
+                            <button type="button" class="btn btn-primary btn-minus" >
                             <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1" readonly>
+                        <input type="number" class="form-control bg-secondary text-center" name="quantity" value="1" readonly>
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
+                            <button type="button" class="btn btn-primary btn-plus">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3">
+                    <button type="submit" class="btn btn-primary px-3">
                         <i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng
                     </button>
-                </div>
+                </form>
             </div>
         </div>
         <div class="row px-xl-5">
@@ -283,7 +285,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
                             <a href="detail?productId=<%= p.getProductId()%>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="cart.jsp" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                            <a href="cart?command=insert&productId=<%= p.getProductId()%>&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                     <% } %>
