@@ -6,6 +6,7 @@ import beans.ProductCart;
 import dao.CategoryDao;
 import dao.ProductDao;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/cart")
 public class CartController extends HttpServlet {
@@ -44,27 +44,36 @@ public class CartController extends HttpServlet {
         String command = req.getParameter("command");
         switch (command) {
             case "insert":
-                addToCart(req, resp);
+                insertToCart(req, resp);
                 break;
+            case "remove":
+                removeFromCart(req, resp);
+                break;
+            case "delete":
+                deleteFromCart(req, resp);
+                break;
+            case null:
+                showCart(req, resp);
             default:
                 break;
         }
-
-        req.getRequestDispatcher("cart.jsp").forward(req, resp);
     }
 
-    private void addToCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void insertToCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int productId = Integer.parseInt(req.getParameter("productId"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         ProductBean product;
+
         try {
             product = new ProductDao().getProductById(productId);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
+
         HttpSession session = req.getSession();
         ProductCart productCart;
         HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
         if (cart == null) {
             cart = new HashMap<>();
             productCart = new ProductCart(product, quantity);
@@ -72,17 +81,60 @@ public class CartController extends HttpServlet {
         } else {
             if (cart.containsKey(productId)) {
                 productCart = cart.get(productId);
-                productCart.setQuantity(quantity + cart.get(productId).getQuantity());
+                productCart.setQuantity(cart.get(productId).getQuantity() + quantity);
             } else {
                 productCart = new ProductCart(product, quantity);
                 cart.put(productId, productCart);
             }
         }
-        session.setAttribute("cart", cart);
 
-        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
-            System.out.println(entry.getValue().getProduct().toString());
-            System.out.println(entry.getValue().getQuantity());
+        session.setAttribute("cart", cart);
+        resp.sendRedirect("cart");
+    }
+
+    private void removeFromCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+
+        HttpSession session = req.getSession();
+        ProductCart productCart;
+        HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
+        if (cart.containsKey(productId)) {
+            productCart = cart.get(productId);
+            productCart.setQuantity(cart.get(productId).getQuantity() - quantity);
         }
+
+        if (cart.get(productId).getQuantity() <= 0)
+            cart.remove(productId);
+
+        session.setAttribute("cart", cart);
+        resp.sendRedirect("cart");
+    }
+
+    private void deleteFromCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int productId = Integer.parseInt(req.getParameter("productId"));
+
+        HttpSession session = req.getSession();
+        HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
+        cart.remove(productId);
+
+        session.setAttribute("cart", cart);
+        resp.sendRedirect("cart");
+
+    }
+
+    private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
+        if (cart == null) {
+            cart = new HashMap<>();
+        }
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("cart.jsp");
+        session.setAttribute("cart", cart);
+        dispatcher.forward(req, resp);
     }
 }

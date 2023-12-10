@@ -7,6 +7,7 @@
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
 <% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart"); %>
+<% int priceFinal = 0; %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -119,6 +120,9 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
+                <%
+                    if (!cart.isEmpty()) {
+                %>
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -129,36 +133,42 @@
                             <th>Xóa</th>
                         </tr>
                     </thead>
-                    <tbody class="align-middle">
                     <%
-                        int priceFinal = 0;
                         for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
                             priceFinal += entry.getValue().totalPrice();
                     %>
+                    <tbody class="align-middle">
                         <tr>
                             <td class="align-middle"><img src="<%= entry.getValue().getProduct().getProductImage()%>" alt="" style="width: 50px;"> <%= entry.getValue().getProduct().getProductName()%></td>
                             <td class="align-middle"><%= format.format(entry.getValue().getProduct().getProductPrice())%> &#8363;</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
+                                        <a href="cart?command=remove&productId=<%= entry.getValue().getProduct().getProductId()%>&quantity=1" class="btn btn-sm btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" readonly value="<%= entry.getValue().getQuantity()%>">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
+                                        <a href="cart?command=insert&productId=<%= entry.getValue().getProduct().getProductId()%>&quantity=1" class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </td>
                             <td class="align-middle"><%= format.format(entry.getValue().totalPrice())%> &#8363;</td>
-                            <td class="align-middle"><a class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
+                            <td class="align-middle"><a href="cart?command=delete&productId=<%= entry.getValue().getProduct().getProductId()%>" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
-                    <% } %>
                     </tbody>
+                    <%
+                        }
+                    %>
                 </table>
+                <%
+                } else {
+                %>
+                <p class="text-primary text-center font-weight-bold" style="font-size: 24px">Giỏ hàng trống.</p>
+                <% } %>
             </div>
             <div class="col-lg-4">
                 <div class="card border-secondary mb-5">
