@@ -122,8 +122,6 @@
             <div class="col-lg-8 table-responsive mb-5">
                 <%
                     if (!cart.isEmpty()) {
-                        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
-                            priceFinal += entry.getValue().totalPrice();
                 %>
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
@@ -135,6 +133,10 @@
                             <th>Xóa</th>
                         </tr>
                     </thead>
+                    <%
+                        for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
+                            priceFinal += entry.getValue().totalPrice();
+                    %>
                     <tbody class="align-middle">
                         <tr>
                             <td class="align-middle"><img src="<%= entry.getValue().getProduct().getProductImage()%>" alt="" style="width: 50px;"> <%= entry.getValue().getProduct().getProductName()%></td>
@@ -158,9 +160,11 @@
                             <td class="align-middle"><a href="cart?command=delete&productId=<%= entry.getValue().getProduct().getProductId()%>" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                         </tr>
                     </tbody>
+                    <%
+                        }
+                    %>
                 </table>
                 <%
-                    }
                 } else {
                 %>
                 <p class="text-primary text-center font-weight-bold" style="font-size: 24px">Giỏ hàng trống.</p>

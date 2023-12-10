@@ -116,9 +116,8 @@ public class CartController extends HttpServlet {
         resp.sendRedirect("cart");
     }
 
-    private void deleteFromCart(HttpServletRequest req, HttpServletResponse resp) {
+    private void deleteFromCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int productId = Integer.parseInt(req.getParameter("productId"));
-        int quantity = Integer.parseInt(req.getParameter("quantity"));
         ProductBean product;
 
         try {
@@ -126,6 +125,16 @@ public class CartController extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
+
+        HttpSession session = req.getSession();
+        ProductCart productCart;
+        HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+
+        cart.remove(productId);
+
+        session.setAttribute("cart", cart);
+        resp.sendRedirect("cart");
+
     }
 
     private void showCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
