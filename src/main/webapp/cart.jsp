@@ -6,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductCart" %>
+<%@ page import="beans.UserBean" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart"); %>
