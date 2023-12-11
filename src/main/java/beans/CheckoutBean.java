@@ -87,4 +87,11 @@ public class CheckoutBean implements Serializable {
     public void setOrderState(String orderState) {
         this.orderState = orderState;
     }
+
+    public static void main(String[] args) {
+        int year = Calendar.getInstance().getTime().getYear() + 1900;
+        int month = Calendar.getInstance().getTime().getMonth() + 1;
+        int date = Calendar.getInstance().getTime().getDate();
+        System.out.println(year + "-" + month + "-" + date);
+    }
 }
