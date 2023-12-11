@@ -85,9 +85,9 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop?categoryId=0" class="nav-item nav-link">Sản phẩm</a>
+                            <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                             <a href="cart" class="nav-item nav-link active">Giỏ hàng</a>
-                            <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
+                            <a href="checkout" class="nav-item nav-link">Đặt hàng</a>
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
@@ -173,7 +173,7 @@
                             <h5 class="font-weight-bold">Thành tiền:</h5>
                             <h5 class="font-weight-bold"><%= format.format(priceFinal)%> &#8363;</h5>
                         </div>
-                        <a href="checkout.html" class="btn btn-block btn-primary my-3 py-3" style="font-size: 120%">Chuyển tới Đặt hàng</a>
+                        <a href="checkout.jsp" class="btn btn-block btn-primary my-3 py-3" style="font-size: 120%">Chuyển tới Đặt hàng</a>
                     </div>
                 </div>
             </div>
