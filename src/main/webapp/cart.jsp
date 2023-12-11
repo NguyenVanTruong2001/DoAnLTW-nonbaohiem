@@ -3,9 +3,11 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="beans.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="beans.CategoryBean" %>
+<%@ page import="beans.ProductCart" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
-<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart"); %>
 <% int priceFinal = 0; %>
 
