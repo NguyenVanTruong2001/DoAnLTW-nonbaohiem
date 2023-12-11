@@ -1,20 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ACER
-  Date: 27/11/2023
-  Time: 22:45
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="beans.UserBean" %>
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
-<%@ page import="dao.ProductDao" %>
+<%@ page import="java.util.List" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
-<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,16 +82,14 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="home" class="nav-item nav-link">Trang chủ</a>
-                        <a href="shop?categoryId=0" class="nav-item nav-link active">Sản phẩm</a>
+                        <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
                         <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
-                        <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
+                        <a href="checkout" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <%
-                            if (session.getAttribute("user") != null) {
-                            UserBean user = (UserBean) session.getAttribute("user");
-                        %>
+                        <% if (session.getAttribute("user") != null) {
+                            UserBean user = (UserBean) session.getAttribute("user"); %>
                             <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
                             <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>

@@ -1,9 +1,7 @@
 package controllers;
 
 import beans.CategoryBean;
-import beans.ProductBean;
 import dao.CategoryDao;
-import dao.ProductDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +12,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/detail")
-public class DetailController extends HttpServlet {
-    public DetailController() {}
+@WebServlet("/checkout")
+public class CheckoutController extends HttpServlet {
+    public CheckoutController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,27 +23,16 @@ public class DetailController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDao = new ProductDao();
         CategoryDao categoryDao = new CategoryDao();
         List<CategoryBean> categoryList;
-        List<ProductBean> productList;
 
-        int id = Integer.parseInt(req.getParameter("productId"));
-        ProductBean productBean;
-        CategoryBean categoryBean;
         try {
-            productBean = productDao.getProductById(id);
             categoryList = categoryDao.getAllCategories();
-            categoryBean = categoryDao.getCategoryById(productBean.getCategoryId());
-            productList = productDao.getRecommendedProducts();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
         req.setAttribute("categoryList", categoryList);
-        req.setAttribute("productBean", productBean);
-        req.setAttribute("categoryBean", categoryBean);
-        req.setAttribute("productList", productList);
-        req.getRequestDispatcher("detail.jsp").forward(req, resp);
+        req.getRequestDispatcher("checkout.jsp").forward(req, resp);
     }
 }

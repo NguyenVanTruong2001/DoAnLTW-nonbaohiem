@@ -31,12 +31,9 @@ public class IndexController extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-        CategoryBean[] categoryBeans = categoryList.toArray(new CategoryBean[0]);
-        ProductBean[] productBeans = productList.toArray(new ProductBean[0]);
-        ProductBean[] productBeans2 = productList2.toArray(new ProductBean[0]);
-        req.setAttribute("categoryList", categoryBeans);
-        req.setAttribute("productList", productBeans);
-        req.setAttribute("productList2", productBeans2);
+        req.setAttribute("categoryList", categoryList);
+        req.setAttribute("productList", productList);
+        req.setAttribute("productList2", productList2);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 

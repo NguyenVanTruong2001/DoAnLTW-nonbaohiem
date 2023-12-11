@@ -30,15 +30,14 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CategoryDao categoryDao = new CategoryDao();
-        List<CategoryBean> categoryBeans;
+        List<CategoryBean> categoryList;
 
         try {
-            categoryBeans = categoryDao.getAllCategories();
+            categoryList = categoryDao.getAllCategories();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        CategoryBean[] categoryList = categoryBeans.toArray(new CategoryBean[0]);
         req.setAttribute("categoryList", categoryList);
 
         String command = req.getParameter("command");

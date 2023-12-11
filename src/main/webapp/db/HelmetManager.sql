@@ -26,11 +26,32 @@ create table Products(
     constraint foreign key (`CategoryID`) references Categories(`CategoryID`)
 );
 
+create table Orders(
+    `OrderID` int auto_increment not null primary key,
+    `UserID` int not null,
+    `OrderDate` date not null ,
+    `Fullname` varchar(50) character set utf8mb4 not null,
+    `Telephone` varchar(10) character set utf8mb4 not null,
+    `Address` varchar(100) character set utf8mb4 not null,
+    `PaymentMethod` varchar(50) character set utf8mb4 not null,
+    `OrderState` enum('0', '1', '2', '-1') default '0',
+    constraint foreign key (`UserID`) references Users(`UserID`)
+);
+
+create table OrderDetails(
+    `OrderID` int not null,
+    `ProductID` int not null,
+    `Quantity` int not null,
+    constraint primary key (`OrderID`, `ProductID`)
+);
+
 insert into Users(`Username`, `Email`, `Password`, `Role`) values
 ('Admin', 'admin@gmail.com', 'admin', 'Admin');
 insert into Users(`Username`, `Email`, `Password`) values
 ('TigerNixon', 'tigernixon@gmail.com', 'nixon'),
-('GarrettWinters', 'garrettwinters@gmail.com', 'winters');
+('GarrettWinters', 'garrettwinters@gmail.com', 'winters'),
+('AstonCox', 'ashtoncox@gmail.com', 'cox'),
+('CedricKelly', 'cedrickelly@gmail.com', 'kelly');
 
 insert into Categories(`CategoryName`) values
 ('Mũ 3/4 đầu'), ('Mũ 1/2 đầu'), ('Mũ full-face'), ('Mũ lật cằm'),
@@ -91,4 +112,4 @@ select * from Products;
 select * from Products limit 9 offset 0;
 select * from Products where `CategoryID` = 6 limit 9 offset 0;
 SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
-drop table Products;
+drop table Users;

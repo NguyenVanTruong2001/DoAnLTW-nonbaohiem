@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,7 @@
 <div class="text-center bg-secondary p-5 c">
     <h3 class="font-weight-bold mb-4">Đặt hàng thành công!</h3>
     <p class="mb-4">Cảm ơn vì đã mua hàng!</p>
-    <a class="btn btn-primary mb-4 btn-block" href="index.html">Trở về trang chủ</a>
+    <a class="btn btn-primary mb-4 btn-block" href="home">Trở về trang chủ</a>
 </div>
 </body>
 </html>

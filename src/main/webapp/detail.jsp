@@ -4,9 +4,10 @@
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.util.List" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
-<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
 <% CategoryBean categoryBean = (CategoryBean) request.getAttribute("categoryBean"); %>
 <% ProductBean productBean = (ProductBean) request.getAttribute("productBean"); %>
 
@@ -83,16 +84,14 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop?categoryId=0" class="nav-item nav-link active">Sản phẩm</a>
+                            <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
                             <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
-                            <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
+                            <a href="checkout" class="nav-item nav-link">Đặt hàng</a>
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <%
-                                if (session.getAttribute("user") != null) {
-                                    UserBean user = (UserBean) session.getAttribute("user");
-                            %>
+                            <% if (session.getAttribute("user") != null) {
+                                UserBean user = (UserBean) session.getAttribute("user"); %>
                                 <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
                                 <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                             <% } else { %>
