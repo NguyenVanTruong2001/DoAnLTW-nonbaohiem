@@ -42,12 +42,10 @@ public class DetailController extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        CategoryBean[] categoryBeans = categoryList.toArray(new CategoryBean[0]);
-        ProductBean[] productBeans = productList.toArray(new ProductBean[0]);
-        req.setAttribute("categoryList", categoryBeans);
+        req.setAttribute("categoryList", categoryList);
         req.setAttribute("productBean", productBean);
         req.setAttribute("categoryBean", categoryBean);
-        req.setAttribute("productList", productBeans);
+        req.setAttribute("productList", productList);
         req.getRequestDispatcher("detail.jsp").forward(req, resp);
     }
 }

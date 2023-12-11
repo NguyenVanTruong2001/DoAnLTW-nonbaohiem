@@ -11,10 +11,10 @@
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
-<%@ page import="dao.ProductDao" %>
+<%@ page import="java.util.List" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
-<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +89,7 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="home" class="nav-item nav-link">Trang chủ</a>
-                        <a href="shop?categoryId=0" class="nav-item nav-link active">Sản phẩm</a>
+                        <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
                         <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>

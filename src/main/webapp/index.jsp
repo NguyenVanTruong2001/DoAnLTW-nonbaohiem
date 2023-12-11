@@ -2,12 +2,13 @@
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
-<% CategoryBean[] categoryList = (CategoryBean[]) request.getAttribute("categoryList"); %>
-<% ProductBean[] productList = (ProductBean[]) request.getAttribute("productList"); %>
-<% ProductBean[] productList2 = (ProductBean[]) request.getAttribute("productList2"); %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
+<% List<ProductBean> productList2 = (List<ProductBean>) request.getAttribute("productList2"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +83,7 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="home" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="shop?categoryId=0" class="nav-item nav-link">Sản phẩm</a>
+                        <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                         <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="checkout.html" class="nav-item nav-link">Đặt hàng</a>
                         <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
