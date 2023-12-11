@@ -1,19 +1,19 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 public class CheckoutBean implements Serializable {
     private int orderId;
     private int userId;
-    private Date orderDate;
+    private Calendar orderDate;
     private String fullname;
     private String telephone;
     private String address;
     private String paymentMethod;
     private String orderState;
 
-    public CheckoutBean(int orderId, int userId, Date orderDate, String fullname, String telephone, String address, String paymentMethod, String orderState) {
+    public CheckoutBean(int orderId, int userId, Calendar orderDate, String fullname, String telephone, String address, String paymentMethod, String orderState) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderDate = orderDate;
@@ -40,11 +40,11 @@ public class CheckoutBean implements Serializable {
         this.userId = userId;
     }
 
-    public Date getOrderDate() {
+    public Calendar getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(Calendar orderDate) {
         this.orderDate = orderDate;
     }
 
