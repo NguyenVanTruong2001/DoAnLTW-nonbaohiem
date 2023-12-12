@@ -34,7 +34,7 @@ create table Orders(
     `Telephone` varchar(10) character set utf8mb4 not null,
     `Address` varchar(100) character set utf8mb4 not null,
     `PaymentMethod` varchar(50) character set utf8mb4 not null,
-    `OrderState` enum('0', '1', '2', '-1') default '0',
+    `OrderState` enum('Đang chờ duyệt', 'Đang giao hàng', 'Đã giao hàng', 'Đã hủy') default 'Đang chờ duyệt',
     constraint foreign key (`UserID`) references Users(`UserID`)
 );
 
@@ -106,10 +106,17 @@ insert into Products(`CategoryID`, `ProductName`, `ProductImage`, `ProductDescri
     'Mũ bảo hiểm Protec là thương hiệu được ưa chuộng tại thị trường Việt Nam bởi độ an toàn, bền, giá cả phải chăng. Vỏ mũ bảo hiểm Protec Rosa RLWF được làm từ nhựa tổng hợp (ABS) nguyên sinh, có khả năng chịu va đập tốt, chống mài mòn hiệu quả. Mũ bảo hiểm Protec Rosa có thiết kế pha màu kiểu nửa đầu tạo sự thoải mái cho người sử dụng. Mũ bảo hiểm Protec Rosa 2 màu RLWF sử dụng lõi xốp mũ EPS hấp thu xung đột tốt, hạn chế chấn thương tối đa khi xảy ra tai nạn, va chạm. Mũ Protec đã thông qua các quy trình kiểm định nghiêm ngặt về độ va đập, độ đâm xuyên và độ ổn định của khóa mũ.',
     'Protec', 'M', 252000);
 
+insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`, `OrderState`) values
+(2, '2023-01-01', 'Tiger Nixon', '0920110425', '2270 Smith Road, Marble Hill, Georgia, 30151', 'Tiền mặt', 'Đã giao hàng'),
+(3, '2023-02-02', 'Garrett Winters', '0920110725', '1926 Pursglove Court, Aubrey, Texas, 76227', 'Tiền mặt', 'Đã giao hàng'),
+(4, '2023-03-03', 'Aston Cox', '0920090112', '2575 Golf Course Drive, Arlington, Virginia, 22201', 'Chuyển khoản', 'Đã giao hàng'),
+(5, '2023-04-04', 'Cedric Kelly', '0920120329', '3440 Margaret Street, Houston, Texas, 77030', 'MoMo', 'Đã giao hàng');
+
 select * from Users;
 select * from Categories;
 select * from Products;
 select * from Products limit 9 offset 0;
 select * from Products where `CategoryID` = 6 limit 9 offset 0;
 SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
-drop table Users;
+select * from Orders;
+delete from Orders;

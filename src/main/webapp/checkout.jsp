@@ -83,7 +83,6 @@
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
                             <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                             <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
-                            <a href="checkout" class="nav-item nav-link active">Đặt hàng</a>
                             <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
@@ -114,13 +113,26 @@
 
 
     <!-- Checkout Start -->
-    <form action="" method="">
+    <form action="" method="post">
         <div class="container-fluid p-5">
             <div class="row px-xl-5">
                 <div class="col-lg-8">
                     <div class="mb-4">
                         <h4 class="font-weight-semi-bold mb-4">Thông tin khách hàng</h4>
                         <div class="col">
+                            <% if (session.getAttribute("user") != null) {
+                                UserBean user = (UserBean) session.getAttribute("user"); %>
+                                <input type="hidden" name="userId" value="<%= user.getUserId() %>">
+                                <% if (cart.isEmpty()) { %>
+                                <div class="col-md-12 form-group alert alert-danger">
+                                    <p class="text-center">Cần có ít nhất một sản phẩm trong giỏ hàng để có thể đặt hàng thành công.</p>
+                                </div>
+                                <% } %>
+                            <% } else { %>
+                                <div class="col-md-12 form-group alert alert-danger">
+                                    <p class="text-center">Cần đăng nhập để có thể đặt hàng thành công.</p>
+                                </div>
+                            <% } %>
                             <div class="col-md-12 form-group">
                                 <label>Họ và tên:</label>
                                 <input class="form-control border-primary" type="text" name="fullname">
@@ -164,7 +176,11 @@
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <a href="cart" class="btn btn-lg btn-block btn-secondary font-weight-light my-3 py-3">Trở về Giỏ hàng</a>
-                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Đặt hàng</button>
+                            <% if (session.getAttribute("user") != null) {
+                                if (!cart.isEmpty()) { %>
+                                <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Đặt hàng</button>
+                            <% }
+                                } %>
                         </div>
                     </div>
                 </div>

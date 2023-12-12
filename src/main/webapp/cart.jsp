@@ -173,7 +173,7 @@
                             <h5 class="font-weight-bold">Thành tiền:</h5>
                             <h5 class="font-weight-bold"><%= format.format(priceFinal)%> &#8363;</h5>
                         </div>
-                        <a href="checkout.jsp" class="btn btn-block btn-primary my-3 py-3" style="font-size: 120%">Chuyển tới Đặt hàng</a>
+                        <a href="checkout" class="btn btn-block btn-primary my-3 py-3" style="font-size: 120%">Chuyển tới Đặt hàng</a>
                     </div>
                 </div>
             </div>

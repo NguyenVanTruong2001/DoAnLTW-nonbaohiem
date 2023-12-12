@@ -16,7 +16,7 @@ public class UserDao {
 
         ResultSet result = statement.executeQuery();
 
-        UserBean user = user = new UserBean(0, "", "", "", "");
+        UserBean user = new UserBean(0, "", "", "", "");
         if (result.next()) {
             user.setUserId(result.getInt("UserID"));
             user.setUsername(result.getString("Username"));

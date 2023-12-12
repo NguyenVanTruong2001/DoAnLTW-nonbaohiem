@@ -1,19 +1,20 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class CheckoutBean implements Serializable {
     private int orderId;
     private int userId;
-    private Calendar orderDate;
+    private Date orderDate;
     private String fullname;
     private String telephone;
     private String address;
     private String paymentMethod;
     private String orderState;
 
-    public CheckoutBean(int orderId, int userId, Calendar orderDate, String fullname, String telephone, String address, String paymentMethod, String orderState) {
+    public CheckoutBean(int orderId, int userId, Date orderDate, String fullname, String telephone, String address, String paymentMethod, String orderState) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderDate = orderDate;
@@ -40,11 +41,11 @@ public class CheckoutBean implements Serializable {
         this.userId = userId;
     }
 
-    public Calendar getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Calendar orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -89,9 +90,6 @@ public class CheckoutBean implements Serializable {
     }
 
     public static void main(String[] args) {
-        int year = Calendar.getInstance().getTime().getYear() + 1900;
-        int month = Calendar.getInstance().getTime().getMonth() + 1;
-        int date = Calendar.getInstance().getTime().getDate();
-        System.out.println(year + "-" + month + "-" + date);
+        System.out.println(Date.valueOf(LocalDate.now()));
     }
 }
