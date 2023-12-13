@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class CheckoutDao {
-    public boolean checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws ClassNotFoundException, SQLException {
+    public boolean checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws SQLException {
         String sql = "INSERT INTO Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`) VALUE (?, ?, ?, ?, ?, ?)";
 
         Connection connection = new DBConnect().connect();
