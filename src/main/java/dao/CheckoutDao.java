@@ -1,18 +1,16 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class CheckoutDao {
-    public boolean checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws ClassNotFoundException, SQLException {
+    public int checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws SQLException {
+        int result = 0;
         String sql = "INSERT INTO Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`) VALUE (?, ?, ?, ?, ?, ?)";
 
         Connection connection = new DBConnect().connect();
 
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setInt(1, userId);
         statement.setDate(2, Date.valueOf(LocalDate.now()));
         statement.setString(3, fullname);
@@ -20,6 +18,16 @@ public class CheckoutDao {
         statement.setString(5, address);
         statement.setString(6, paymentMethod);
 
-        return statement.executeUpdate() > 0;
+        statement.executeUpdate();
+
+        ResultSet resultSet = statement.getGeneratedKeys();
+        if (resultSet.next()) {
+            result = resultSet.getInt(1);
+            connection.close();
+            return result;
+        } else {
+            connection.close();
+            return result;
+        }
     }
 }

@@ -3,22 +3,22 @@ package beans;
 import java.io.Serializable;
 
 public class CheckoutDetailBean implements Serializable {
-    private int userId;
+    private int orderId;
     private int productId;
     private int quantity;
 
     public CheckoutDetailBean(int userId, int productId, int quantity) {
-        this.userId = userId;
+        this.orderId = userId;
         this.productId = productId;
         this.quantity = quantity;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setOrderId(int userId) {
+        this.orderId = userId;
     }
 
     public int getProductId() {
