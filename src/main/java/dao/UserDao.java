@@ -26,7 +26,6 @@ public class UserDao {
         }
 
         connection.close();
-
         return user;
     }
 
@@ -50,6 +49,7 @@ public class UserDao {
 
             statement.executeUpdate();
 
+            connection.close();
             return true;
         }
     }

@@ -18,6 +18,7 @@ public class ProductDao {
         if (result.next())
             i = result.getInt(1);
 
+        connection.close();
         return i;
     }
 
