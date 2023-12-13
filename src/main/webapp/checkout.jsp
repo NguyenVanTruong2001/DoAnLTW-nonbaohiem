@@ -113,7 +113,7 @@
 
 
     <!-- Checkout Start -->
-    <form action="" method="post">
+    <form action="<c:url value="/checkout"/>" method="post">
         <div class="container-fluid p-5">
             <div class="row px-xl-5">
                 <div class="col-lg-8">
@@ -157,20 +157,22 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="e-wallet">
-                                    <label class="custom-control-label" for="e-wallet">Ví điện tử (VNPay, MoMo, PayPal,...)</label>
+                                    <input type="radio" class="custom-control-input" name="payment" value="cash">Tiền mặt
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="direct-check">
-                                    <label class="custom-control-label" for="direct-check">Tiền mặt</label>
+                                    <input type="radio" class="custom-control-input" name="payment" value="bank-transfer">Chuyển khoản
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="bank-transfer">
-                                    <label class="custom-control-label" for="bank-transfer">Chuyển khoản</label>
+                                    <input type="radio" class="custom-control-input" name="payment" value="momo">MoMo
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" value="paypal">PayPal
                                 </div>
                             </div>
                         </div>
@@ -179,8 +181,8 @@
                             <% if (session.getAttribute("user") != null) {
                                 if (!cart.isEmpty()) { %>
                                 <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Đặt hàng</button>
-                            <% }
-                                } %>
+                            <%  }
+                               } %>
                         </div>
                     </div>
                 </div>
