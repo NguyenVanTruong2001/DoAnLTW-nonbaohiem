@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CheckoutDetailDao {
-    public boolean addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws SQLException {
+    public void addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws SQLException {
         String sql = "INSERT INTO OrderDetails(`OrderID`, `ProductID`, `Quantity`) VALUE (?, ?, ?)";
 
         Connection connection = new DBConnect().connect();
@@ -17,6 +17,6 @@ public class CheckoutDetailDao {
         statement.setInt(2, checkoutDetail.getProductId());
         statement.setInt(3, checkoutDetail.getQuantity());
 
-        return statement.executeUpdate() > 0;
+        statement.executeUpdate();
     }
 }
