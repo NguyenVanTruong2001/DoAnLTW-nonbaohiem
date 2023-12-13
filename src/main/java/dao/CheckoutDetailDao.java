@@ -3,10 +3,8 @@ package dao;
 import beans.CheckoutDetailBean;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class CheckoutDetailDao {
     public boolean addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws SQLException {
@@ -15,7 +13,7 @@ public class CheckoutDetailDao {
         Connection connection = new DBConnect().connect();
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, checkoutDetail.getUserId());
+        statement.setInt(1, checkoutDetail.getOrderId());
         statement.setInt(2, checkoutDetail.getProductId());
         statement.setInt(3, checkoutDetail.getQuantity());
 
