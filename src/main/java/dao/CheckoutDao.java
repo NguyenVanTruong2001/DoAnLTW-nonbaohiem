@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class CheckoutDao {
     public int checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws SQLException {
+        int result = 0;
         String sql = "INSERT INTO Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`) VALUE (?, ?, ?, ?, ?, ?)";
 
         Connection connection = new DBConnect().connect();
@@ -20,9 +21,13 @@ public class CheckoutDao {
         statement.executeUpdate();
 
         ResultSet resultSet = statement.getGeneratedKeys();
-        if (resultSet.next()) return resultSet.getInt(1);
-        else return 0;
-
-
+        if (resultSet.next()) {
+            result = resultSet.getInt(1);
+            connection.close();
+            return result;
+        } else {
+            connection.close();
+            return result;
+        }
     }
 }
