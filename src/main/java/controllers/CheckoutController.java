@@ -71,6 +71,6 @@ public class CheckoutController extends HttpServlet {
         }
 
         session.removeAttribute("cart");
-        req.getRequestDispatcher("checkoutSuccess.jsp").forward(req, resp);
+        req.getRequestDispatcher("/checkout-success").forward(req, resp);
     }
 }
