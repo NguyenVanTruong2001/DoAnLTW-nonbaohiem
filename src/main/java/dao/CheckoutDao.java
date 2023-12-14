@@ -1,7 +1,11 @@
 package dao;
 
+import beans.CheckoutBean;
+
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckoutDao {
     public int checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws SQLException {
@@ -28,6 +32,73 @@ public class CheckoutDao {
         } else {
             connection.close();
             return result;
+        }
+    }
+
+    public List<CheckoutBean> getAllCheckouts() throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Orders";
+
+        Connection connection = new DBConnect().connect();
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        List<CheckoutBean> checkoutList = new ArrayList<>();
+
+        while (result.next()) {
+            CheckoutBean checkout = new CheckoutBean(0, 0, Date.valueOf(LocalDate.now()), "", "", "", "", "");
+            checkout.setOrderId(result.getInt(1));
+            checkout.setUserId(result.getInt(2));
+            checkout.setOrderDate(result.getDate(3));
+            checkout.setFullname(result.getString(4));
+            checkout.setTelephone(result.getString(5));
+            checkout.setAddress(result.getString(6));
+            checkout.setPaymentMethod(result.getString(7));
+            checkout.setOrderState(result.getString(8));
+            checkoutList.add(checkout);
+        }
+
+        connection.close();
+        return checkoutList;
+    }
+
+    public List<CheckoutBean> getCheckoutByUserId(int userId) throws SQLException {
+        String sql = "SELECT * FROM Orders WHERE `UserID` = " + userId;
+
+        Connection connection = new DBConnect().connect();
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        List<CheckoutBean> checkoutList = new ArrayList<>();
+
+        while (result.next()) {
+            CheckoutBean checkout = new CheckoutBean(0, 0, Date.valueOf(LocalDate.now()), "", "", "", "", "");
+            checkout.setOrderId(result.getInt(1));
+            checkout.setUserId(result.getInt(2));
+            checkout.setOrderDate(result.getDate(3));
+            checkout.setFullname(result.getString(4));
+            checkout.setTelephone(result.getString(5));
+            checkout.setAddress(result.getString(6));
+            checkout.setPaymentMethod(result.getString(7));
+            checkout.setOrderState(result.getString(8));
+            checkoutList.add(checkout);
+        }
+
+        connection.close();
+        return checkoutList;
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        CheckoutDao checkoutDao = new CheckoutDao();
+        for (CheckoutBean bean :
+                checkoutDao.getAllCheckouts()) {
+            System.out.println(bean.toString());
+        }
+
+        System.out.println();
+
+        for (CheckoutBean bean :
+                checkoutDao.getCheckoutByUserId(2)) {
+            System.out.println(bean.toString());
         }
     }
 }
