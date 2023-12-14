@@ -89,7 +89,17 @@ public class CheckoutBean implements Serializable {
         this.orderState = orderState;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Date.valueOf(LocalDate.now()));
+    @Override
+    public String toString() {
+        return "CheckoutBean{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", orderDate=" + orderDate +
+                ", fullname='" + fullname + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", orderState='" + orderState + '\'' +
+                '}';
     }
 }
