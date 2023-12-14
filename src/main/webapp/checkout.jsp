@@ -83,7 +83,9 @@
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
                             <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                             <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
-                            <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
+                            <% if (session.getAttribute("user") != null) { %>
+                                <a href="checkout-history" class="nav-item nav-link">Lịch sử đặt hàng</a>
+                            <% } %>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <% if (session.getAttribute("user") != null) {
@@ -157,22 +159,26 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" value="cash">Tiền mặt
+                                    <input type="radio" class="custom-control-input" id="cash" name="payment" value="Tiền mặt">
+                                    <label class="custom-control-label" for="cash">Tiền mặt</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" value="bank-transfer">Chuyển khoản
+                                    <input type="radio" class="custom-control-input" id="bank-transfer" name="payment" value="Chuyển khoản">
+                                    <label class="custom-control-label" for="bank-transfer">Chuyển khoản</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" value="momo">MoMo
+                                    <input type="radio" class="custom-control-input" id="momo" name="payment" value="MoMo">
+                                    <label class="custom-control-label" for="momo">MoMo</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" value="paypal">PayPal
+                                    <input type="radio" class="custom-control-input" id="paypal" name="payment" value="PayPal">
+                                    <label class="custom-control-label" for="paypal">PayPal</label>
                                 </div>
                             </div>
                         </div>

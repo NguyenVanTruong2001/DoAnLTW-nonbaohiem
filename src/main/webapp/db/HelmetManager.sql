@@ -112,6 +112,12 @@ insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `P
 (4, '2023-03-03', 'Aston Cox', '0920090112', '2575 Golf Course Drive, Arlington, Virginia, 22201', 'Chuyển khoản', 'Đã giao hàng'),
 (5, '2023-04-04', 'Cedric Kelly', '0920120329', '3440 Margaret Street, Houston, Texas, 77030', 'MoMo', 'Đã giao hàng');
 
+insert into OrderDetails values
+(1, 1, 1), (1, 2, 1), (1, 3, 2),
+(2, 4, 2), (2, 5, 1), (2, 6, 2),
+(3, 7, 1), (3, 8, 1), (3, 9, 2),
+(4, 10, 1), (4, 11, 2), (4, 12, 1);
+
 select * from Users;
 select * from Categories;
 select * from Products;
@@ -119,4 +125,6 @@ select * from Products limit 9 offset 0;
 select * from Products where `CategoryID` = 6 limit 9 offset 0;
 SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
 select * from Orders;
-delete from Orders;
+select * from OrderDetails;
+drop table Orders;
+drop table OrderDetails;

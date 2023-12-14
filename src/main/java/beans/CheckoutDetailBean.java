@@ -36,4 +36,13 @@ public class CheckoutDetailBean implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "CheckoutDetailBean{" +
+                "orderId=" + orderId +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
