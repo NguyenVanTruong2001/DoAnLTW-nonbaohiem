@@ -87,6 +87,18 @@ public class CheckoutDao {
         return checkoutList;
     }
 
+    public void updateCheckoutStateByOrderId(int orderId, String orderState) throws SQLException {
+        String sql = "UPDATE Orders SET `OrderState` = ? WHERE `UserID` = ?";
+
+        Connection connection = new DBConnect().connect();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, orderId);
+        statement.setString(2, orderState);
+
+        statement.executeUpdate();
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CheckoutDao checkoutDao = new CheckoutDao();
         for (CheckoutBean bean :
