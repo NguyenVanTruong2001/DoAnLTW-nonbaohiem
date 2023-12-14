@@ -86,7 +86,9 @@
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
                             <a href="shop" class="nav-item nav-link active">Sản phẩm</a>
                             <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
-                            <a href="checkoutHistory.html" class="nav-item nav-link">Lịch sử đặt hàng</a>
+                            <% if (session.getAttribute("user") != null) { %>
+                            <a href="checkout-history" class="nav-item nav-link">Lịch sử đặt hàng</a>
+                            <% } %>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <% if (session.getAttribute("user") != null) {
