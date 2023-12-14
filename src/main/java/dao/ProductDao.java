@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao {
-    public int countProducts() throws ClassNotFoundException, SQLException {
+    public int countProducts() throws SQLException {
         int i = 0;
         String sql = "SELECT COUNT(*) FROM Products";
 
@@ -182,7 +182,7 @@ public class ProductDao {
         return product;
     }
 
-    private List<Integer> rng() throws ClassNotFoundException, SQLException {
+    private List<Integer> rng() throws SQLException {
         List<Integer> list = new ArrayList<>();
         list.add((int) (Math.random() * countProducts()) + 1);
 
