@@ -127,3 +127,4 @@ SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORD
 select * from Orders;
 select * from OrderDetails;
 drop table Orders;
+drop table OrderDetails;
