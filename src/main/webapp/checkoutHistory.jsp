@@ -3,7 +3,9 @@
 <%@ page import="beans.UserBean" %>
 <%@ page import="beans.CategoryBean" %>
 <%@ page import="java.util.List" %>
+<%@ page import="beans.CheckoutBean" %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% List<CheckoutBean> checkoutList = (List<CheckoutBean>) request.getAttribute("checkoutList"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,17 +113,19 @@
 <!-- Checkout Start -->
 <div class="container-fluid p-5">
     <div class="lg-4">
+        <% for (CheckoutBean bean : checkoutList) { %>
         <div class="card border-secondary mb-5">
             <div class="card-header bg-secondary border-0">
-                <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: 1</h4>
-                <p class="m-0">Ngày đặt hàng: 2020-01-01</p>
+                <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: <%= bean.getOrderId() %></h4>
+                <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
             </div>
             <div class="card-body">
                 <h5 class="font-weight-medium mb-3">Thông tin khách hàng</h5>
-                <p class="mb-3">Họ và tên: Bruce Willis</p>
-                <p class="mb-3">Số điện thoại: 0908201740</p>
-                <p class="mb-3">Địa chỉ nhận hàng: 954 Nickel Road, Los Angeles, CA</p>
-                <p class="mb-3">Phương thức thanh toán: Ví điện tử (VNPay, MoMo, PayPal,...)</p>
+                <p class="mb-3">Họ và tên: <%= bean.getFullname() %></p>
+                <p class="mb-3">Số điện thoại: <%= bean.getTelephone() %></p>
+                <p class="mb-3">Địa chỉ nhận hàng: <%= bean.getAddress() %></p>
+                <p class="mb-3">Phương thức thanh toán: <%= bean.getPaymentMethod() %></p>
+                <p class="mb-3">Trạng thái đơn hàng: <%= bean.getOrderState() %></p>
                 <hr class="mt-0">
                 <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
                 <table class="table table-borderless">
@@ -162,6 +166,7 @@
                 </div>
             </div>
         </div>
+        <% } %>
     </div>
 </div>
 <!-- Checkout End -->
