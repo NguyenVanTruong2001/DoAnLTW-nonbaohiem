@@ -9,6 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutDetailDao {
+    public int getTotalSaledProduct() throws ClassNotFoundException, SQLException {
+        String sql = "SELECT SUM(OrderDetails.`Quantity`) FROM OrderDetails";
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        if (result.next())
+            return result.getInt(1);
+        else return -1;
+    }
+
     public void addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws SQLException {
         String sql = "INSERT INTO OrderDetails(`OrderID`, `ProductID`, `Quantity`) VALUE (?, ?, ?)";
 
@@ -65,8 +77,6 @@ public class CheckoutDetailDao {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        for (CheckoutDetailBean bean: new CheckoutDetailDao().getCheckoutDetailByOrderId(1)) {
-            System.out.println(bean);
-        }
+        System.out.println(new CheckoutDetailDao().getTotalSaledProduct());
     }
 }

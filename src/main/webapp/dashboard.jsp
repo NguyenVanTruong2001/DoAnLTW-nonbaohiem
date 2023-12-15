@@ -1,3 +1,4 @@
+<%@ page import="java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -45,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html">
+                <a class="nav-link" href="dashboard">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Thống kê</span></a>
             </li>
@@ -157,7 +158,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Doanh thu (hằng tháng)</div>
+                                                Doanh thu (Tháng <%= Calendar.getInstance().get(Calendar.MONTH) + 1 %>)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">400.000đ</div>
                                         </div>
                                         <div class="col-auto">
@@ -175,7 +176,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Doanh thu (hằng năm)</div>
+                                                Doanh thu (Năm <%= Calendar.getInstance().get(Calendar.YEAR) %>)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">4.800.000đ</div>
                                         </div>
                                         <div class="col-auto">
@@ -194,7 +195,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Sản phẩm đã bán</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= (int) request.getAttribute("totalSaledProduct") %></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -294,7 +295,7 @@
                 <div class="modal-body">Chọn "Đăng xuất" để kết thúc phiên làm việc?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="login.html">Đăng xuất</a>
+                    <a class="btn btn-primary" href="logout">Đăng xuất</a>
                 </div>
             </div>
         </div>

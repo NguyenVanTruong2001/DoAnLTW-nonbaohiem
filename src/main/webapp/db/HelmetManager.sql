@@ -128,5 +128,6 @@ select * from Products where `CategoryID` = 6 limit 9 offset 0;
 SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
 select * from Orders;
 select * from OrderDetails;
+select sum(OrderDetails.Quantity) from OrderDetails;
 drop table Orders;
 drop table OrderDetails;
