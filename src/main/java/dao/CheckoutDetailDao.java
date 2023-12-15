@@ -1,10 +1,8 @@
 package dao;
 
-import beans.CheckoutBean;
 import beans.CheckoutDetailBean;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class CheckoutDetailDao {
         statement.executeUpdate();
     }
 
-    public List<CheckoutDetailBean> getAllCheckoutDetails() throws ClassNotFoundException, SQLException {
+    public List<CheckoutDetailBean> getAllCheckoutDetails() throws SQLException {
         String sql = "SELECT * FROM OrderDetails";
 
         Connection connection = new DBConnect().connect();
