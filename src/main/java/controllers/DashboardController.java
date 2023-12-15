@@ -23,7 +23,7 @@ public class DashboardController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int totalSoldProduct;
         try {
-            totalSoldProduct = new CheckoutDetailDao().getTotalSaledProduct();
+            totalSoldProduct = new CheckoutDetailDao().getTotalSoldProduct();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
