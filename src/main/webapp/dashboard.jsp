@@ -122,7 +122,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                                <img class="img-profile rounded-circle"
+                                <img alt="" class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -195,7 +195,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Sản phẩm đã bán</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= (int) request.getAttribute("totalSaledProduct") %></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= (int) request.getAttribute("totalSoldProduct") %></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>

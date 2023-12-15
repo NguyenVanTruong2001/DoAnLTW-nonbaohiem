@@ -21,15 +21,14 @@ public class DashboardController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int totalSaledProduct;
-
+        int totalSoldProduct;
         try {
-            totalSaledProduct = new CheckoutDetailDao().getTotalSaledProduct();
+            totalSoldProduct = new CheckoutDetailDao().getTotalSaledProduct();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        req.setAttribute("totalSaledProduct", totalSaledProduct);
+        req.setAttribute("totalSoldProduct", totalSoldProduct);
         req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
     }
 }
