@@ -36,10 +36,10 @@
         </div>
     <% } %>
     <div class="form-group">
-        <input autofocus type="email" name="email" class="form-control border border-primary py-4" placeholder="Địa chỉ e-mail">
+        <input autofocus required type="email" name="email" class="form-control border border-primary py-4" placeholder="Địa chỉ e-mail">
     </div>
     <div class="form-group">
-        <input type="password" name="password" class="form-control border border-primary py-4" placeholder="Mật khẩu">
+        <input required type="password" name="password" class="form-control border border-primary py-4" placeholder="Mật khẩu">
     </div>
     <div class="d-inline-block">
         <p>Chưa có tài khoản? <a href="register">Đăng ký ngay!</a></p>

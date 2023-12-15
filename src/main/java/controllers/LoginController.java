@@ -34,8 +34,13 @@ public class LoginController extends HttpServlet {
                 if (user.getRole().equals("User")) {
                     HttpSession session = req.getSession();
                     session.setAttribute("user", user);
-
                     req.getRequestDispatcher("home").forward(req, resp);
+                }
+
+                if (user.getRole().equals("Admin")) {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("user", user);
+                    req.getRequestDispatcher("dashboard").forward(req, resp);
                 }
             }
             else {

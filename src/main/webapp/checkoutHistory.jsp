@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="beans.UserBean" %>
-<%@ page import="beans.CategoryBean" %>
 <%@ page import="java.util.List" %>
-<%@ page import="beans.CheckoutBean" %>
+<%@ page import="beans.*" %>
+<%@ page import="dao.CheckoutDetailDao" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="dao.ProductDao" %>
+<%@ page import="java.text.DecimalFormat" %>
+<% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% List<CheckoutBean> checkoutList = (List<CheckoutBean>) request.getAttribute("checkoutList"); %>
+<% ProductBean product; %>
+<% List<CheckoutDetailBean> checkoutDetailList; %>
+<% int totalPrice = 0; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,7 +110,7 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Lịch sử đặt Hàng</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Lịch sử đặt hàng</h1>
     </div>
 </div>
 <!-- Page Header End -->
@@ -116,8 +122,16 @@
         <% for (CheckoutBean bean : checkoutList) { %>
         <div class="card border-secondary mb-5">
             <div class="card-header bg-secondary border-0">
-                <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: <%= bean.getOrderId() %></h4>
-                <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
+                <div class="float-left">
+                    <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: <%= bean.getOrderId() %></h4>
+                    <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
+                </div>
+                <% if (bean.getOrderState().equalsIgnoreCase("Đã giao hàng") ||
+                        bean.getOrderState().equalsIgnoreCase("Đã hủy")) { %>
+                <div class="float-right">
+                    <a href="" class="btn btn-danger">Hủy giao hàng</a>
+                </div>
+                <% } %>
             </div>
             <div class="card-body">
                 <h5 class="font-weight-medium mb-3">Thông tin khách hàng</h5>
@@ -138,35 +152,38 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <% try {
+                        checkoutDetailList = new CheckoutDetailDao().getCheckoutDetailByOrderId(bean.getOrderId());
+                    } catch (ClassNotFoundException | SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                        for (CheckoutDetailBean bean1 : checkoutDetailList) {
+                            try {
+                                product = new ProductDao().getProductById(bean1.getProductId());
+                            } catch (ClassNotFoundException | SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                            totalPrice += bean1.getQuantity() * product.getProductPrice(); %>
                     <tr>
-                        <td>Mũ bảo hiểm</td>
-                        <td>1</td>
-                        <td>123.000đ</td>
-                        <td>123.000đ</td>
+                        <td><%= product.getProductName() %></td>
+                        <td><%= bean1.getQuantity() %></td>
+                        <td><%= format.format(product.getProductPrice()) %> &#8363;</td>
+                        <td><%= format.format((long) product.getProductPrice() * bean1.getQuantity()) %> &#8363;</td>
                     </tr>
-                    <tr>
-                        <td>Mũ bảo hiểm</td>
-                        <td>1</td>
-                        <td>123.000đ</td>
-                        <td>123.000đ</td>
-                    </tr>
-                    <tr>
-                        <td>Mũ bảo hiểm</td>
-                        <td>1</td>
-                        <td>123.000đ</td>
-                        <td>123.000đ</td>
-                    </tr>
+                    <% } %>
                     </tbody>
                 </table>
             </div>
             <div class="card-footer border-secondary bg-transparent">
                 <div class="d-flex justify-content-between mt-2">
                     <h5 class="font-weight-bold">Thành tiền:</h5>
-                    <h5 class="font-weight-bold">379.000đ</h5>
+                    <h5 class="font-weight-bold"><%= format.format(totalPrice) %> &#8363;</h5>
                 </div>
             </div>
         </div>
-        <% } %>
+        <% totalPrice = 0;
+        }
+        %>
     </div>
 </div>
 <!-- Checkout End -->
@@ -188,6 +205,5 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
-</body>
 </body>
 </html>

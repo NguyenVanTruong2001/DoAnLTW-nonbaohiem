@@ -110,13 +110,15 @@ insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `P
 (2, '2023-01-01', 'Tiger Nixon', '0920110425', '2270 Smith Road, Marble Hill, Georgia, 30151', 'Tiền mặt', 'Đã giao hàng'),
 (3, '2023-02-02', 'Garrett Winters', '0920110725', '1926 Pursglove Court, Aubrey, Texas, 76227', 'Tiền mặt', 'Đã giao hàng'),
 (4, '2023-03-03', 'Aston Cox', '0920090112', '2575 Golf Course Drive, Arlington, Virginia, 22201', 'Chuyển khoản', 'Đã giao hàng'),
-(5, '2023-04-04', 'Cedric Kelly', '0920120329', '3440 Margaret Street, Houston, Texas, 77030', 'MoMo', 'Đã giao hàng');
+(5, '2023-04-04', 'Cedric Kelly', '0920120329', '3440 Margaret Street, Houston, Texas, 77030', 'MoMo', 'Đã giao hàng'),
+(2, '2023-06-06', 'Tiger Nixon', '0920110425', '2270 Smith Road, Marble Hill, Georgia, 30151', 'Tiền mặt', 'Đã giao hàng');
 
 insert into OrderDetails values
 (1, 1, 1), (1, 2, 1), (1, 3, 2),
 (2, 4, 2), (2, 5, 1), (2, 6, 2),
 (3, 7, 1), (3, 8, 1), (3, 9, 2),
-(4, 10, 1), (4, 11, 2), (4, 12, 1);
+(4, 10, 1), (4, 11, 2), (4, 12, 1),
+(5, 13, 3), (5, 14, 3);
 
 select * from Users;
 select * from Categories;
@@ -126,5 +128,6 @@ select * from Products where `CategoryID` = 6 limit 9 offset 0;
 SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
 select * from Orders;
 select * from OrderDetails;
+select sum(OrderDetails.Quantity) from OrderDetails;
 drop table Orders;
 drop table OrderDetails;
