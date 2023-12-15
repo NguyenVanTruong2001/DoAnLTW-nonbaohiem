@@ -126,11 +126,11 @@
                     <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: <%= bean.getOrderId() %></h4>
                     <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
                 </div>
+                <% if (!bean.getOrderState().equalsIgnoreCase("Đã giao hàng") || !bean.getOrderState().equalsIgnoreCase("Đã hủy")) { %>
                 <div class="float-right">
-                    <% if (!bean.getOrderState().equalsIgnoreCase("Đã giao hàng") || !bean.getOrderState().equalsIgnoreCase("Đã hủy")) { %>
                     <a href="" class="btn btn-danger">Hủy giao hàng</a>
-                    <% } %>
                 </div>
+                <% } %>
             </div>
             <div class="card-body">
                 <h5 class="font-weight-medium mb-3">Thông tin khách hàng</h5>
@@ -180,7 +180,9 @@
                 </div>
             </div>
         </div>
-        <% } %>
+        <% totalPrice = 0;
+        }
+        %>
     </div>
 </div>
 <!-- Checkout End -->
