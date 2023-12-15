@@ -137,15 +137,15 @@
                             <% } %>
                             <div class="col-md-12 form-group">
                                 <label>Họ và tên:</label>
-                                <input class="form-control border-primary" type="text" name="fullname">
+                                <input class="form-control border-primary" type="text" name="fullname" required autofocus>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Số điện thoại:</label>
-                                <input class="form-control border-primary" type="text" name="telephone">
+                                <input class="form-control border-primary" type="tel" name="telephone" required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Địa chỉ nhận hàng:</label>
-                                <input class="form-control border-primary" type="text" name="address">
+                                <input class="form-control border-primary" type="text" name="address" required>
                             </div>
                         </div>
                     </div>
@@ -159,25 +159,25 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="cash" name="payment" value="Tiền mặt">
+                                    <input type="radio" class="custom-control-input" id="cash" name="payment" value="Tiền mặt" required>
                                     <label class="custom-control-label" for="cash">Tiền mặt</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="bank-transfer" name="payment" value="Chuyển khoản">
+                                    <input type="radio" class="custom-control-input" id="bank-transfer" name="payment" value="Chuyển khoản" required>
                                     <label class="custom-control-label" for="bank-transfer">Chuyển khoản</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="momo" name="payment" value="MoMo">
+                                    <input type="radio" class="custom-control-input" id="momo" name="payment" value="MoMo" required>
                                     <label class="custom-control-label" for="momo">MoMo</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="paypal" name="payment" value="PayPal">
+                                    <input type="radio" class="custom-control-input" id="paypal" name="payment" value="PayPal" required>
                                     <label class="custom-control-label" for="paypal">PayPal</label>
                                 </div>
                             </div>

@@ -126,7 +126,8 @@
                     <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: <%= bean.getOrderId() %></h4>
                     <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
                 </div>
-                <% if (!bean.getOrderState().equalsIgnoreCase("Đã giao hàng") || !bean.getOrderState().equalsIgnoreCase("Đã hủy")) { %>
+                <% if (bean.getOrderState().equalsIgnoreCase("Đã giao hàng") ||
+                        bean.getOrderState().equalsIgnoreCase("Đã hủy")) { %>
                 <div class="float-right">
                     <a href="" class="btn btn-danger">Hủy giao hàng</a>
                 </div>
