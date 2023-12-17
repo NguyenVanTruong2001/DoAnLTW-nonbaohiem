@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutDao {
-    public int checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws SQLException {
+    public int checkout(int userId, String fullname, String telephone, String address, String paymentMethod) throws ClassNotFoundException, SQLException {
         int result = 0;
         String sql = "INSERT INTO Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`) VALUE (?, ?, ?, ?, ?, ?)";
 
@@ -61,7 +61,7 @@ public class CheckoutDao {
         return checkoutList;
     }
 
-    public List<CheckoutBean> getCheckoutByUserId(int userId) throws SQLException {
+    public List<CheckoutBean> getCheckoutByUserId(int userId) throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM Orders WHERE `UserID` = " + userId;
 
         Connection connection = new DBConnect().connect();
@@ -87,7 +87,7 @@ public class CheckoutDao {
         return checkoutList;
     }
 
-    public void updateCheckoutStateByOrderId(int orderId, String orderState) throws SQLException {
+    public void updateCheckoutStateByOrderId(int orderId, String orderState) throws ClassNotFoundException, SQLException {
         String sql = "UPDATE Orders SET `OrderState` = ? WHERE `UserID` = ?";
 
         Connection connection = new DBConnect().connect();

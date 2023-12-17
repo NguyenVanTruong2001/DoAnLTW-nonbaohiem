@@ -19,7 +19,7 @@ public class CheckoutDetailDao {
         else return -1;
     }
 
-    public void addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws SQLException {
+    public void addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws ClassNotFoundException, SQLException {
         String sql = "INSERT INTO OrderDetails(`OrderID`, `ProductID`, `Quantity`) VALUE (?, ?, ?)";
 
         Connection connection = new DBConnect().connect();
@@ -32,7 +32,7 @@ public class CheckoutDetailDao {
         statement.executeUpdate();
     }
 
-    public List<CheckoutDetailBean> getAllCheckoutDetails() throws SQLException {
+    public List<CheckoutDetailBean> getAllCheckoutDetails() throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM OrderDetails";
 
         Connection connection = new DBConnect().connect();
