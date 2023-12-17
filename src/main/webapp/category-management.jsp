@@ -69,7 +69,7 @@
 
         <!-- Nav Item - Products -->
         <li class="nav-item">
-            <a class="nav-link" href="product-management.html">
+            <a class="nav-link" href="product-management">
                 <i class="fas fa-fw fa-gifts"></i>
                 <span>Sản phẩm</span></a>
         </li>
