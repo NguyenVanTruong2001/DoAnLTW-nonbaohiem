@@ -3,6 +3,8 @@ package dao;
 import beans.UserBean;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
     public UserBean checkLogin(String email, String password) throws ClassNotFoundException, SQLException {
@@ -52,6 +54,28 @@ public class UserDao {
             connection.close();
             return true;
         }
+    }
+
+    public List<UserBean> getAllUsers() throws ClassNotFoundException, SQLException {
+        List<UserBean> list = new ArrayList<>();
+        String sql = "SELECT * FROM `Users`";
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        while (result.next()) {
+            UserBean bean = new UserBean(0, "", "", "", "");
+            bean.setUserId(result.getInt(1));
+            bean.setUsername(result.getString(2));
+            bean.setEmail(result.getString(3));
+            bean.setPassword(result.getString(4));
+            bean.setRole(result.getString(5));
+            list.add(bean);
+        }
+
+        connection.close();
+        return list;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
