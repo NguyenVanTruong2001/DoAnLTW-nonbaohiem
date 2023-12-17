@@ -1,3 +1,9 @@
+<%@ page import="java.util.List" %>
+<%@ page import="beans.CategoryBean" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,7 +97,7 @@
 
         <!-- Nav Item - Categories -->
         <li class="nav-item active">
-            <a class="nav-link" href="category-management.html">
+            <a class="nav-link" href="category-management">
                 <i class="fas fa-fw fa-hard-hat"></i>
                 <span>Loại sản phẩm</span></a>
         </li>
@@ -159,30 +165,12 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
+                                <% for (CategoryBean bean : categoryList) { %>
                                 <tr>
-                                    <th>1</th>
-                                    <td>Mũ 3/4 đầu</td>
+                                    <th><%= bean.getCategoryId() %></th>
+                                    <td><%= bean.getCategoryName() %></td>
                                 </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>Mũ 1/2 đầu</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Mũ full-face</td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>Mũ lật cằm</td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>Mũ xe đạp</td>
-                                </tr>
-                                <tr>
-                                    <th>6</th>
-                                    <td>Mũ trẻ em</td>
-                                </tr>
+                                <% } %>
                                 </tbody>
                             </table>
                         </div>

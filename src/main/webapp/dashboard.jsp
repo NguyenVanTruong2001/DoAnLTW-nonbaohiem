@@ -96,7 +96,7 @@
 
             <!-- Nav Item - Categories -->
             <li class="nav-item">
-                <a class="nav-link" href="category-management.html">
+                <a class="nav-link" href="category-management">
                     <i class="fas fa-fw fa-hard-hat"></i>
                     <span>Loại sản phẩm</span></a>
             </li>
