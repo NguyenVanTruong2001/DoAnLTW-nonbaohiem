@@ -61,14 +61,14 @@
 
             <!-- Nav Item - Users -->
             <li class="nav-item">
-                <a class="nav-link" href="user-management.html">
+                <a class="nav-link" href="user-management">
                     <i class="fas fa-fw fa-user-alt"></i>
                     <span>Người dùng</span></a>
             </li>
 
             <!-- Nav Item - Products -->
             <li class="nav-item">
-                <a class="nav-link" href="product-management.html">
+                <a class="nav-link" href="product-management">
                     <i class="fas fa-fw fa-gifts"></i>
                     <span>Sản phẩm</span></a>
             </li>
@@ -96,7 +96,7 @@
 
             <!-- Nav Item - Categories -->
             <li class="nav-item">
-                <a class="nav-link" href="category-management.html">
+                <a class="nav-link" href="category-management">
                     <i class="fas fa-fw fa-hard-hat"></i>
                     <span>Loại sản phẩm</span></a>
             </li>

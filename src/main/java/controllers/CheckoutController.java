@@ -54,7 +54,7 @@ public class CheckoutController extends HttpServlet {
 
         try {
             i = checkoutDao.checkout(userId, fullname, telephone, address, paymentMethod);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -65,7 +65,7 @@ public class CheckoutController extends HttpServlet {
             checkoutDetail.setQuantity(entry.getValue().getQuantity());
             try {
                 checkoutDetailDao.addCheckoutDetail(checkoutDetail);
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
