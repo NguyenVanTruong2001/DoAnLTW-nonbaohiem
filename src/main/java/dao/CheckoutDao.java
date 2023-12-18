@@ -94,7 +94,6 @@ public class CheckoutDao {
 
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
-        List<CheckoutBean> checkoutList = new ArrayList<>();
         CheckoutBean checkout = new CheckoutBean();
 
         while (result.next()) {
@@ -106,7 +105,6 @@ public class CheckoutDao {
             checkout.setAddress(result.getString(6));
             checkout.setPaymentMethod(result.getString(7));
             checkout.setOrderState(result.getString(8));
-            checkoutList.add(checkout);
         }
 
         connection.close();
