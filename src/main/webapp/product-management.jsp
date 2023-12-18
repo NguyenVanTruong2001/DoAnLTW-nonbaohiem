@@ -1,10 +1,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="beans.CategoryBean" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
+<% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -174,49 +176,50 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="form-group">
+                                        <span>Loại sản phẩm</span>
+                                        <select type="text" class="form-control" name="categoryId" required>
+                                            <% for (CategoryBean bean : categoryList) { %>
+                                            <option value="<%= bean.getCategoryId() %>"><%= bean.getCategoryName() %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <span>Tên sản phẩm</span>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="productName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Hình ảnh sản phẩm</span>
+                                        <input type="file" name="productImage" required>
                                     </div>
                                     <div class="form-group">
                                         <span>Mô tả</span>
-                                        <textarea type="text" class="form-control" rows="10"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Giá</span>
-                                        <input type="number" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Kích thước</span>
-                                        <select type="text" class="form-control" >
-                                            <option>XS</option>
-                                            <option>S</option>
-                                            <option>M</option>
-                                            <option>L</option>
-                                            <option>XL</option>
-                                            <option>XXL</option>
-                                        </select>
+                                        <textarea type="text" class="form-control" rows="10" name="productDescription" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <span>Thương hiệu</span>
-                                        <select type="text" class="form-control" >
-                                            <option>Royal Helmet</option>
-                                            <option>Asia</option>
-                                            <option>Andes</option>
-                                            <option>Protec</option>
-                                            <option>Scoot and Ride</option>
-                                            <option>ROC</option>
+                                        <select type="text" class="form-control" name="productBrand" required>
+                                            <option value="Royal Helmet">Royal Helmet</option>
+                                            <option value="Asia">Asia</option>
+                                            <option value="Andes">Andes</option>
+                                            <option value="Protec">Protec</option>
+                                            <option value="Scoot and Ride">Scoot and Ride</option>
+                                            <option value="ROC">ROC</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <span>Loại sản phẩm</span>
-                                        <select type="text" class="form-control" >
-                                            <option>Mũ 3/4 đầu</option>
-                                            <option>Mũ 1/2 đầu</option>
-                                            <option>Mũ full-face</option>
-                                            <option>Mũ lật cằm</option>
-                                            <option>Mũ xe đạp</option>
-                                            <option>Mũ trẻ em</option>
+                                        <span>Kích thước</span>
+                                        <select type="text" class="form-control" name="productSize" required>
+                                            <option value="XS">XS</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Giá</span>
+                                        <input type="number" class="form-control" name="productPrice" min="1000" step="500" required>
                                     </div>
                                     <div class="form-group float-right">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -244,7 +247,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <span>Tên sản phẩm</span>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <span>Mô tả</span>
@@ -308,7 +311,7 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Hình ảnh sản phẩm</th>
                                     <th>Giá</th>
-                                    <th>Mã loại sản phẩm</th>
+                                    <th>Tên loại sản phẩm</th>
                                     <th>Thao tác</th>
                                 </tr>
                                 </thead>
@@ -318,7 +321,7 @@
                                     <th>Tên sản phẩm</th>
                                     <th>Hình ảnh sản phẩm</th>
                                     <th>Giá</th>
-                                    <th>Mã loại sản phẩm</th>
+                                    <th>Tên loại sản phẩm</th>
                                     <th>Thao tác</th>
                                 </tr>
                                 </tfoot>
@@ -331,17 +334,17 @@
                                         <img src="<%= bean.getProductImage()%>" alt="" width="20%" height="20%">
                                     </td>
                                     <td><%= format.format(bean.getProductPrice())%> &#8363;</td>
-                                    <td><%= bean.getCategoryId()%></td>
+                                    <td><%= bean.getCategoryBean().getCategoryName()%></td>
                                     <td>
                                         <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
                                             <i class="fas fa-info"></i>
                                         </a>
-                                        <button class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">
+                                        <a href="" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">
                                             <i class="fas fa-pen-alt"></i>
-                                        </button>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#deleteProduct">
+                                        </a>
+                                        <a href="" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#deleteProduct">
                                             <i class="fas fa-trash"></i>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 <% } %>

@@ -1,6 +1,8 @@
 package controllers;
 
+import beans.CategoryBean;
 import beans.ProductBean;
+import dao.CategoryDao;
 import dao.ProductDao;
 
 import javax.servlet.ServletException;
@@ -18,16 +20,18 @@ public class ProductManagementController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDao = new ProductDao();
         List<ProductBean> productList;
+        List<CategoryBean> categoryList;
 
         try {
-            productList = productDao.getAllProducts();
+            productList = new ProductDao().getAllProducts();
+            categoryList = new CategoryDao().getAllCategories();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
         req.setAttribute("productList", productList);
+        req.setAttribute("categoryList", categoryList);
         req.getRequestDispatcher("product-management.jsp").forward(req, resp);
     }
 
