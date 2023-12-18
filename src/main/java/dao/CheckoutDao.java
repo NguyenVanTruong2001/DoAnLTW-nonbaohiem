@@ -45,9 +45,9 @@ public class CheckoutDao {
         List<CheckoutBean> checkoutList = new ArrayList<>();
 
         while (result.next()) {
-            CheckoutBean checkout = new CheckoutBean(0, 0, Date.valueOf(LocalDate.now()), "", "", "", "", "");
+            CheckoutBean checkout = new CheckoutBean();
             checkout.setOrderId(result.getInt(1));
-            checkout.setUserId(result.getInt(2));
+            checkout.setUserBean(new UserDao().getUserById(result.getInt(2)));
             checkout.setOrderDate(result.getDate(3));
             checkout.setFullname(result.getString(4));
             checkout.setTelephone(result.getString(5));
@@ -71,9 +71,9 @@ public class CheckoutDao {
         List<CheckoutBean> checkoutList = new ArrayList<>();
 
         while (result.next()) {
-            CheckoutBean checkout = new CheckoutBean(0, 0, Date.valueOf(LocalDate.now()), "", "", "", "", "");
+            CheckoutBean checkout = new CheckoutBean();
             checkout.setOrderId(result.getInt(1));
-            checkout.setUserId(result.getInt(2));
+            checkout.setUserBean(new UserDao().getUserById(result.getInt(2)));
             checkout.setOrderDate(result.getDate(3));
             checkout.setFullname(result.getString(4));
             checkout.setTelephone(result.getString(5));
