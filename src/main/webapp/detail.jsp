@@ -8,7 +8,6 @@
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
-<% CategoryBean categoryBean = (CategoryBean) request.getAttribute("categoryBean"); %>
 <% ProductBean productBean = (ProductBean) request.getAttribute("productBean"); %>
 
 <!DOCTYPE html>
@@ -149,7 +148,7 @@
                 <h2 class="font-weight-semi-bold mb-4"><%= productBean.getProductName() %></h2>
                 <h4 class="font-weight-semi-bold mb-4 text-primary"><%= format.format(productBean.getProductPrice()) %> &#8363;</h4>
                 <hr class="mt-0">
-                <p class="mb-4">Loại: <%= categoryBean.getCategoryName() %></p>
+                <p class="mb-4">Loại: <%= productBean.getCategoryBean().getCategoryName() %></p>
                 <p class="mb-4">Thương hiệu: <%= productBean.getProductBrand() %></p>
                 <p class="mb-4">Kích cỡ: <%= productBean.getProductSize() %></p>
                 <div class="d-flex mb-3">
@@ -189,10 +188,10 @@
                             <p><%= productBean.getProductDescription() %></p>
                         </div>
                         <div class="d-flex flex-row">
-                            <img src="img/product-1.jpg">
-                            <img src="img/product-2.jpg">
-                            <img src="img/product-3.jpg">
-                            <img src="img/product-4.jpg">
+                            <img src="img/product-1.jpg" alt="">
+                            <img src="img/product-2.jpg" alt="">
+                            <img src="img/product-3.jpg" alt="">
+                            <img src="img/product-4.jpg" alt="">
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-pane-3">

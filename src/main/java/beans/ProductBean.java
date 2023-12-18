@@ -33,9 +33,7 @@ public class ProductBean implements Serializable {
         this.productId = productId;
     }
 
-    public CategoryBean getCategoryBean() {
-        return categoryBean;
-    }
+    public CategoryBean getCategoryBean() { return categoryBean; }
 
     public void setCategoryBean(CategoryBean categoryBean) {
         this.categoryBean = categoryBean;

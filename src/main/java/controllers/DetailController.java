@@ -32,11 +32,9 @@ public class DetailController extends HttpServlet {
 
         int id = Integer.parseInt(req.getParameter("productId"));
         ProductBean productBean;
-        CategoryBean categoryBean;
         try {
             productBean = productDao.getProductById(id);
             categoryList = categoryDao.getAllCategories();
-            categoryBean = categoryDao.getCategoryById(productBean.getCategoryId());
             productList = productDao.getRecommendedProducts();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -44,7 +42,6 @@ public class DetailController extends HttpServlet {
 
         req.setAttribute("categoryList", categoryList);
         req.setAttribute("productBean", productBean);
-        req.setAttribute("categoryBean", categoryBean);
         req.setAttribute("productList", productList);
         req.getRequestDispatcher("detail.jsp").forward(req, resp);
     }
