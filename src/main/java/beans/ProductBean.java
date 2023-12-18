@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ProductBean implements Serializable {
     private int productId;
-    private int categoryId;
+    private CategoryBean categoryBean;
     private String productName;
     private String productImage;
     private String productDescription;
@@ -12,9 +12,9 @@ public class ProductBean implements Serializable {
     private String productSize;
     private int productPrice;
 
-    public ProductBean(int productId, int categoryId, String productName, String productImage, String productDescription, String productBrand, String productSize, int productPrice) {
+    public ProductBean(int productId, CategoryBean categoryBean, String productName, String productImage, String productDescription, String productBrand, String productSize, int productPrice) {
         this.productId = productId;
-        this.categoryId = categoryId;
+        this.categoryBean = categoryBean;
         this.productName = productName;
         this.productImage = productImage;
         this.productDescription = productDescription;
@@ -22,6 +22,8 @@ public class ProductBean implements Serializable {
         this.productSize = productSize;
         this.productPrice = productPrice;
     }
+
+    public ProductBean() {}
 
     public int getProductId() {
         return productId;
@@ -31,12 +33,12 @@ public class ProductBean implements Serializable {
         this.productId = productId;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public CategoryBean getCategoryBean() {
+        return categoryBean;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryBean(CategoryBean categoryBean) {
+        this.categoryBean = categoryBean;
     }
 
     public String getProductName() {
@@ -91,7 +93,7 @@ public class ProductBean implements Serializable {
     public String toString() {
         return "ProductBean{" +
                 "productId=" + productId +
-                ", categoryId=" + categoryId +
+                ", categoryBean=" + categoryBean +
                 ", productName='" + productName + '\'' +
                 ", productImage='" + productImage + '\'' +
                 ", productDescription='" + productDescription + '\'' +

@@ -1,5 +1,6 @@
 package dao;
 
+import beans.CategoryBean;
 import beans.ProductBean;
 
 import java.sql.*;
@@ -32,9 +33,9 @@ public class ProductDao {
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
-            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            ProductBean product = new ProductBean();
             product.setProductId(result.getInt(1));
-            product.setCategoryId(result.getInt(2));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
             product.setProductName(result.getString(3));
             product.setProductImage(result.getString(4));
             product.setProductDescription(result.getString(5));
@@ -58,9 +59,9 @@ public class ProductDao {
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
-            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            ProductBean product = new ProductBean();
             product.setProductId(result.getInt(1));
-            product.setCategoryId(result.getInt(2));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
             product.setProductName(result.getString(3));
             product.setProductImage(result.getString(4));
             product.setProductDescription(result.getString(5));
@@ -90,9 +91,9 @@ public class ProductDao {
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
-            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            ProductBean product = new ProductBean();
             product.setProductId(result.getInt(1));
-            product.setCategoryId(result.getInt(2));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
             product.setProductName(result.getString(3));
             product.setProductImage(result.getString(4));
             product.setProductDescription(result.getString(5));
@@ -116,9 +117,9 @@ public class ProductDao {
 //
 //        List<ProductBean> productList = new ArrayList<>();
 //        while (result.next()) {
-//            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+//            ProductBean product = new ProductBean();
 //            product.setProductId(result.getInt(1));
-//            product.setCategoryId(result.getInt(2));
+//            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
 //            product.setProductName(result.getString(3));
 //            product.setProductImage(result.getString(4));
 //            product.setProductDescription(result.getString(5));
@@ -142,9 +143,9 @@ public class ProductDao {
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
-            ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+            ProductBean product = new ProductBean();
             product.setProductId(result.getInt(1));
-            product.setCategoryId(result.getInt(2));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
             product.setProductName(result.getString(3));
             product.setProductImage(result.getString(4));
             product.setProductDescription(result.getString(5));
@@ -166,10 +167,10 @@ public class ProductDao {
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
 
-        ProductBean product = new ProductBean(0, 0, "", "", "", "", "", 0);
+        ProductBean product = new ProductBean();
         while (result.next()) {
             product.setProductId(result.getInt(1));
-            product.setCategoryId(result.getInt(2));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
             product.setProductName(result.getString(3));
             product.setProductImage(result.getString(4));
             product.setProductDescription(result.getString(5));
