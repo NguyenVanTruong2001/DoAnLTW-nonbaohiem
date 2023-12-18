@@ -1,5 +1,6 @@
 package dao;
 
+import beans.CheckoutBean;
 import beans.CheckoutDetailBean;
 
 import java.sql.*;
@@ -64,8 +65,8 @@ public class CheckoutDetailDao {
 
         while (result.next()) {
             CheckoutDetailBean checkoutDetail = new CheckoutDetailBean();
-            checkoutDetail.getCheckoutBean().setOrderId(result.getInt(1));
-            checkoutDetail.getProductBean().setProductId(result.getInt(2));
+            checkoutDetail.setCheckoutBean(new CheckoutDao().getCheckoutByOrderId(result.getInt(1)));
+            checkoutDetail.setProductBean(new ProductDao().getProductById(result.getInt(2)));
             checkoutDetail.setQuantity(result.getInt(3));
             checkoutDetailList.add(checkoutDetail);
         }

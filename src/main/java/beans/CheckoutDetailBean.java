@@ -47,4 +47,6 @@ public class CheckoutDetailBean implements Serializable {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    public int detailPrice() { return getQuantity() * getProductBean().getProductPrice(); }
 }
