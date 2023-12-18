@@ -87,7 +87,6 @@
                             <a href="home" class="nav-item nav-link">Trang chủ</a>
                             <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                             <a href="cart" class="nav-item nav-link active">Giỏ hàng</a>
-                            <a href="checkout" class="nav-item nav-link">Đặt hàng</a>
                             <% if (session.getAttribute("user") != null) { %>
                             <a href="checkout-history" class="nav-item nav-link">Lịch sử đặt hàng</a>
                             <% } %>
