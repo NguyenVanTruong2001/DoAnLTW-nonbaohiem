@@ -78,11 +78,27 @@ public class UserDao {
         return list;
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
-        UserBean userBean = userDao.checkLogin("tigernixon@gmail.com", "nixon");
-        System.out.println(userBean.toString());
-        System.out.println(userDao.register("GarrettWinters", "garrettwinters@gmail.com", "winters"));
-        System.out.println(userDao.register("AstonCox", "ashtoncox@gmail.com", "cox"));
+    public UserBean getUserById(int userId) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM users WHERE `UserID` = ?";
+
+        Connection connection = new DBConnect().connect();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, userId);
+
+        ResultSet result = statement.executeQuery();
+
+        UserBean user = new UserBean(0, "", "", "", "");
+        if (result.next()) {
+            user.setUserId(userId);
+            user.setUsername(result.getString(2));
+            user.setEmail(result.getString(3));
+            user.setPassword(result.getString(4));
+            user.setRole(result.getString(5));
+        }
+
+        connection.close();
+        return user;
     }
+
 }

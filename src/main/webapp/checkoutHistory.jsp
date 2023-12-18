@@ -4,12 +4,10 @@
 <%@ page import="beans.*" %>
 <%@ page import="dao.CheckoutDetailDao" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="dao.ProductDao" %>
 <%@ page import="java.text.DecimalFormat" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% List<CheckoutBean> checkoutList = (List<CheckoutBean>) request.getAttribute("checkoutList"); %>
-<% ProductBean product; %>
 <% List<CheckoutDetailBean> checkoutDetailList; %>
 <% int totalPrice = 0; %>
 <!DOCTYPE html>
@@ -86,7 +84,7 @@
                         <a href="shop" class="nav-item nav-link">Sản phẩm</a>
                         <a href="cart" class="nav-item nav-link">Giỏ hàng</a>
                         <% if (session.getAttribute("user") != null) { %>
-                        <a href="checkout-history" class="nav-item nav-link">Lịch sử đặt hàng</a>
+                        <a href="checkout-history" class="nav-item nav-link active">Lịch sử đặt hàng</a>
                         <% } %>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
@@ -126,12 +124,11 @@
                     <h4 class="font-weight-semi-bold m-0">Mã đơn hàng: <%= bean.getOrderId() %></h4>
                     <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
                 </div>
-                <% if (bean.getOrderState().equalsIgnoreCase("Đã giao hàng") ||
-                        bean.getOrderState().equalsIgnoreCase("Đã hủy")) { %>
                 <div class="float-right">
+                    <% if (bean.getOrderState().equals("Đang chờ duyệt") && bean.getOrderState().equals("Đang giao hàng")) { %>
                     <a href="" class="btn btn-danger">Hủy giao hàng</a>
+                    <% } %>
                 </div>
-                <% } %>
             </div>
             <div class="card-body">
                 <h5 class="font-weight-medium mb-3">Thông tin khách hàng</h5>
@@ -158,17 +155,12 @@
                         throw new RuntimeException(e);
                     }
                         for (CheckoutDetailBean bean1 : checkoutDetailList) {
-                            try {
-                                product = new ProductDao().getProductById(bean1.getProductId());
-                            } catch (ClassNotFoundException | SQLException e) {
-                                throw new RuntimeException(e);
-                            }
-                            totalPrice += bean1.getQuantity() * product.getProductPrice(); %>
+                            totalPrice += bean1.detailPrice(); %>
                     <tr>
-                        <td><%= product.getProductName() %></td>
+                        <td><%= bean1.getProductBean().getProductName() %></td>
                         <td><%= bean1.getQuantity() %></td>
-                        <td><%= format.format(product.getProductPrice()) %> &#8363;</td>
-                        <td><%= format.format((long) product.getProductPrice() * bean1.getQuantity()) %> &#8363;</td>
+                        <td><%= format.format(bean1.getProductBean().getProductPrice()) %> &#8363;</td>
+                        <td><%= format.format(bean1.detailPrice()) %> &#8363;</td>
                     </tr>
                     <% } %>
                     </tbody>

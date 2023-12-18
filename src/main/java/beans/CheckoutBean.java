@@ -2,11 +2,10 @@ package beans;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class CheckoutBean implements Serializable {
     private int orderId;
-    private int userId;
+    private UserBean userBean;
     private Date orderDate;
     private String fullname;
     private String telephone;
@@ -14,9 +13,9 @@ public class CheckoutBean implements Serializable {
     private String paymentMethod;
     private String orderState;
 
-    public CheckoutBean(int orderId, int userId, Date orderDate, String fullname, String telephone, String address, String paymentMethod, String orderState) {
+    public CheckoutBean(int orderId, UserBean userBean, Date orderDate, String fullname, String telephone, String address, String paymentMethod, String orderState) {
         this.orderId = orderId;
-        this.userId = userId;
+        this.userBean = userBean;
         this.orderDate = orderDate;
         this.fullname = fullname;
         this.telephone = telephone;
@@ -24,6 +23,8 @@ public class CheckoutBean implements Serializable {
         this.paymentMethod = paymentMethod;
         this.orderState = orderState;
     }
+
+    public CheckoutBean() {}
 
     public int getOrderId() {
         return orderId;
@@ -33,12 +34,12 @@ public class CheckoutBean implements Serializable {
         this.orderId = orderId;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserBean getUserBean() {
+        return userBean;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 
     public Date getOrderDate() {
@@ -93,7 +94,7 @@ public class CheckoutBean implements Serializable {
     public String toString() {
         return "CheckoutBean{" +
                 "orderId=" + orderId +
-                ", userId=" + userId +
+                ", userBean=" + userBean +
                 ", orderDate=" + orderDate +
                 ", fullname='" + fullname + '\'' +
                 ", telephone='" + telephone + '\'' +

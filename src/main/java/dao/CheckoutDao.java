@@ -45,9 +45,9 @@ public class CheckoutDao {
         List<CheckoutBean> checkoutList = new ArrayList<>();
 
         while (result.next()) {
-            CheckoutBean checkout = new CheckoutBean(0, 0, Date.valueOf(LocalDate.now()), "", "", "", "", "");
+            CheckoutBean checkout = new CheckoutBean();
             checkout.setOrderId(result.getInt(1));
-            checkout.setUserId(result.getInt(2));
+            checkout.setUserBean(new UserDao().getUserById(result.getInt(2)));
             checkout.setOrderDate(result.getDate(3));
             checkout.setFullname(result.getString(4));
             checkout.setTelephone(result.getString(5));
@@ -71,9 +71,9 @@ public class CheckoutDao {
         List<CheckoutBean> checkoutList = new ArrayList<>();
 
         while (result.next()) {
-            CheckoutBean checkout = new CheckoutBean(0, 0, Date.valueOf(LocalDate.now()), "", "", "", "", "");
+            CheckoutBean checkout = new CheckoutBean();
             checkout.setOrderId(result.getInt(1));
-            checkout.setUserId(result.getInt(2));
+            checkout.setUserBean(new UserDao().getUserById(result.getInt(2)));
             checkout.setOrderDate(result.getDate(3));
             checkout.setFullname(result.getString(4));
             checkout.setTelephone(result.getString(5));
@@ -85,6 +85,32 @@ public class CheckoutDao {
 
         connection.close();
         return checkoutList;
+    }
+
+    public CheckoutBean getCheckoutByOrderId(int orderId) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Orders WHERE `OrderID` = " + orderId;
+
+        Connection connection = new DBConnect().connect();
+
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        List<CheckoutBean> checkoutList = new ArrayList<>();
+        CheckoutBean checkout = new CheckoutBean();
+
+        while (result.next()) {
+            checkout.setOrderId(result.getInt(1));
+            checkout.setUserBean(new UserDao().getUserById(result.getInt(2)));
+            checkout.setOrderDate(result.getDate(3));
+            checkout.setFullname(result.getString(4));
+            checkout.setTelephone(result.getString(5));
+            checkout.setAddress(result.getString(6));
+            checkout.setPaymentMethod(result.getString(7));
+            checkout.setOrderState(result.getString(8));
+            checkoutList.add(checkout);
+        }
+
+        connection.close();
+        return checkout;
     }
 
     public void updateCheckoutStateByOrderId(int orderId, String orderState) throws ClassNotFoundException, SQLException {
