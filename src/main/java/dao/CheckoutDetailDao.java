@@ -25,8 +25,8 @@ public class CheckoutDetailDao {
         Connection connection = new DBConnect().connect();
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, checkoutDetail.getOrderId());
-        statement.setInt(2, checkoutDetail.getProductId());
+        statement.setInt(1, checkoutDetail.getCheckoutBean().getOrderId());
+        statement.setInt(2, checkoutDetail.getProductBean().getProductId());
         statement.setInt(3, checkoutDetail.getQuantity());
 
         statement.executeUpdate();
@@ -42,9 +42,9 @@ public class CheckoutDetailDao {
         List<CheckoutDetailBean> checkoutDetailList = new ArrayList<>();
 
         while (result.next()) {
-            CheckoutDetailBean checkoutDetail = new CheckoutDetailBean(0, 0, 0);
-            checkoutDetail.setOrderId(result.getInt(1));
-            checkoutDetail.setProductId(result.getInt(2));
+            CheckoutDetailBean checkoutDetail = new CheckoutDetailBean();
+            checkoutDetail.getCheckoutBean().setOrderId(result.getInt(1));
+            checkoutDetail.getProductBean().setProductId(result.getInt(2));
             checkoutDetail.setQuantity(result.getInt(3));
             checkoutDetailList.add(checkoutDetail);
         }
@@ -63,9 +63,9 @@ public class CheckoutDetailDao {
         List<CheckoutDetailBean> checkoutDetailList = new ArrayList<>();
 
         while (result.next()) {
-            CheckoutDetailBean checkoutDetail = new CheckoutDetailBean(0, 0, 0);
-            checkoutDetail.setOrderId(result.getInt(1));
-            checkoutDetail.setProductId(result.getInt(2));
+            CheckoutDetailBean checkoutDetail = new CheckoutDetailBean();
+            checkoutDetail.getCheckoutBean().setOrderId(result.getInt(1));
+            checkoutDetail.getProductBean().setProductId(result.getInt(2));
             checkoutDetail.setQuantity(result.getInt(3));
             checkoutDetailList.add(checkoutDetail);
         }

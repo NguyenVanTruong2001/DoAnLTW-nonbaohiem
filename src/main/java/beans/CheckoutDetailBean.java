@@ -3,30 +3,32 @@ package beans;
 import java.io.Serializable;
 
 public class CheckoutDetailBean implements Serializable {
-    private int orderId;
-    private int productId;
+    private CheckoutBean checkoutBean;
+    private ProductBean productBean;
     private int quantity;
 
-    public CheckoutDetailBean(int userId, int productId, int quantity) {
-        this.orderId = userId;
-        this.productId = productId;
+    public CheckoutDetailBean(CheckoutBean checkoutBean, ProductBean productBean, int quantity) {
+        this.checkoutBean = checkoutBean;
+        this.productBean = productBean;
         this.quantity = quantity;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public CheckoutDetailBean() {}
+
+    public CheckoutBean getCheckoutBean() {
+        return checkoutBean;
     }
 
-    public void setOrderId(int userId) {
-        this.orderId = userId;
+    public void setCheckoutBean(CheckoutBean checkoutBean) {
+        this.checkoutBean = checkoutBean;
     }
 
-    public int getProductId() {
-        return productId;
+    public ProductBean getProductBean() {
+        return productBean;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProductBean(ProductBean productBean) {
+        this.productBean = productBean;
     }
 
     public int getQuantity() {
@@ -40,8 +42,8 @@ public class CheckoutDetailBean implements Serializable {
     @Override
     public String toString() {
         return "CheckoutDetailBean{" +
-                "orderId=" + orderId +
-                ", productId=" + productId +
+                "checkoutBean=" + checkoutBean +
+                ", productBean=" + productBean +
                 ", quantity=" + quantity +
                 '}';
     }
