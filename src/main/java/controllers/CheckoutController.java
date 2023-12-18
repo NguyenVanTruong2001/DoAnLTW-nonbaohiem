@@ -59,9 +59,9 @@ public class CheckoutController extends HttpServlet {
         }
 
         for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
-            CheckoutDetailBean checkoutDetail = new CheckoutDetailBean(0, 0, 0);
-            checkoutDetail.setProductId(entry.getKey());
-            checkoutDetail.setOrderId(i);
+            CheckoutDetailBean checkoutDetail = new CheckoutDetailBean();
+            checkoutDetail.getProductBean().setProductId(entry.getKey());
+            checkoutDetail.getCheckoutBean().setOrderId(i);
             checkoutDetail.setQuantity(entry.getValue().getQuantity());
             try {
                 checkoutDetailDao.addCheckoutDetail(checkoutDetail);
