@@ -28,6 +28,44 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+        .rate:not(:checked) > input {
+            position:absolute;
+            top:-9999px;
+        }
+        .rate:not(:checked) > label {
+            float:right;
+            width:1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:30px;
+            color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+    </style>
 </head>
 
 <body>
@@ -214,35 +252,17 @@
                                 <form>
                                     <div class="d-flex my-3">
                                         <p class="mb-0 mr-2">Đánh giá của bạn:</p>
-                                        <div class="form-group text-primary">
-                                            <div class="custom-control custom-control-inline custom-radio">
-                                                <input type="radio" class="custom-control-input" id="one-star" name="rate">
-                                                <label class="custom-control-label" for="one-star">1 <i class="fas fa-star"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group text-primary">
-                                            <div class="custom-control custom-control-inline custom-radio">
-                                                <input type="radio" class="custom-control-input" id="two-star" name="rate">
-                                                <label class="custom-control-label" for="two-star">2 <i class="fas fa-star"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group text-primary">
-                                            <div class="custom-control custom-control-inline custom-radio">
-                                                <input type="radio" class="custom-control-input" id="three-star" name="rate">
-                                                <label class="custom-control-label" for="three-star">3 <i class="fas fa-star"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group text-primary">
-                                            <div class="custom-control custom-control-inline custom-radio">
-                                                <input type="radio" class="custom-control-input" id="four-star" name="rate">
-                                                <label class="custom-control-label" for="four-star">4 <i class="fas fa-star"></i></label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group text-primary">
-                                            <div class="custom-control custom-control-inline custom-radio">
-                                                <input type="radio" class="custom-control-input" id="five-star" name="rate">
-                                                <label class="custom-control-label" for="five-star">5 <i class="fas fa-star"></i></label>
-                                            </div>
+                                        <div class="rate">
+                                            <input type="radio" id="star5" name="rate" value="5">
+                                            <label for="star5">5 stars</label>
+                                            <input type="radio" id="star4" name="rate" value="4">
+                                            <label for="star4">4 stars</label>
+                                            <input type="radio" id="star3" name="rate" value="3">
+                                            <label for="star3">3 stars</label>
+                                            <input type="radio" id="star2" name="rate" value="2">
+                                            <label for="star2">2 stars</label>
+                                            <input type="radio" id="star1" name="rate" value="1">
+                                            <label for="star1">1 star</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
