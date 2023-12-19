@@ -330,9 +330,7 @@
                                 <tr>
                                     <th><%= bean.getProductId() %></th>
                                     <td><%= bean.getProductName() %></td>
-                                    <td>
-                                        <img src="<%= bean.getProductImage()%>" alt="" width="20%" height="20%">
-                                    </td>
+                                    <td><img src="<%= bean.getProductImage()%>" alt="" class="img-thumbnail" width="20%" height="20%"></td>
                                     <td><%= format.format(bean.getProductPrice())%> &#8363;</td>
                                     <td><%= bean.getCategoryBean().getCategoryName()%></td>
                                     <td>

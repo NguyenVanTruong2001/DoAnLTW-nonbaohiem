@@ -1,13 +1,9 @@
-<%@ page import="beans.CheckoutBean" %>
-<%@ page import="java.util.List" %>
-<%@ page import="beans.CheckoutDetailBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="beans.ProductBean" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% ProductBean product = (ProductBean) request.getAttribute("product"); %>
-<% int totalPrice = 0; %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -170,9 +166,9 @@
                             <p class="mb-4">Kích cỡ: <%= product.getProductSize() %></p>
                         </div>
                     </div>
-                    <hr>
+                    <hr class="mt-0">
                     <div class="container-fluid">
-                        <h6 class="mb-4">Mô tả:</h6>
+                        <h6 class="mb-2">Mô tả:</h6>
                         <p class="mb-4"><%= product.getProductDescription() %></p>
                     </div>
                 </div>
