@@ -27,12 +27,9 @@ public class CheckoutDao {
         ResultSet resultSet = statement.getGeneratedKeys();
         if (resultSet.next()) {
             result = resultSet.getInt(1);
-            connection.close();
-            return result;
-        } else {
-            connection.close();
-            return result;
         }
+        connection.close();
+        return result;
     }
 
     public List<CheckoutBean> getAllCheckouts() throws ClassNotFoundException, SQLException {
