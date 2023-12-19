@@ -336,7 +336,7 @@
                                     <td><%= format.format(bean.getProductPrice())%> &#8363;</td>
                                     <td><%= bean.getCategoryBean().getCategoryName()%></td>
                                     <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.jsp">
+                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="productDetail-management?productId=<%= bean.getProductId() %>">
                                             <i class="fas fa-info"></i>
                                         </a>
                                         <a href="" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">
