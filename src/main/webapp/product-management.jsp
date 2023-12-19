@@ -84,7 +84,7 @@
 
         <!-- Nav Item - Orders -->
         <li class="nav-item">
-            <a class="nav-link" href="order-management.html">
+            <a class="nav-link" href="order-management">
                 <i class="fas fa-fw fa-clipboard"></i>
                 <span>Đơn hàng</span></a>
         </li>
@@ -330,13 +330,11 @@
                                 <tr>
                                     <th><%= bean.getProductId() %></th>
                                     <td><%= bean.getProductName() %></td>
-                                    <td>
-                                        <img src="<%= bean.getProductImage()%>" alt="" width="20%" height="20%">
-                                    </td>
+                                    <td><img src="<%= bean.getProductImage()%>" alt="" class="img-thumbnail" width="20%" height="20%"></td>
                                     <td><%= format.format(bean.getProductPrice())%> &#8363;</td>
                                     <td><%= bean.getCategoryBean().getCategoryName()%></td>
                                     <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
+                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="productDetail-management?productId=<%= bean.getProductId() %>">
                                             <i class="fas fa-info"></i>
                                         </a>
                                         <a href="" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">

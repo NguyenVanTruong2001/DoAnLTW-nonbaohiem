@@ -1,3 +1,14 @@
+<%@ page import="beans.CheckoutBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="beans.CheckoutDetailBean" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% DecimalFormat format = new DecimalFormat("#,###.#"); %>
+<% CheckoutBean checkout = (CheckoutBean) request.getAttribute("checkout"); %>
+<% List<CheckoutDetailBean> checkoutDetailList = (List<CheckoutDetailBean>) request.getAttribute("checkoutDetailList"); %>
+<% int totalPrice = 0; %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +83,7 @@
 
         <!-- Nav Item - Orders -->
         <li class="nav-item">
-            <a class="nav-link" href="order-management.html">
+            <a class="nav-link" href="order-management">
                 <i class="fas fa-fw fa-clipboard"></i>
                 <span>Đơn hàng</span></a>
         </li>
@@ -143,9 +154,9 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800 pb-3">Chi tiết đơn hàng</h1>
                 <div class="d-flex flex-row">
-                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Mã đơn hàng: 1</p>
-                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Mã người dùng: 1</p>
-                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Ngày đặt hàng: 2020-01-01</p>
+                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Mã đơn hàng: <%= checkout.getOrderId() %></p>
+                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Tên người dùng: <%= checkout.getUserBean().getUsername() %></p>
+                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Ngày đặt hàng: <%= checkout.getOrderDate() %></p>
                 </div>
 
                 <!-- DataTales Example -->
@@ -153,10 +164,11 @@
                     <div class="card-body">
                         <div class="container-fluid">
                             <h5 class="pb-4">Thông tin khách hàng</h5>
-                            <p>Họ và tên: Tiger Nixon</p>
-                            <p>Số điện thoại: 0920110425</p>
-                            <p>Địa chỉ nhận hàng: 1661 Chestnut Street, Polk City, FL</p>
-                            <p>Phương thức thanh toán: Tiền mặt</p>
+                            <p>Họ và tên: <%= checkout.getFullname() %></p>
+                            <p>Số điện thoại: <%= checkout.getTelephone() %></p>
+                            <p>Địa chỉ nhận hàng: <%= checkout.getAddress() %></p>
+                            <p>Phương thức thanh toán: <%= checkout.getPaymentMethod() %></p>
+                            <p>Trạng thái đơn hàng: <%= checkout.getOrderState() %></p>
                         </div>
                         <hr>
                         <div class="container-fluid">
@@ -172,38 +184,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <% for (CheckoutDetailBean bean : checkoutDetailList) {
+                                    totalPrice += bean.detailPrice(); %>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Mũ bảo hiểm 3/4 đầu Royal Helmet M20C</td>
-                                    <td>495.000đ</td>
-                                    <td>1</td>
-                                    <td>495.000đ</td>
+                                    <td><%= bean.getProductBean().getProductId() %></td>
+                                    <td><%= bean.getProductBean().getProductName() %></td>
+                                    <td><%= bean.getProductBean().getProductPrice() %></td>
+                                    <td><%= bean.getQuantity() %></td>
+                                    <td><%= format.format(bean.detailPrice()) %> &#8363;</td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Mũ bảo hiểm Royal Helmet M01 trơn</td>
-                                    <td>384.000đ</td>
-                                    <td>1</td>
-                                    <td>384.000đ</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Mũ bảo hiểm full-face Royal Helmet M02 tem</td>
-                                    <td>505.000đ</td>
-                                    <td>1</td>
-                                    <td>505.000đ</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Mũ bảo hiểm 1/2 đầu Asia MT-117</td>
-                                    <td>192.000đ</td>
-                                    <td>1</td>
-                                    <td>192.000đ</td>
-                                </tr>
+                                <% } %>
                                 </tbody>
                             </table>
                             <div class="container-fluid text-right">
-                                <p>Thành tiền: 1.576.000đ</p>
+                                <p>Thành tiền: <%= format.format(totalPrice) %> &#8363;</p>
                             </div>
                         </div>
                     </div>
@@ -241,57 +235,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                 <a class="btn btn-primary" href="logout">Đăng xuất</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal fade" id="orderInfo">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Thông tin đơn hàng</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal fade" id="orderStatus">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Trạng thái đơn hàng</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <span>Chọn một trong các nút sau để thay đổi trạng thái đơn hàng.</span>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Đang chờ duyệt</button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Đang giao hàng</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Đã giao hàng</button>
             </div>
         </div>
     </div>

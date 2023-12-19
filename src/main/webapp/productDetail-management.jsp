@@ -1,15 +1,20 @@
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="beans.ProductBean" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% DecimalFormat format = new DecimalFormat("#,###.#"); %>
+<% ProductBean product = (ProductBean) request.getAttribute("product"); %>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quản lý đơn hàng</title>
+    <title>Chi tiết sản phẩm</title>
 
     <!-- Custom fonts for this template -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -22,7 +27,6 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -74,8 +78,8 @@
         </li>
 
         <!-- Nav Item - Orders -->
-        <li class="nav-item active">
-            <a class="nav-link" href="order-management.html">
+        <li class="nav-item">
+            <a class="nav-link" href="order-management">
                 <i class="fas fa-fw fa-clipboard"></i>
                 <span>Đơn hàng</span></a>
         </li>
@@ -144,111 +148,28 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800 pb-3">Quản lý đơn hàng</h1>
+                <h1 class="h3 mb-2 text-gray-800 mb-3">Chi tiết sản phẩm</h1>
+                <p class="mb-2 text-gray-600 pb-1 flex-fill">Mã sản phẩm: <%= product.getProductId() %></p>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="orderTable">
-                                <thead>
-                                <tr>
-                                    <th>Mã đơn hàng</th>
-                                    <th>Mã người dùng</th>
-                                    <th>Ngày đặt hàng</th>
-                                    <th>Họ và Tên</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ nhận hàng</th>
-                                    <th>Phương thức thanh toán</th>
-                                    <th>Thông tin đơn hàng</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Mã đơn hàng</th>
-                                    <th>Mã người dùng</th>
-                                    <th>Ngày đặt hàng</th>
-                                    <th>Họ và Tên</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ nhận hàng</th>
-                                    <th>Phương thức thanh toán</th>
-                                    <th>Thông tin đơn hàng</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>1</td>
-                                    <td>2020-01-01</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>0920110425</td>
-                                    <td>1661 Chestnut Street, Polk City, FL</td>
-                                    <td>Tiền mặt</td>
-                                    <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>2</td>
-                                    <td>2020-01-01</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>0920110425</td>
-                                    <td>1661 Chestnut Street, Polk City, FL</td>
-                                    <td>Tiền mặt</td>
-                                    <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>3</td>
-                                    <td>2020-01-01</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>0920110425</td>
-                                    <td>1661 Chestnut Street, Polk City, FL</td>
-                                    <td>Tiền mặt</td>
-                                    <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>4</td>
-                                    <td>2020-01-01</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>0920110425</td>
-                                    <td>1661 Chestnut Street, Polk City, FL</td>
-                                    <td>Tiền mặt</td>
-                                    <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>5</td>
-                                    <td>2020-01-01</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>0920110425</td>
-                                    <td>1661 Chestnut Street, Polk City, FL</td>
-                                    <td>Tiền mặt</td>
-                                    <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management.html">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    <div class="card-body d-flex flex-row">
+                        <div class="container-fluid flex-fill">
+                            <img src="<%= product.getProductImage() %>" alt="" class="img-thumbnail" height="50%" width="50%">
                         </div>
+
+                        <div class="container-fluid flex-fill">
+                            <h5 class="mb-4 font-weight-bold"><%= product.getProductName() %></h5>
+                            <h6 class="mb-4 font-weight-bold text-info"><%= format.format(product.getProductPrice()) %> &#8363;</h6>
+                            <p class="mb-4">Loại sản phẩm: <%= product.getCategoryBean().getCategoryName() %></p>
+                            <p class="mb-4">Thương hiệu: <%= product.getProductBrand() %></p>
+                            <p class="mb-4">Kích cỡ: <%= product.getProductSize() %></p>
+                        </div>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="container-fluid">
+                        <h6 class="mb-2">Mô tả:</h6>
+                        <p class="mb-4"><%= product.getProductDescription() %></p>
                     </div>
                 </div>
 
@@ -307,5 +228,4 @@
 <script src="js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>

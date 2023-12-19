@@ -1,3 +1,9 @@
+<%@ page import="java.util.List" %>
+<%@ page import="beans.CheckoutBean" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% List<CheckoutBean> checkoutList = (List<CheckoutBean>) request.getAttribute("checkoutList"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quản lý đánh giá</title>
+    <title>Quản lý đơn hàng</title>
 
     <!-- Custom fonts for this template -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -74,7 +80,7 @@
         </li>
 
         <!-- Nav Item - Orders -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="order-management">
                 <i class="fas fa-fw fa-clipboard"></i>
                 <span>Đơn hàng</span></a>
@@ -88,7 +94,7 @@
         </li>
 
         <!-- Nav Item - Review -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="review-management.html">
                 <i class="fas fa-fw fa-star"></i>
                 <span>Đánh giá</span></a>
@@ -144,94 +150,51 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800 pb-3">Quản lý đánh giá</h1>
+                <h1 class="h3 mb-2 text-gray-800 pb-3">Quản lý đơn hàng</h1>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="reviewTable">
+                            <table class="table table-bordered" id="orderTable">
                                 <thead>
                                 <tr>
-                                    <th>Mã đánh giá</th>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Mã người dùng</th>
-                                    <th>Đánh giá</th>
-                                    <th>Bình luận</th>
-                                    <th>Thao tác</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Tên người dùng</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Phương thức thanh toán</th>
+                                    <th>Trạng thái đơn hàng</th>
+                                    <th>Thông tin đơn hàng</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Mã đánh giá</th>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Mã người dùng</th>
-                                    <th>Đánh giá</th>
-                                    <th>Bình luận</th>
-                                    <th>Thao tác</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Tên người dùng</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Phương thức thanh toán</th>
+                                    <th>Trạng thái đơn hàng</th>
+                                    <th>Thông tin đơn hàng</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
+                                <% for (CheckoutBean bean : checkoutList) { %>
                                 <tr>
-                                    <th>1</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>5</td>
-                                    <td>Mũ này rất đẹp</td>
+                                    <th><%= bean.getOrderId() %></th>
+                                    <td><%= bean.getUserBean().getUsername() %></td>
+                                    <td><%= bean.getOrderDate() %></td>
+                                    <td><%= bean.getPaymentMethod() %></td>
+                                    <td><%= bean.getOrderState() %></td>
                                     <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management?orderId=<%= bean.getOrderId() %>">
+                                            <i class="fas fa-info"></i>
+                                        </a>
+                                        <a href="" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#orderStatus">
+                                            <i class="fas fa-check"></i>
+                                        </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>4</td>
-                                    <td>Mũ này rất tốt</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>Mũ này được</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                    <td>Mũ này rất đẹp</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>5</td>
-                                    <td>5</td>
-                                    <td>2</td>
-                                    <td>Mũ này không tốt</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <% } %>
                                 </tbody>
                             </table>
                         </div>
@@ -275,19 +238,28 @@
     </div>
 </div>
 
-<div class="modal fade" id="deleteReview">
+<!-- The Modal -->
+<div class="modal fade" id="orderStatus">
     <div class="modal-dialog">
         <div class="modal-content">
+
+            <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title">Xóa người dùng</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title">Trạng thái đơn hàng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">Bạn có chắc muốn xóa người dùng này?</div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <span>Chọn một trong các nút sau để thay đổi trạng thái đơn hàng.</span>
+            </div>
+
+            <!-- Modal footer -->
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                <button class="btn btn-danger" href="">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đang chờ duyệt</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Đang giao hàng</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Đã giao hàng</button>
             </div>
         </div>
     </div>
