@@ -155,7 +155,7 @@
                 <h1 class="h3 mb-2 text-gray-800 pb-3">Chi tiết đơn hàng</h1>
                 <div class="d-flex flex-row">
                     <p class="mb-2 text-gray-600 pb-1 flex-fill">Mã đơn hàng: <%= checkout.getOrderId() %></p>
-                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Mã người dùng - Tên người dùng: <%= checkout.getUserBean().getUserId() %> - <%= checkout.getUserBean().getUsername() %></p>
+                    <p class="mb-2 text-gray-600 pb-1 flex-fill">Tên người dùng: <%= checkout.getUserBean().getUsername() %></p>
                     <p class="mb-2 text-gray-600 pb-1 flex-fill">Ngày đặt hàng: <%= checkout.getOrderDate() %></p>
                 </div>
 
@@ -235,33 +235,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                 <a class="btn btn-primary" href="logout">Đăng xuất</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal fade" id="orderStatus">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Trạng thái đơn hàng</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <span>Chọn một trong các nút sau để thay đổi trạng thái đơn hàng.</span>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Đang chờ duyệt</button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Đang giao hàng</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Đã giao hàng</button>
             </div>
         </div>
     </div>

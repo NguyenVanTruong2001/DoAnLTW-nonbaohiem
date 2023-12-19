@@ -160,24 +160,20 @@
                                 <thead>
                                 <tr>
                                     <th>Mã đơn hàng</th>
-                                    <th>Mã người dùng</th>
+                                    <th>Tên người dùng</th>
                                     <th>Ngày đặt hàng</th>
-                                    <th>Họ và Tên</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ nhận hàng</th>
                                     <th>Phương thức thanh toán</th>
+                                    <th>Trạng thái đơn hàng</th>
                                     <th>Thông tin đơn hàng</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Mã đơn hàng</th>
-                                    <th>Mã người dùng</th>
+                                    <th>Tên người dùng</th>
                                     <th>Ngày đặt hàng</th>
-                                    <th>Họ và Tên</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ nhận hàng</th>
                                     <th>Phương thức thanh toán</th>
+                                    <th>Trạng thái đơn hàng</th>
                                     <th>Thông tin đơn hàng</th>
                                 </tr>
                                 </tfoot>
@@ -187,13 +183,14 @@
                                     <th><%= bean.getOrderId() %></th>
                                     <td><%= bean.getUserBean().getUsername() %></td>
                                     <td><%= bean.getOrderDate() %></td>
-                                    <td><%= bean.getFullname() %></td>
-                                    <td><%= bean.getTelephone() %></td>
-                                    <td><%= bean.getAddress() %></td>
                                     <td><%= bean.getPaymentMethod() %></td>
+                                    <td><%= bean.getOrderState() %></td>
                                     <td>
                                         <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="orderDetail-management?orderId=<%= bean.getOrderId() %>">
                                             <i class="fas fa-info"></i>
+                                        </a>
+                                        <a href="" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#orderStatus">
+                                            <i class="fas fa-check"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -236,6 +233,33 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                 <a class="btn btn-primary" href="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="orderStatus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Trạng thái đơn hàng</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <span>Chọn một trong các nút sau để thay đổi trạng thái đơn hàng.</span>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đang chờ duyệt</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Đang giao hàng</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Đã giao hàng</button>
             </div>
         </div>
     </div>
