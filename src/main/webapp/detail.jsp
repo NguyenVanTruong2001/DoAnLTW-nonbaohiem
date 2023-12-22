@@ -30,40 +30,24 @@
     <link href="css/style.css" rel="stylesheet">
 
     <style>
-        .rate {
-            float: left;
-            height: 46px;
-            padding: 0 10px;
+        div.stars { display: inline-block; }
+
+        input.star { display: none; }
+
+        label.star {
+            float: right;
+            font-size: 36px;
+            margin-right: 10px;
+            color: #6c757d;
         }
-        .rate:not(:checked) > input {
-            position:absolute;
-            top:-9999px;
-        }
-        .rate:not(:checked) > label {
-            float:right;
-            width:1em;
-            overflow:hidden;
-            white-space:nowrap;
-            cursor:pointer;
-            font-size:30px;
-            color:#ccc;
-        }
-        .rate:not(:checked) > label:before {
+
+        input.star:checked ~ label.star:before {
             content: '★ ';
+            color: #D19C97;
         }
-        .rate > input:checked ~ label {
-            color: #ffc700;
-        }
-        .rate:not(:checked) > label:hover,
-        .rate:not(:checked) > label:hover ~ label {
-            color: #deb217;
-        }
-        .rate > input:checked + label:hover,
-        .rate > input:checked + label:hover ~ label,
-        .rate > input:checked ~ label:hover,
-        .rate > input:checked ~ label:hover ~ label,
-        .rate > label:hover ~ input:checked ~ label {
-            color: #c59b08;
+
+        label.star:before {
+            content: '★ ';
         }
     </style>
 </head>
@@ -250,26 +234,26 @@
                             <div class="col-md-6">
                                 <h4 class="mb-4">Đánh giá</h4>
                                 <form>
-                                    <div class="d-flex my-3">
+                                    <div class="d-flex my-1">
                                         <p class="mb-0 mr-2">Đánh giá của bạn:</p>
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5">
-                                            <label for="star5">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4">
-                                            <label for="star4">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3">
-                                            <label for="star3">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2">
-                                            <label for="star2">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1">
-                                            <label for="star1">1 star</label>
-                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="stars my-1">
+                                        <input class="star star-5" id="star-5" type="radio" name="star" value="5">
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star" value="4">
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star" value="3">
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star" value="2">
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star" value="1">
+                                        <label class="star star-1" for="star-1"></label>
+                                    </div>
+                                    <div class="form-group my-1">
                                         <label for="message">Nhận xét:</label>
                                         <textarea id="message" cols="30" rows="5" class="form-control border-primary"></textarea>
                                     </div>
-                                    <div class="form-group mb-0">
+                                    <div class="form-group my-4">
                                         <input type="submit" value="Gủi bài đánh giá" class="btn btn-primary px-3">
                                     </div>
                                 </form>

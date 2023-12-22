@@ -42,7 +42,19 @@ create table OrderDetails(
     `OrderID` int not null,
     `ProductID` int not null,
     `Quantity` int not null,
-    constraint primary key (`OrderID`, `ProductID`)
+    constraint primary key (`OrderID`, `ProductID`),
+    constraint foreign key (`OrderID`) references Orders(`OrderID`),
+    constraint foreign key (`ProductID`) references Products(`ProductID`)
+);
+
+create table Reviews(
+    `UserID` int not null,
+    `ProductID` int not null,
+    `Rating` int not null,
+    `Comment` text character set utf8mb4 not null,
+    constraint primary key (`UserID`, `ProductID`),
+    constraint foreign key (`UserID`) references Users(`UserID`),
+    constraint foreign key (`ProductID`) references Products(`ProductID`)
 );
 
 insert into Users(`Username`, `Email`, `Password`, `Role`) values
