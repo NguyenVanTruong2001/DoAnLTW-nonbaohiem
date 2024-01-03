@@ -233,30 +233,39 @@
                             </div>
                             <div class="col-md-6">
                                 <h4 class="mb-4">Đánh giá</h4>
-                                <form>
-                                    <div class="d-flex my-1">
-                                        <p class="mb-0 mr-2">Đánh giá của bạn:</p>
+                                <% if (session.getAttribute("user") != null) {
+                                    UserBean user = (UserBean) session.getAttribute("user"); %>
+                                    <form action="<c:url value="/review"/>" method="post">
+                                        <input type="hidden" name="userId" value="<%= user.getUserId() %>">
+                                        <input type="hidden" name="productId" value="<%= productBean.getProductId() %>">
+                                        <div class="d-flex my-1">
+                                            <p class="mb-0 mr-2">Đánh giá của bạn:</p>
+                                        </div>
+                                        <div class="stars my-1">
+                                            <input class="star star-5" id="star-5" type="radio" name="star" value="5">
+                                            <label class="star star-5" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" type="radio" name="star" value="4">
+                                            <label class="star star-4" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" type="radio" name="star" value="3">
+                                            <label class="star star-3" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" type="radio" name="star" value="2">
+                                            <label class="star star-2" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" type="radio" name="star" value="1">
+                                            <label class="star star-1" for="star-1"></label>
+                                        </div>
+                                        <div class="form-group my-1">
+                                            <label for="comment">Nhận xét:</label>
+                                            <textarea id="comment" name="comment" cols="30" rows="5" class="form-control border-primary"></textarea>
+                                        </div>
+                                        <div class="form-group my-4">
+                                            <input type="submit" value="Gửi bài đánh giá" class="btn btn-primary px-3">
+                                        </div>
+                                    </form>
+                                <% } else { %>
+                                    <div class="form-group alert alert-danger">
+                                        <p class="text-center">Bạn cần đăng nhập để có thể bình luận về sản phẩm này.</p>
                                     </div>
-                                    <div class="stars my-1">
-                                        <input class="star star-5" id="star-5" type="radio" name="star" value="5">
-                                        <label class="star star-5" for="star-5"></label>
-                                        <input class="star star-4" id="star-4" type="radio" name="star" value="4">
-                                        <label class="star star-4" for="star-4"></label>
-                                        <input class="star star-3" id="star-3" type="radio" name="star" value="3">
-                                        <label class="star star-3" for="star-3"></label>
-                                        <input class="star star-2" id="star-2" type="radio" name="star" value="2">
-                                        <label class="star star-2" for="star-2"></label>
-                                        <input class="star star-1" id="star-1" type="radio" name="star" value="1">
-                                        <label class="star star-1" for="star-1"></label>
-                                    </div>
-                                    <div class="form-group my-1">
-                                        <label for="message">Nhận xét:</label>
-                                        <textarea id="message" cols="30" rows="5" class="form-control border-primary"></textarea>
-                                    </div>
-                                    <div class="form-group my-4">
-                                        <input type="submit" value="Gủi bài đánh giá" class="btn btn-primary px-3">
-                                    </div>
-                                </form>
+                                <% } %>
                             </div>
                         </div>
                     </div>
