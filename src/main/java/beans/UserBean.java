@@ -17,6 +17,8 @@ public class UserBean implements Serializable {
         this.role = role;
     }
 
+    public UserBean() {}
+
     public int getUserId() {
         return userId;
     }
