@@ -132,6 +132,13 @@ insert into OrderDetails values
 (4, 10, 1), (4, 11, 2), (4, 12, 1),
 (5, 13, 3), (5, 14, 3);
 
+insert into Reviews values
+(2, 1, 5, 'Mũ này rất đẹp'), (3, 2, 4, 'Mũ này đẹp'), (4, 3, 3, 'Mũ này tốt'),
+(5, 4, 2, 'Mũ này không tốt'), (2, 5, 1, 'Mũ này rất xấu'), (3, 6, 2, 'Mũ này không tốt'),
+(4, 7, 3, 'Mũ này tốt'), (5, 8, 4, 'Mũ này đẹp'), (2, 9, 5, 'Mũ này rất đẹp'),
+(3, 10, 4, 'Mũ này đẹp'), (4, 11, 3, 'Mũ này tốt'), (5, 12, 2, 'Mũ này không tốt'),
+(2, 13, 1, 'Mũ này rất xấu'), (3, 14, 2, 'Mũ này không tốt'), (4, 15, 3, 'Mũ này tốt');
+
 select * from Users;
 select * from Categories;
 select * from Products;
@@ -140,6 +147,7 @@ select * from Products where `CategoryID` = 6 limit 9 offset 0;
 SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
 select * from Orders;
 select * from OrderDetails;
+select * from Reviews where UserID = 2 and ProductID = 1;
 select sum(OrderDetails.Quantity) from OrderDetails;
 drop table Orders;
 drop table OrderDetails;
