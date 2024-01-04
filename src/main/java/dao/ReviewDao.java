@@ -52,6 +52,27 @@ public class ReviewDao {
         return list;
     }
 
+    public List<ReviewBean> getReviewsByProduct(int productId) throws ClassNotFoundException, SQLException {
+        List<ReviewBean> list = new ArrayList<>();
+        String sql = "SELECT * FROM Reviews WHERE `ProductID` = " + productId;
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        while (result.next()) {
+            ReviewBean bean = new ReviewBean(new UserBean(), new ProductBean(), 0, "");
+            bean.setUserBean(new UserDao().getUserById(result.getInt(1)));
+            bean.setProductBean(new ProductDao().getProductById(result.getInt(2)));
+            bean.setRating(result.getInt(3));
+            bean.setComment(result.getString(4));
+            list.add(bean);
+        }
+
+        connection.close();
+        return list;
+    }
+
     public int addReview(int userId, int productId, int rating, String comment) {
         return 0;
     }
@@ -59,7 +80,7 @@ public class ReviewDao {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         ReviewDao reviewDao = new ReviewDao();
         for (ReviewBean bean :
-                reviewDao.getAllReviews()) {
+                reviewDao.getReviewsByProduct(1)) {
             System.out.println(bean);
         }
     }
