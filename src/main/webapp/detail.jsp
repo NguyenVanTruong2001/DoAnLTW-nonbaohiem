@@ -11,6 +11,7 @@
 <% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
 <% List<ReviewBean> reviewList = (List<ReviewBean>) request.getAttribute("reviewList"); %>
 <% ProductBean productBean = (ProductBean) request.getAttribute("productBean"); %>
+<% int countReviews = (int) request.getAttribute("countReviews"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -221,7 +222,7 @@
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4 class="mb-4">1 bài đánh giá</h4>
+                                <h4 class="mb-4"><%= countReviews %> bài đánh giá</h4>
                                 <% for (ReviewBean bean : reviewList) { %>
                                     <div class="media mb-4">
                                         <div class="media-body">
