@@ -73,15 +73,27 @@ public class ReviewDao {
         return list;
     }
 
+    public int countReviewsByProduct(int productId) throws ClassNotFoundException, SQLException {
+        int i = 0;
+        String sql = "SELECT count(*) FROM Reviews WHERE `ProductID` = " + productId;
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        while (result.next())
+            i = result.getInt(1);
+
+        connection.close();
+        return i;
+    }
+
     public int addReview(int userId, int productId, int rating, String comment) {
         return 0;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         ReviewDao reviewDao = new ReviewDao();
-        for (ReviewBean bean :
-                reviewDao.getReviewsByProduct(1)) {
-            System.out.println(bean);
-        }
+        System.out.println(reviewDao.countReviewsByProduct(1));
     }
 }
