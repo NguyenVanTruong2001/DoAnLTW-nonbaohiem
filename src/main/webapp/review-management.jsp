@@ -89,7 +89,7 @@
 
         <!-- Nav Item - Review -->
         <li class="nav-item active">
-            <a class="nav-link" href="review-management.html">
+            <a class="nav-link" href="review-management">
                 <i class="fas fa-fw fa-star"></i>
                 <span>Đánh giá</span></a>
         </li>
