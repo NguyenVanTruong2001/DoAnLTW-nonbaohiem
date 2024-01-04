@@ -5,9 +5,11 @@
 <%@ page import="beans.ProductBean" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.List" %>
+<%@ page import="beans.ReviewBean" %>
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
+<% List<ReviewBean> reviewList = (List<ReviewBean>) request.getAttribute("reviewList"); %>
 <% ProductBean productBean = (ProductBean) request.getAttribute("productBean"); %>
 
 <!DOCTYPE html>
@@ -220,16 +222,64 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h4 class="mb-4">1 bài đánh giá</h4>
-                                <div class="media mb-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>John Doe<small> - <i>2020-01-01</i></small></h6>
-                                        <div class="text-primary mb-2">
-                                            <p>3 <i class="fas fa-star"></i></p>
+                                <% for (ReviewBean bean : reviewList) { %>
+                                    <div class="media mb-4">
+                                        <div class="media-body">
+                                            <h6><%= bean.getUserBean().getUsername() %></h6>
+                                            <div class="text-primary mb-2">
+                                                <% switch (bean.getRating()) {
+                                                    case 1: %>
+                                                <p>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </p>
+                                                <% break;
+                                                    case 2: %>
+                                                <p>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </p>
+                                                <% break;
+                                                    case 3: %>
+                                                <p>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </p>
+                                                <% break;
+                                                    case 4: %>
+                                                <p>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </p>
+                                                <% break;
+                                                    case 5: %>
+                                                <p>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </p>
+                                                <% break;
+                                                    default:
+                                                } %>
+                                            </div>
+                                            <p><%= bean.getComment() %></p>
                                         </div>
-                                        <p>Mũ này rất đẹp.</p>
                                     </div>
-                                </div>
+                                <% } %>
                             </div>
                             <div class="col-md-6">
                                 <h4 class="mb-4">Đánh giá</h4>
