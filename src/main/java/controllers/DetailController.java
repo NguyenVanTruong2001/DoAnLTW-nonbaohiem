@@ -2,8 +2,10 @@ package controllers;
 
 import beans.CategoryBean;
 import beans.ProductBean;
+import beans.ReviewBean;
 import dao.CategoryDao;
 import dao.ProductDao;
+import dao.ReviewDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +31,7 @@ public class DetailController extends HttpServlet {
         CategoryDao categoryDao = new CategoryDao();
         List<CategoryBean> categoryList;
         List<ProductBean> productList;
+        List<ReviewBean> reviewList;
 
         int id = Integer.parseInt(req.getParameter("productId"));
         ProductBean productBean;
@@ -36,6 +39,7 @@ public class DetailController extends HttpServlet {
             productBean = productDao.getProductById(id);
             categoryList = categoryDao.getAllCategories();
             productList = productDao.getRecommendedProducts();
+            reviewList = new ReviewDao().getReviewsByProduct(id);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -43,6 +47,7 @@ public class DetailController extends HttpServlet {
         req.setAttribute("categoryList", categoryList);
         req.setAttribute("productBean", productBean);
         req.setAttribute("productList", productList);
+        req.setAttribute("reviewList", reviewList);
         req.getRequestDispatcher("detail.jsp").forward(req, resp);
     }
 }
