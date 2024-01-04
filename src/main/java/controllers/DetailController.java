@@ -2,8 +2,10 @@ package controllers;
 
 import beans.CategoryBean;
 import beans.ProductBean;
+import beans.ReviewBean;
 import dao.CategoryDao;
 import dao.ProductDao;
+import dao.ReviewDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,17 +27,19 @@ public class DetailController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDao = new ProductDao();
-        CategoryDao categoryDao = new CategoryDao();
+        ProductBean productBean;
         List<CategoryBean> categoryList;
         List<ProductBean> productList;
+        List<ReviewBean> reviewList;
+        int countReviews;
 
         int id = Integer.parseInt(req.getParameter("productId"));
-        ProductBean productBean;
         try {
-            productBean = productDao.getProductById(id);
-            categoryList = categoryDao.getAllCategories();
-            productList = productDao.getRecommendedProducts();
+            productBean = new ProductDao().getProductById(id);
+            categoryList = new CategoryDao().getAllCategories();
+            productList = new ProductDao().getRecommendedProducts();
+            reviewList = new ReviewDao().getReviewsByProduct(id);
+            countReviews = new ReviewDao().countReviewsByProduct(id);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -43,6 +47,8 @@ public class DetailController extends HttpServlet {
         req.setAttribute("categoryList", categoryList);
         req.setAttribute("productBean", productBean);
         req.setAttribute("productList", productList);
+        req.setAttribute("reviewList", reviewList);
+        req.setAttribute("countReviews", countReviews);
         req.getRequestDispatcher("detail.jsp").forward(req, resp);
     }
 }

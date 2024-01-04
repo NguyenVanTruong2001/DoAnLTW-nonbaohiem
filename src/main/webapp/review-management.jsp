@@ -1,3 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="beans.ReviewBean" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% List<ReviewBean> reviewList = (List<ReviewBean>) request.getAttribute("reviewList"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +94,7 @@
 
         <!-- Nav Item - Review -->
         <li class="nav-item active">
-            <a class="nav-link" href="review-management.html">
+            <a class="nav-link" href="review-management">
                 <i class="fas fa-fw fa-star"></i>
                 <span>Đánh giá</span></a>
         </li>
@@ -153,9 +158,8 @@
                             <table class="table table-bordered" id="reviewTable">
                                 <thead>
                                 <tr>
-                                    <th>Mã đánh giá</th>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Mã người dùng</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Tên người dùng</th>
                                     <th>Đánh giá</th>
                                     <th>Bình luận</th>
                                     <th>Thao tác</th>
@@ -163,75 +167,27 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Mã đánh giá</th>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Mã người dùng</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Tên người dùng</th>
                                     <th>Đánh giá</th>
                                     <th>Bình luận</th>
                                     <th>Thao tác</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>5</td>
-                                    <td>Mũ này rất đẹp</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>4</td>
-                                    <td>Mũ này rất tốt</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>Mũ này được</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                    <td>Mũ này rất đẹp</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>5</td>
-                                    <td>5</td>
-                                    <td>2</td>
-                                    <td>Mũ này không tốt</td>
-                                    <td>
-                                        <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <% for (ReviewBean bean : reviewList) { %>
+                                    <tr>
+                                        <td><%= bean.getProductBean().getProductName() %></td>
+                                        <td><%= bean.getUserBean().getUsername() %></td>
+                                        <td><%= bean.getRating() %></td>
+                                        <td><%= bean.getComment() %></td>
+                                        <td>
+                                            <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <% } %>
                                 </tbody>
                             </table>
                         </div>
