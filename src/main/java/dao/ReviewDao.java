@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDao {
-    public ReviewBean getReview (int userId, int productId) throws ClassNotFoundException, SQLException {
-        ReviewBean bean = new ReviewBean();
+    public boolean getReview (int userId, int productId) throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM Reviews WHERE `UserID` = ? AND `ProductID` = ?";
 
         Connection connection = new DBConnect().connect();
@@ -20,15 +19,12 @@ public class ReviewDao {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            UserBean userBean = new UserDao().getUserById(resultSet.getInt(1));
-            ProductBean productBean = new ProductDao().getProductById(resultSet.getInt(2));
-            int rating = resultSet.getInt(3);
-            String comment = resultSet.getString(4);
-            bean = new ReviewBean(userBean, productBean, rating, comment);
+            connection.close();
+            return true;
+        } else {
+            connection.close();
+            return false;
         }
-
-        connection.close();
-        return bean;
     }
 
     public List<ReviewBean> getAllReviews() throws ClassNotFoundException, SQLException {
@@ -88,8 +84,31 @@ public class ReviewDao {
         return i;
     }
 
-    public int addReview(int userId, int productId, int rating, String comment) {
-        return 0;
+    public boolean addReview(int userId, int productId, int rating, String comment) throws SQLException, ClassNotFoundException {
+        String sql1 = "INSERT INTO Reviews value (?, ?, ?, ?)";
+        String sql2 = "SELECT * FROM Reviews WHERE `UserID` = ? AND `ProductID` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql2);
+        statement.setInt(1, userId);
+        statement.setInt(2, productId);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            connection.close();
+            return false;
+        }
+        else {
+            statement = connection.prepareStatement(sql1);
+            statement.setInt(1, userId);
+            statement.setInt(2, productId);
+            statement.setInt(3, rating);
+            statement.setString(4, comment);
+            statement.executeUpdate();
+
+            connection.close();
+            return true;
+        }
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
