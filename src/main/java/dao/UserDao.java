@@ -42,7 +42,10 @@ public class UserDao {
 
         ResultSet result = statement.executeQuery();
 
-        if (result.next()) return false;
+        if (result.next()) {
+            connection.close();
+            return false;
+        }
         else {
             statement = connection.prepareStatement(sql1);
             statement.setString(1, username);
