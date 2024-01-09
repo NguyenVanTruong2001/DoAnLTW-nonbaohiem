@@ -111,6 +111,19 @@ public class ReviewDao {
         }
     }
 
+    public int deleteReviewById(int userId, int productId) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM Reviews WHERE `UserID` = ? AND `ProductID` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, userId);
+        statement.setInt(2, productId);
+        int i = statement.executeUpdate();
+
+        connection.close();
+        return i;
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         ReviewDao reviewDao = new ReviewDao();
         System.out.println(reviewDao.countReviewsByProduct(1));
