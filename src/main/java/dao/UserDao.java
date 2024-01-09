@@ -104,4 +104,15 @@ public class UserDao {
         return user;
     }
 
+    public int deleteUserById(int id) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM Users WHERE UserID = " + id;
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        int i = statement.executeUpdate(sql);
+
+        connection.close();
+        return i;
+    }
+
 }
