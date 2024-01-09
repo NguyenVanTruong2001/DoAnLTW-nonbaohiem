@@ -198,7 +198,6 @@
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
@@ -207,103 +206,112 @@
                             <p><%= productBean.getProductDescription() %></p>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab-pane-3">
+                </div>
+            </div>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-3">Đánh giá</a>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pane-3">
                         <div class="row">
                             <div class="col-md-6">
                                 <h4 class="mb-4"><%= countReviews %> bài đánh giá</h4>
                                 <% for (ReviewBean bean : reviewList) { %>
-                                    <div class="media mb-4">
-                                        <div class="media-body">
-                                            <h6><%= bean.getUserBean().getUsername() %></h6>
-                                            <div class="text-primary mb-2">
-                                                <% switch (bean.getRating()) {
-                                                    case 1: %>
-                                                <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                                <% break;
-                                                    case 2: %>
-                                                <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                                <% break;
-                                                    case 3: %>
-                                                <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                                <% break;
-                                                    case 4: %>
-                                                <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                                <% break;
-                                                    case 5: %>
-                                                <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </p>
-                                                <% break;
-                                                    default:
-                                                } %>
-                                            </div>
-                                            <p><%= bean.getComment() %></p>
+                                <div class="media mb-4">
+                                    <div class="media-body">
+                                        <h6><%= bean.getUserBean().getUsername() %></h6>
+                                        <div class="text-primary mb-2">
+                                            <% switch (bean.getRating()) {
+                                                case 1: %>
+                                            <p>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </p>
+                                            <% break;
+                                                case 2: %>
+                                            <p>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </p>
+                                            <% break;
+                                                case 3: %>
+                                            <p>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </p>
+                                            <% break;
+                                                case 4: %>
+                                            <p>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </p>
+                                            <% break;
+                                                case 5: %>
+                                            <p>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </p>
+                                            <% break;
+                                                default:
+                                            } %>
                                         </div>
+                                        <p><%= bean.getComment() %></p>
                                     </div>
+                                </div>
                                 <% } %>
                             </div>
                             <div class="col-md-6">
                                 <h4 class="mb-4">Đánh giá</h4>
                                 <% if (session.getAttribute("user") != null) {
                                     UserBean user = (UserBean) session.getAttribute("user"); %>
-                                    <form action="<c:url value="/review"/>" method="post">
-                                        <input type="hidden" name="userId" value="<%= user.getUserId() %>">
-                                        <input type="hidden" name="productId" value="<%= productBean.getProductId() %>">
-                                        <div class="d-flex my-1">
-                                            <p class="mb-0 mr-2">Đánh giá của bạn:</p>
-                                        </div>
-                                        <div class="stars my-1">
-                                            <input class="star star-5" id="star-5" type="radio" name="rating" value="5">
-                                            <label class="star star-5" for="star-5"></label>
-                                            <input class="star star-4" id="star-4" type="radio" name="rating" value="4">
-                                            <label class="star star-4" for="star-4"></label>
-                                            <input class="star star-3" id="star-3" type="radio" name="rating" value="3">
-                                            <label class="star star-3" for="star-3"></label>
-                                            <input class="star star-2" id="star-2" type="radio" name="rating" value="2">
-                                            <label class="star star-2" for="star-2"></label>
-                                            <input class="star star-1" id="star-1" type="radio" name="rating" value="1">
-                                            <label class="star star-1" for="star-1"></label>
-                                        </div>
-                                        <div class="form-group my-1">
-                                            <label for="comment">Nhận xét:</label>
-                                            <textarea id="comment" name="comment" cols="30" rows="5" class="form-control border-primary"></textarea>
-                                        </div>
-                                        <div class="form-group my-4">
-                                            <input type="submit" value="Gửi bài đánh giá" class="btn btn-primary px-3">
-                                        </div>
-                                    </form>
-                                <% } else { %>
-                                    <div class="form-group alert alert-danger">
-                                        <p class="text-center">Bạn cần đăng nhập để có thể bình luận về sản phẩm này.</p>
+                                <form action="<c:url value="/review"/>" method="post">
+                                    <input type="hidden" name="userId" value="<%= user.getUserId() %>">
+                                    <input type="hidden" name="productId" value="<%= productBean.getProductId() %>">
+                                    <div class="d-flex my-1">
+                                        <p class="mb-0 mr-2">Đánh giá của bạn:</p>
                                     </div>
+                                    <div class="stars my-1">
+                                        <input class="star star-5" id="star-5" type="radio" name="rating" value="5">
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="rating" value="4">
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="rating" value="3">
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="rating" value="2">
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="rating" value="1">
+                                        <label class="star star-1" for="star-1"></label>
+                                    </div>
+                                    <div class="form-group my-1">
+                                        <label for="comment">Nhận xét:</label>
+                                        <textarea id="comment" name="comment" cols="30" rows="5" class="form-control border-primary"></textarea>
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <input type="submit" value="Gửi bài đánh giá" class="btn btn-primary px-3">
+                                    </div>
+                                </form>
+                                <% } else { %>
+                                <div class="form-group alert alert-danger">
+                                    <p class="text-center">Bạn cần đăng nhập để có thể bình luận về sản phẩm này.</p>
+                                </div>
                                 <% } %>
                             </div>
                         </div>
