@@ -25,16 +25,16 @@ public class DeleteUserController extends HttpServlet {
         int i;
 
         try {
-            i = new UserDao().deleteUserById(id);
+            if (id == 1) {
+                req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
+                req.getRequestDispatcher("user-management").forward(req, resp);
+            } else {
+                i = new UserDao().deleteUserById(id);
+                if (i > 0) resp.sendRedirect("user-management");
+            }
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (i > 0)
-            resp.sendRedirect("user-management");
-        else {
             req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-            resp.sendRedirect("user-management");
+            req.getRequestDispatcher("user-management").forward(req, resp);
         }
     }
 }

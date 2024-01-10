@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% List<UserBean> userList = (List<UserBean>) request.getAttribute("userList"); %>
+<% String message = (String) request.getAttribute("message"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -151,6 +152,11 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800 pb-3">Quản lý người dùng</h1>
+                    <% if (message != null) { %>
+                    <div class="alert alert-danger">
+                        <%= message %>
+                    </div>
+                    <% } %>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -186,12 +192,12 @@
                                         <td><%= bean.getPassword() %></td>
                                         <td><%= bean.getRole() %></td>
                                         <td>
-                                            <button class="btn btn-dark" style="background-color: #1cc88a; color: #f8f9fc" data-target="#fixUser" data-toggle="modal">
+                                            <a href="update-user?userid=<%= bean.getUserId() %>" class="btn btn-dark" style="background-color: #1cc88a; color: #f8f9fc">
                                                 <i class="fas fa-pen-alt"></i>
-                                            </button>
-                                            <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteUser" data-toggle="modal">
+                                            </a>
+                                            <a href="delete-user?userid=<%= bean.getUserId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
                                                 <i class="fas fa-trash"></i>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                     <% } %>
@@ -233,60 +239,6 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                     <a class="btn btn-primary" href="logout">Đăng xuất</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- The Modal -->
-    <div class="modal fade" id="fixUser">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Sửa người dùng</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <form>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <span>Tên người dùng</span>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <span>Địa chỉ e-mail</span>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <span>Số điện thoại</span>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group float-right">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Sửa</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deleteUser">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Xóa người dùng</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">Bạn có chắc muốn xóa người dùng này?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <button class="btn btn-danger" href="">Xóa</button>
                 </div>
             </div>
         </div>
