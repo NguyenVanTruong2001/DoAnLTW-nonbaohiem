@@ -1,6 +1,6 @@
-package controllers.user;
+package controllers;
 
-import dao.ReviewDao;
+import dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/review")
-public class ReviewController extends HttpServlet {
-
-    public ReviewController() {}
+@WebServlet("/delete-user")
+public class DeleteUserController extends HttpServlet {
+    public DeleteUserController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,19 +21,20 @@ public class ReviewController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId"));
-        int productId = Integer.parseInt(req.getParameter("productId"));
-        int rating = Integer.parseInt(req.getParameter("rating"));
-        String comment = req.getParameter("comment");
+        int id = Integer.parseInt(req.getParameter("userid"));
+        int i;
 
         try {
-            boolean result = new ReviewDao().addReview(userId, productId, rating, comment);
-
-            if (result) {
-                req.getRequestDispatcher("detail?productId=" + productId).forward(req, resp);
-            }
+            i = new UserDao().deleteUserById(id);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        if (i > 0)
+            resp.sendRedirect("user-management");
+        else {
+            req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
+            resp.sendRedirect("user-management");
         }
     }
 }

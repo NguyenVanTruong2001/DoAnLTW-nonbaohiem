@@ -1,6 +1,6 @@
-package controllers.admin;
+package controllers;
 
-import dao.CheckoutDetailDao;
+import dao.ReviewDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/dashboard")
-public class DashboardController extends HttpServlet {
-    public DashboardController() {}
+@WebServlet("/review")
+public class ReviewController extends HttpServlet {
+
+    public ReviewController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,14 +22,19 @@ public class DashboardController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int totalSoldProduct;
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        int rating = Integer.parseInt(req.getParameter("rating"));
+        String comment = req.getParameter("comment");
+
         try {
-            totalSoldProduct = new CheckoutDetailDao().getTotalSoldProduct();
+            boolean result = new ReviewDao().addReview(userId, productId, rating, comment);
+
+            if (result) {
+                req.getRequestDispatcher("detail?productId=" + productId).forward(req, resp);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-
-        req.setAttribute("totalSoldProduct", totalSoldProduct);
-        req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
     }
 }

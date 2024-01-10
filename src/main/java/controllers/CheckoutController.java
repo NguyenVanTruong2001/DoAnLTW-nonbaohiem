@@ -1,4 +1,4 @@
-package controllers.user;
+package controllers;
 
 import beans.CategoryBean;
 import beans.CheckoutDetailBean;

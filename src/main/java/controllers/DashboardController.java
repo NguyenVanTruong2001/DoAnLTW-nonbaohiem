@@ -1,7 +1,6 @@
-package controllers.admin;
+package controllers;
 
-import beans.ProductBean;
-import dao.ProductDao;
+import dao.CheckoutDetailDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/productDetail-management")
-public class ProductDetailManagementController extends HttpServlet {
-    public ProductDetailManagementController() {}
+@WebServlet("/dashboard")
+public class DashboardController extends HttpServlet {
+    public DashboardController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,16 +21,14 @@ public class ProductDetailManagementController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("productId"));
-        ProductBean product;
-
+        int totalSoldProduct;
         try {
-            product = new ProductDao().getProductById(id);
+            totalSoldProduct = new CheckoutDetailDao().getTotalSoldProduct();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        req.setAttribute("product", product);
-        req.getRequestDispatcher("productDetail-management.jsp").forward(req, resp);
+        req.setAttribute("totalSoldProduct", totalSoldProduct);
+        req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
     }
 }

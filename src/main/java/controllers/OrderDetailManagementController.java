@@ -1,4 +1,4 @@
-package controllers.admin;
+package controllers;
 
 import beans.CheckoutBean;
 import beans.CheckoutDetailBean;
