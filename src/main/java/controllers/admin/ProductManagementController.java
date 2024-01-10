@@ -1,7 +1,9 @@
-package controllers;
+package controllers.admin;
 
 import beans.CategoryBean;
+import beans.ProductBean;
 import dao.CategoryDao;
+import dao.ProductDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,23 +14,25 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/category-management")
-public class CategoryManagementController extends HttpServlet {
-    public CategoryManagementController() {}
+@WebServlet("/product-management")
+public class ProductManagementController extends HttpServlet {
+    public ProductManagementController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CategoryDao categoryDao = new CategoryDao();
+        List<ProductBean> productList;
         List<CategoryBean> categoryList;
 
         try {
-            categoryList = categoryDao.getAllCategories();
+            productList = new ProductDao().getAllProducts();
+            categoryList = new CategoryDao().getAllCategories();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
+        req.setAttribute("productList", productList);
         req.setAttribute("categoryList", categoryList);
-        req.getRequestDispatcher("category-management.jsp").forward(req, resp);
+        req.getRequestDispatcher("product-management.jsp").forward(req, resp);
     }
 
     @Override

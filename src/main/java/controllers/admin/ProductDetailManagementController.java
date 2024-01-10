@@ -1,4 +1,4 @@
-package controllers;
+package controllers.admin;
 
 import beans.ProductBean;
 import dao.ProductDao;

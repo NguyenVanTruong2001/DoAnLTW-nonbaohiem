@@ -1,8 +1,9 @@
-package controllers;
+package controllers.admin;
 
-import beans.CheckoutBean;
-import dao.CheckoutDao;
+import beans.UserBean;
+import dao.UserDao;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,22 +13,23 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/order-management")
-public class OrderManagementController extends HttpServlet {
-    public OrderManagementController() {}
+@WebServlet("/user-management")
+public class UserManagementController extends HttpServlet {
+    public UserManagementController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<CheckoutBean> checkoutList;
+        UserDao userDao = new UserDao();
+        List<UserBean> userList;
 
         try {
-            checkoutList = new CheckoutDao().getAllCheckouts();
+            userList = userDao.getAllUsers();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        req.setAttribute("checkoutList", checkoutList);
-        req.getRequestDispatcher("order-management.jsp").forward(req, resp);
+        req.setAttribute("userList", userList);
+        req.getRequestDispatcher("user-management.jsp").forward(req, resp);
     }
 
     @Override

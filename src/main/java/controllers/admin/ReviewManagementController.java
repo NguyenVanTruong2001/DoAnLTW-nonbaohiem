@@ -1,9 +1,7 @@
-package controllers;
+package controllers.admin;
 
-import beans.CategoryBean;
-import beans.ProductBean;
-import dao.CategoryDao;
-import dao.ProductDao;
+import beans.ReviewBean;
+import dao.ReviewDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,25 +12,22 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/product-management")
-public class ProductManagementController extends HttpServlet {
-    public ProductManagementController() {}
+@WebServlet("/review-management")
+public class ReviewManagementController extends HttpServlet {
+    public ReviewManagementController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<ProductBean> productList;
-        List<CategoryBean> categoryList;
+        List<ReviewBean> reviewList;
 
         try {
-            productList = new ProductDao().getAllProducts();
-            categoryList = new CategoryDao().getAllCategories();
+            reviewList = new ReviewDao().getAllReviews();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        req.setAttribute("productList", productList);
-        req.setAttribute("categoryList", categoryList);
-        req.getRequestDispatcher("product-management.jsp").forward(req, resp);
+        req.setAttribute("reviewList", reviewList);
+        req.getRequestDispatcher("review-management.jsp").forward(req, resp);
     }
 
     @Override
