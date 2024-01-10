@@ -1,4 +1,4 @@
-package controllers;
+package controllers.user;
 
 import beans.CategoryBean;
 import beans.ProductBean;

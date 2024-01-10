@@ -1,4 +1,4 @@
-package controllers;
+package controllers.user;
 
 import beans.UserBean;
 import dao.UserDao;
