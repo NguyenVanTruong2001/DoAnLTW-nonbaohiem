@@ -334,13 +334,13 @@
                                     <td><%= format.format(bean.getProductPrice())%> &#8363;</td>
                                     <td><%= bean.getCategoryBean().getCategoryName()%></td>
                                     <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="productDetail-management?productId=<%= bean.getProductId() %>">
+                                        <a href="productDetail-management?productId=<%= bean.getProductId() %>" class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc">
                                             <i class="fas fa-info"></i>
                                         </a>
                                         <a href="" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">
                                             <i class="fas fa-pen-alt"></i>
                                         </a>
-                                        <a href="" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#deleteProduct">
+                                        <a href="delete-product?productId=<%= bean.getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#deleteProduct">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
@@ -384,24 +384,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                 <a class="btn btn-primary" href="logout">Đăng xuất</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteProduct">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Xóa sản phẩm</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">Bạn có chắc muốn xóa sản phẩm này?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                <a class="btn btn-danger" href="">Xóa</a>
             </div>
         </div>
     </div>
