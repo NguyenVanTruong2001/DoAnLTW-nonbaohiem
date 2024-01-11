@@ -182,7 +182,7 @@
                                         <td><%= bean.getRating() %></td>
                                         <td><%= bean.getComment() %></td>
                                         <td>
-                                            <a href="delete-review?userid=<%= bean.getUserBean().getUserId() %>&productid=<%= bean.getProductBean().getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
+                                            <a href="delete-review?userId=<%= bean.getUserBean().getUserId() %>&productId=<%= bean.getProductBean().getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>

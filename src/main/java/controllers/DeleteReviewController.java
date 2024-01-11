@@ -21,8 +21,8 @@ public class DeleteReviewController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userid"));
-        int productId = Integer.parseInt(req.getParameter("productid"));
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        int productId = Integer.parseInt(req.getParameter("productId"));
         int i;
 
         try {
