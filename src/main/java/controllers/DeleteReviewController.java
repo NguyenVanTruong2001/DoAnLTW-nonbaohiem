@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/review")
-public class ReviewController extends HttpServlet {
-
-    public ReviewController() {}
+@WebServlet("/delete-review")
+public class DeleteReviewController extends HttpServlet {
+    public DeleteReviewController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,17 +23,14 @@ public class ReviewController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int userId = Integer.parseInt(req.getParameter("userId"));
         int productId = Integer.parseInt(req.getParameter("productId"));
-        int rating = Integer.parseInt(req.getParameter("rating"));
-        String comment = req.getParameter("comment");
+        int i;
 
         try {
-            boolean result = new ReviewDao().addReview(userId, productId, rating, comment);
-
-            if (result) {
-                req.getRequestDispatcher("detail?productId=" + productId).forward(req, resp);
-            }
+            i = new ReviewDao().deleteReviewById(userId, productId);
+            if (i > 0) resp.sendRedirect("review-management");
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
+            req.getRequestDispatcher("review-management").forward(req, resp);
         }
     }
 }

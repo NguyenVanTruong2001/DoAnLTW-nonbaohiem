@@ -42,7 +42,10 @@ public class UserDao {
 
         ResultSet result = statement.executeQuery();
 
-        if (result.next()) return false;
+        if (result.next()) {
+            connection.close();
+            return false;
+        }
         else {
             statement = connection.prepareStatement(sql1);
             statement.setString(1, username);
@@ -99,6 +102,17 @@ public class UserDao {
 
         connection.close();
         return user;
+    }
+
+    public int deleteUserById(int id) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM Users WHERE `UserID` = " + id;
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        int i = statement.executeUpdate(sql);
+
+        connection.close();
+        return i;
     }
 
 }

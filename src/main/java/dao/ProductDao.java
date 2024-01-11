@@ -106,32 +106,6 @@ public class ProductDao {
         return productList;
     }
 
-//    public List<ProductBean> getAllProducts(int page) throws ClassNotFoundException, SQLException {
-//        String sql = "SELECT * FROM Products LIMIT 9 OFFSET " + (page - 1) * 9;
-//
-//        Connection connection = new DBConnect().connect();
-//
-//        Statement statement = connection.createStatement();
-//        ResultSet result = statement.executeQuery(sql);
-//
-//        List<ProductBean> productList = new ArrayList<>();
-//        while (result.next()) {
-//            ProductBean product = new ProductBean();
-//            product.setProductId(result.getInt(1));
-//            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
-//            product.setProductName(result.getString(3));
-//            product.setProductImage(result.getString(4));
-//            product.setProductDescription(result.getString(5));
-//            product.setProductBrand(result.getString(6));
-//            product.setProductSize(result.getString(7));
-//            product.setProductPrice(result.getInt(8));
-//            productList.add(product);
-//        }
-//
-//        connection.close();
-//        return productList;
-//    }
-
     public List<ProductBean> getProductByCategory(int categoryId) throws ClassNotFoundException, SQLException {
         String sql = "SELECT * FROM Products WHERE `CategoryID` = " + categoryId;
 
@@ -193,6 +167,17 @@ public class ProductDao {
         }
 
         return list;
+    }
+
+    public int deleteProductById(int id) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM Products WHERE `ProductID` = " + id;
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        int i = statement.executeUpdate(sql);
+
+        connection.close();
+        return i;
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {

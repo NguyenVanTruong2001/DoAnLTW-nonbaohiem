@@ -1,11 +1,7 @@
 package controllers;
 
-import beans.ProductBean;
 import beans.ReviewBean;
-import beans.UserBean;
-import dao.ProductDao;
 import dao.ReviewDao;
-import dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,13 +18,9 @@ public class ReviewManagementController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<UserBean> userList;
-        List<ProductBean> productList;
         List<ReviewBean> reviewList;
 
         try {
-            userList = new UserDao().getAllUsers();
-            productList = new ProductDao().getAllProducts();
             reviewList = new ReviewDao().getAllReviews();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
