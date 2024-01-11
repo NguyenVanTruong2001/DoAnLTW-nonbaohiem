@@ -182,9 +182,9 @@
                                         <td><%= bean.getRating() %></td>
                                         <td><%= bean.getComment() %></td>
                                         <td>
-                                            <button class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-target="#deleteReview" data-toggle="modal">
+                                            <a href="delete-review?userid=<%= bean.getUserBean().getUserId() %>&productid=<%= bean.getProductBean().getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
                                                 <i class="fas fa-trash"></i>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 <% } %>
@@ -226,24 +226,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                 <a class="btn btn-primary" href="logout">Đăng xuất</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteReview">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Xóa người dùng</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">Bạn có chắc muốn xóa người dùng này?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                <button class="btn btn-danger" href="">Xóa</button>
             </div>
         </div>
     </div>
