@@ -7,6 +7,8 @@
 <% DecimalFormat format = new DecimalFormat("#,###.#"); %>
 <% List<ProductBean> productList = (List<ProductBean>) request.getAttribute("productList"); %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% String message = (String) request.getAttribute("message"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,6 +157,11 @@
                 <!-- Page Heading -->
                 <div class="d-flex pb-3">
                     <h1 class="h3 mb-2 text-gray-800">Quản lý sản phẩm</h1>
+                    <% if (message != null) { %>
+                    <div class="alert alert-danger">
+                        <%= message %>
+                    </div>
+                    <% } %>
                     <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#addProduct">
                         <i class="fas fa fa-plus"></i>
                         <span class="pl-2">Thêm sản phẩm</span>
@@ -185,19 +192,19 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Tên sản phẩm</span>
-                                        <input type="text" class="form-control" name="productName" required>
+                                        <input type="text" class="form-control" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <span>Hình ảnh sản phẩm</span>
-                                        <input type="file" name="productImage" required>
+                                        <input type="file" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <span>Mô tả</span>
-                                        <textarea type="text" class="form-control" rows="10" name="productDescription" required></textarea>
+                                        <textarea type="text" class="form-control" rows="10" name="description" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <span>Thương hiệu</span>
-                                        <select type="text" class="form-control" name="productBrand" required>
+                                        <select type="text" class="form-control" name="brand" required>
                                             <option value="Royal Helmet">Royal Helmet</option>
                                             <option value="Asia">Asia</option>
                                             <option value="Andes">Andes</option>
@@ -208,7 +215,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Kích thước</span>
-                                        <select type="text" class="form-control" name="productSize" required>
+                                        <select type="text" class="form-control" name="size" required>
                                             <option value="XS">XS</option>
                                             <option value="S">S</option>
                                             <option value="M">M</option>
@@ -219,80 +226,11 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Giá</span>
-                                        <input type="number" class="form-control" name="productPrice" min="1000" step="500" required>
+                                        <input type="number" class="form-control" name="price" min="1000" step="500" required>
                                     </div>
                                     <div class="form-group float-right">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                         <button type="submit" class="btn btn-primary" data-dismiss="modal">Thêm</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- The Modal -->
-                <div class="modal fade" id="fixProduct">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Sửa sản phẩm</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <form>
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <span>Tên sản phẩm</span>
-                                        <input type="text" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Mô tả</span>
-                                        <textarea type="text" class="form-control" rows="10"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Giá</span>
-                                        <input type="number" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Kích thước</span>
-                                        <select type="text" class="form-control">
-                                            <option>XS</option>
-                                            <option>S</option>
-                                            <option>M</option>
-                                            <option>L</option>
-                                            <option>XL</option>
-                                            <option>XXL</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Thương hiệu</span>
-                                        <select type="text" class="form-control">
-                                            <option>Royal Helmet</option>
-                                            <option>Asia</option>
-                                            <option>Andes</option>
-                                            <option>Protec</option>
-                                            <option>Scoot and Ride</option>
-                                            <option>ROC</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Loại sản phẩm</span>
-                                        <select type="text" class="form-control" >
-                                            <option>Mũ 3/4 đầu</option>
-                                            <option>Mũ 1/2 đầu</option>
-                                            <option>Mũ full-face</option>
-                                            <option>Mũ lật cằm</option>
-                                            <option>Mũ xe đạp</option>
-                                            <option>Mũ trẻ em</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group float-right">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Sửa</button>
                                     </div>
                                 </div>
                             </form>
@@ -334,13 +272,13 @@
                                     <td><%= format.format(bean.getProductPrice())%> &#8363;</td>
                                     <td><%= bean.getCategoryBean().getCategoryName()%></td>
                                     <td>
-                                        <a class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc" href="productDetail-management?productId=<%= bean.getProductId() %>">
+                                        <a href="productDetail-management?productId=<%= bean.getProductId() %>" class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc">
                                             <i class="fas fa-info"></i>
                                         </a>
-                                        <a href="" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">
+                                        <a href="form-product?productId=<%= bean.getProductId() %>" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc">
                                             <i class="fas fa-pen-alt"></i>
                                         </a>
-                                        <a href="" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#deleteProduct">
+                                        <a href="delete-product?productId=<%= bean.getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
@@ -384,24 +322,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
                 <a class="btn btn-primary" href="logout">Đăng xuất</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteProduct">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Xóa sản phẩm</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">Bạn có chắc muốn xóa sản phẩm này?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                <a class="btn btn-danger" href="">Xóa</a>
             </div>
         </div>
     </div>

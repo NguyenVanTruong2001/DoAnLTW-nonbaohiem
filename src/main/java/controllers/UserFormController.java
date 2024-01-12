@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.UserBean;
 import dao.UserDao;
 
 import javax.servlet.ServletException;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/delete-user")
-public class DeleteUserController extends HttpServlet {
-    public DeleteUserController() {}
+@WebServlet("/form-user")
+public class UserFormController extends HttpServlet {
+    public UserFormController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,19 +23,15 @@ public class DeleteUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("userId"));
-        int i;
+        UserBean user;
 
         try {
-            if (id == 1) {
-                req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-                req.getRequestDispatcher("user-management").forward(req, resp);
-            } else {
-                i = new UserDao().deleteUserById(id);
-                if (i > 0) resp.sendRedirect("user-management");
-            }
+            user = new UserDao().getUserById(id);
         } catch (ClassNotFoundException | SQLException e) {
-            req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-            req.getRequestDispatcher("user-management").forward(req, resp);
+            throw new RuntimeException(e);
         }
+
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("update-user.jsp").forward(req, resp);
     }
 }

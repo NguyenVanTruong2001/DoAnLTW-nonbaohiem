@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.ProductDao;
 import dao.UserDao;
 
 import javax.servlet.ServletException;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/delete-user")
-public class DeleteUserController extends HttpServlet {
-    public DeleteUserController() {}
+@WebServlet("/delete-product")
+public class DeleteProductController extends HttpServlet {
+    public DeleteProductController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,17 +22,12 @@ public class DeleteUserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("userId"));
+        int id = Integer.parseInt(req.getParameter("productId"));
         int i;
 
         try {
-            if (id == 1) {
-                req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-                req.getRequestDispatcher("user-management").forward(req, resp);
-            } else {
-                i = new UserDao().deleteUserById(id);
-                if (i > 0) resp.sendRedirect("user-management");
-            }
+            i = new ProductDao().deleteProductById(id);
+            if (i > 0) resp.sendRedirect("product-management");
         } catch (ClassNotFoundException | SQLException e) {
             req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
             req.getRequestDispatcher("user-management").forward(req, resp);
