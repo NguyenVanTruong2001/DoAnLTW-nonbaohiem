@@ -21,7 +21,7 @@ public class DeleteUserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("userid"));
+        int id = Integer.parseInt(req.getParameter("userId"));
         int i;
 
         try {

@@ -192,10 +192,10 @@
                                         <td><%= bean.getPassword() %></td>
                                         <td><%= bean.getRole() %></td>
                                         <td>
-                                            <a href="update-user?userid=<%= bean.getUserId() %>" class="btn btn-dark" style="background-color: #1cc88a; color: #f8f9fc">
+                                            <a href="form-user?userId=<%= bean.getUserId() %>" class="btn btn-dark" style="background-color: #1cc88a; color: #f8f9fc">
                                                 <i class="fas fa-pen-alt"></i>
                                             </a>
-                                            <a href="delete-user?userid=<%= bean.getUserId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
+                                            <a href="delete-user?userId=<%= bean.getUserId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
