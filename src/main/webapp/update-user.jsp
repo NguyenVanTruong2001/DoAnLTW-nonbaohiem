@@ -37,9 +37,10 @@
     <div class="form-group">
         <p>Quyền:</p>
     </div>
+    <% if (user.getRole().equals("Admin")) { %>
     <div class="form-group">
         <div class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" id="admin" name="role" value="Admin" required>
+            <input type="radio" class="custom-control-input" id="admin" name="role" value="Admin" required checked>
             <label class="custom-control-label" for="admin">Admin</label>
         </div>
     </div>
@@ -49,6 +50,20 @@
             <label class="custom-control-label" for="user">User</label>
         </div>
     </div>
+    <% } else { %>
+    <div class="form-group">
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="admin0" name="role" value="Admin" required>
+            <label class="custom-control-label" for="admin0">Admin</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="user0" name="role" value="User" required checked>
+            <label class="custom-control-label" for="user0">User</label>
+        </div>
+    </div>
+    <% } %>
     <div>
         <button class="btn btn-primary btn-block mb-4" type="submit">Cập nhật</button>
     </div>
