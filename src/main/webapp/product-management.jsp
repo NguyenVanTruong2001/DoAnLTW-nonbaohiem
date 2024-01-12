@@ -192,19 +192,19 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Tên sản phẩm</span>
-                                        <input type="text" class="form-control" name="productName" required>
+                                        <input type="text" class="form-control" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <span>Hình ảnh sản phẩm</span>
-                                        <input type="file" name="productImage" required>
+                                        <input type="file" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <span>Mô tả</span>
-                                        <textarea type="text" class="form-control" rows="10" name="productDescription" required></textarea>
+                                        <textarea type="text" class="form-control" rows="10" name="description" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <span>Thương hiệu</span>
-                                        <select type="text" class="form-control" name="productBrand" required>
+                                        <select type="text" class="form-control" name="brand" required>
                                             <option value="Royal Helmet">Royal Helmet</option>
                                             <option value="Asia">Asia</option>
                                             <option value="Andes">Andes</option>
@@ -215,7 +215,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Kích thước</span>
-                                        <select type="text" class="form-control" name="productSize" required>
+                                        <select type="text" class="form-control" name="size" required>
                                             <option value="XS">XS</option>
                                             <option value="S">S</option>
                                             <option value="M">M</option>
@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Giá</span>
-                                        <input type="number" class="form-control" name="productPrice" min="1000" step="500" required>
+                                        <input type="number" class="form-control" name="price" min="1000" step="500" required>
                                     </div>
                                     <div class="form-group float-right">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -275,10 +275,10 @@
                                         <a href="productDetail-management?productId=<%= bean.getProductId() %>" class="btn btn-dark my-1" style="background-color: #36b9cc; color: #f8f9fc">
                                             <i class="fas fa-info"></i>
                                         </a>
-                                        <a href="update-product?productId=<%= bean.getProductId() %>" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc" data-toggle="modal" data-target="#fixProduct">
+                                        <a href="form-product?productId=<%= bean.getProductId() %>" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc">
                                             <i class="fas fa-pen-alt"></i>
                                         </a>
-                                        <a href="delete-product?productId=<%= bean.getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc" data-toggle="modal" data-target="#deleteProduct">
+                                        <a href="delete-product?productId=<%= bean.getProductId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
