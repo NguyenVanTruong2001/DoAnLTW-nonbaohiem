@@ -22,6 +22,7 @@
 <body>
 <form class="p-3 c" action="<c:url value="/update-user"/>" method="post">
     <h3 class="font-weight-bold mb-4 text-center">Cập nhật người dùng</h3>
+    <input type="hidden" name="userId" value="<%= user.getUserId()%>">
     <div class="form-group">
         <label>Tên người dùng:</label>
         <input required type="text" name="username" class="form-control border border-primary py-4" value="<%= user.getUsername()%>">
