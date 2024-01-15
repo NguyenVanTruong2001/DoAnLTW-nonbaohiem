@@ -30,7 +30,7 @@ public class DeleteProductController extends HttpServlet {
             if (i > 0) resp.sendRedirect("product-management");
         } catch (ClassNotFoundException | SQLException e) {
             req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-            req.getRequestDispatcher("user-management").forward(req, resp);
+            req.getRequestDispatcher("product-management").forward(req, resp);
         }
     }
 }
