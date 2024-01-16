@@ -146,17 +146,18 @@
             <div class="container-fluid">
                 <div class="d-flex pb-3">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800 pb-3">Loại sản phẩm</h1>
-                    <% if (message != null) { %>
-                    <div class="alert alert-danger">
-                        <%= message %>
-                    </div>
-                    <% } %>
+                    <h1 class="h3 mb-2 text-gray-800 pb-3">Quản lý loại sản phẩm</h1>
                     <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#addCategory">
                         <i class="fas fa fa-plus"></i>
-                        <span class="pl-2">Thêm sản phẩm</span>
+                        <span class="pl-2">Thêm loại sản phẩm</span>
                     </button>
                 </div>
+
+                <% if (message != null) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+                <% } %>
 
                 <!-- The Modal -->
                 <div class="modal fade" id="addCategory">
