@@ -40,6 +40,9 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+
         int userId = Integer.parseInt(req.getParameter("userId"));
         String fullname = req.getParameter("fullname");
         String telephone = req.getParameter("telephone");

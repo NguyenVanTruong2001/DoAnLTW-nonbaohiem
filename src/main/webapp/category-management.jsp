@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
+<% String message = (String) request.getAttribute("message"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-<body>
+<body id="page-top">
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -143,9 +144,48 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+                <div class="d-flex pb-3">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800 pb-3">Quản lý loại sản phẩm</h1>
+                    <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#addCategory">
+                        <i class="fas fa fa-plus"></i>
+                        <span class="pl-2">Thêm loại sản phẩm</span>
+                    </button>
+                </div>
 
-                <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800 pb-3">Loại sản phẩm</h1>
+                <% if (message != null) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+                <% } %>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="addCategory">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Thêm loại sản phẩm</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <form action="<c:url value="/add-category"/>" method="post">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <span>Tên loại sản phẩm</span>
+                                        <input type="text" class="form-control" name="name" required>
+                                    </div>
+                                    <div class="form-group float-right">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
@@ -156,12 +196,14 @@
                                 <tr>
                                     <th>Mã loại sản phẩm</th>
                                     <th>Tên loại sản phẩm</th>
+                                    <th>Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Mã loại sản phẩm</th>
                                     <th>Tên loại sản phẩm</th>
+                                    <th>Thao tác</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -169,6 +211,14 @@
                                 <tr>
                                     <th><%= bean.getCategoryId() %></th>
                                     <td><%= bean.getCategoryName() %></td>
+                                    <td>
+                                        <a href="form-category?categoryId=<%= bean.getCategoryId() %>" class="btn btn-dark my-1" style="background-color: #1cc88a; color: #f8f9fc">
+                                            <i class="fas fa-pen-alt"></i>
+                                        </a>
+                                        <a href="delete-category?categoryId=<%= bean.getCategoryId() %>" class="btn btn-dark" style="background-color: #e74a3b; color: #f8f9fc">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                                 <% } %>
                                 </tbody>

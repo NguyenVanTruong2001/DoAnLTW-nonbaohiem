@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% UserBean user = (UserBean) request.getAttribute("user"); %>
+<% String message = (String) request.getAttribute("message"); %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,6 +23,11 @@
 <body>
 <form class="p-3 c" action="<c:url value="/update-user"/>" method="post">
     <h3 class="font-weight-bold mb-4 text-center">Cập nhật người dùng</h3>
+    <% if (message != null) { %>
+    <div class="alert alert-danger">
+        <%= message %>
+    </div>
+    <% } %>
     <input type="hidden" name="userId" value="<%= user.getUserId()%>">
     <div class="form-group">
         <label>Tên người dùng:</label>

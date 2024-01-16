@@ -22,6 +22,9 @@ public class ReviewController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+
         int userId = Integer.parseInt(req.getParameter("userId"));
         int productId = Integer.parseInt(req.getParameter("productId"));
         int rating = Integer.parseInt(req.getParameter("rating"));

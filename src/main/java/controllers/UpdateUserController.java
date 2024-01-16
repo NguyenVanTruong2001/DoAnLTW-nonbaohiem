@@ -1,6 +1,6 @@
 package controllers;
 
-import dao.ProductDao;
+import dao.CategoryDao;
 import dao.UserDao;
 
 import javax.servlet.ServletException;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/delete-product")
-public class DeleteProductController extends HttpServlet {
-    public DeleteProductController() {}
+@WebServlet("/update-user")
+public class UpdateUserController extends HttpServlet {
+    public UpdateUserController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,15 +22,22 @@ public class DeleteProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("productId"));
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        String username = req.getParameter("username");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String role = req.getParameter("role");
         int i;
 
         try {
-            i = new ProductDao().deleteProductById(id);
-            if (i > 0) resp.sendRedirect("product-management");
+            i = new UserDao().updateUserById(userId, username, email, password, role);
+            if (i > 0) resp.sendRedirect("user-management");
         } catch (ClassNotFoundException | SQLException e) {
             req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-            req.getRequestDispatcher("product-management").forward(req, resp);
+            req.getRequestDispatcher("form-user").forward(req, resp);
         }
     }
 }

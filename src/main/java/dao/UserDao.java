@@ -115,4 +115,20 @@ public class UserDao {
         return i;
     }
 
+    public int updateUserById(int id, String name, String email, String password, String role) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE Users SET `Username` = ?, `Email` = ?, `Password` = ?, `Role` = ? WHERE `UserID` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, name);
+        statement.setString(2, email);
+        statement.setString(3, password);
+        statement.setString(4, role);
+        statement.setInt(5, id);
+        int i = statement.executeUpdate();
+
+        connection.close();
+        return i;
+    }
+
 }

@@ -180,6 +180,43 @@ public class ProductDao {
         return i;
     }
 
+    public int updateProductById(int productId, int categoryId, String name, String image, String description, String brand, String size, int price) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE Products SET `CategoryID` = ?, `ProductName` = ?, `ProductImage` = ?, `ProductDescription` = ?, `ProductBrand` = ?, `ProductSize` = ?, `ProductPrice` = ? WHERE `ProductID` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, categoryId);
+        statement.setString(2, name);
+        statement.setString(3, image);
+        statement.setString(4, description);
+        statement.setString(5, brand);
+        statement.setString(6, size);
+        statement.setInt(7, price);
+        statement.setInt(8, productId);
+        int i = statement.executeUpdate();
+
+        connection.close();
+        return i;
+    }
+
+    public int addProduct(int categoryId, String name, String image, String description, String brand, String size, int price) throws ClassNotFoundException, SQLException {
+        String sql = "INSERT INTO Products(`CategoryID`, `ProductName`, `ProductImage`, `ProductDescription`, `ProductBrand`, `ProductSize`, `ProductPrice`) VALUE (?, ?, ?, ?, ?, ?, ?)";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, categoryId);
+        statement.setString(2, name);
+        statement.setString(3, image);
+        statement.setString(4, description);
+        statement.setString(5, brand);
+        statement.setString(6, size);
+        statement.setInt(7, price);
+        int i = statement.executeUpdate();
+
+        connection.close();
+        return i;
+    }
+
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ProductDao productDao = new ProductDao();
         for (ProductBean p : productDao.getNewestProducts()) {

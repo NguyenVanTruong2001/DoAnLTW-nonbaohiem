@@ -11,7 +11,6 @@ public class CategoryDao {
         String sql = "SELECT * FROM Categories";
 
         Connection connection = new DBConnect().connect();
-
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
 
@@ -31,7 +30,6 @@ public class CategoryDao {
         String sql = "SELECT * FROM Categories WHERE `CategoryID` = " + categoryId;
 
         Connection connection = new DBConnect().connect();
-
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
 
@@ -43,6 +41,43 @@ public class CategoryDao {
 
         connection.close();
         return category;
+    }
+
+    public int addCategory(String categoryName) throws ClassNotFoundException, SQLException {
+        String sql = "INSERT INTO Categories(`CategoryName`) VALUE (?)";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, categoryName);
+        int i =  statement.executeUpdate();
+
+        connection.close();
+        return i;
+    }
+
+    public int updateCategoryById(int categoryId, String categoryName) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE Categories SET `CategoryName` = ? WHERE `CategoryID` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, categoryName);
+        statement.setInt(2, categoryId);
+        int i =  statement.executeUpdate();
+
+        connection.close();
+        return i;
+    }
+
+    public int deleteCategoryById(int categoryId) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM Categories WHERE `CategoryID` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, categoryId);
+        int i =  statement.executeUpdate();
+
+        connection.close();
+        return i;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {

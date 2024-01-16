@@ -1,7 +1,6 @@
 package controllers;
 
-import dao.ProductDao;
-import dao.UserDao;
+import dao.CategoryDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/delete-product")
-public class DeleteProductController extends HttpServlet {
-    public DeleteProductController() {}
+@WebServlet("/add-category")
+public class AddCategoryController extends HttpServlet {
+    public AddCategoryController() {}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,15 +21,22 @@ public class DeleteProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("productId"));
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+
+        String categoryName = req.getParameter("name");
         int i;
 
         try {
-            i = new ProductDao().deleteProductById(id);
-            if (i > 0) resp.sendRedirect("product-management");
+            i = new CategoryDao().addCategory(categoryName);
         } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (i > 0) resp.sendRedirect("category-management");
+        else {
             req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-            req.getRequestDispatcher("product-management").forward(req, resp);
+            req.getRequestDispatcher("category-management.jsp").forward(req, resp);
         }
     }
 }

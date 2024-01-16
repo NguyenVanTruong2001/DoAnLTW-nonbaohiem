@@ -179,7 +179,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
-                            <form>
+                            <form action="<c:url value="/add-product"/>" enctype="multipart/form-data" method="post">
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="form-group">
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="form-group float-right">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Thêm</button>
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
                                     </div>
                                 </div>
                             </form>
