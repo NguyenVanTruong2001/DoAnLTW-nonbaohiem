@@ -29,10 +29,10 @@
         <%= message %>
     </div>
     <% } %>
-    <input type="hidden" name="productId" value="<%= bean.getCategoryId()%>">
+    <input type="hidden" name="categoryId" value="<%= bean.getCategoryId()%>">
     <div class="form-group">
         <label>Tên loại sản phẩm:</label>
-        <input required type="text" name="name" class="form-control border border-primary py-4" value="<%= bean.getCategoryName()%>">
+        <input required type="text" name="categoryName" class="form-control border border-primary py-4" value="<%= bean.getCategoryName()%>">
     </div>
     <div>
         <button class="btn btn-primary btn-block mb-4" type="submit">Cập nhật</button>
