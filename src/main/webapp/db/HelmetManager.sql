@@ -63,7 +63,12 @@ insert into Users(`Username`, `Email`, `Password`) values
 ('TigerNixon', 'tigernixon@gmail.com', 'nixon'),
 ('GarrettWinters', 'garrettwinters@gmail.com', 'winters'),
 ('AstonCox', 'ashtoncox@gmail.com', 'cox'),
-('CedricKelly', 'cedrickelly@gmail.com', 'kelly');
+('CedricKelly', 'cedrickelly@gmail.com', 'kelly'),
+('DaiRios', 'dairios@gmail.com', 'rios'),
+('HermioneButler', 'hermionebutler@gmail.com', 'butler'),
+('PaulByrd', 'paulbyrd@gmail.com', 'byrd'),
+('SukiBurks', 'sukiburks@gmail.com', 'burks'),
+('ZoritaSerrano', 'zoritaserrano@gmail.com', 'serrano');
 
 insert into Categories(`CategoryName`) values
 ('Mũ 3/4 đầu'), ('Mũ 1/2 đầu'), ('Mũ full-face'), ('Mũ lật cằm'),
@@ -139,15 +144,4 @@ insert into Reviews values
 (3, 10, 4, 'Mũ này đẹp'), (4, 11, 3, 'Mũ này tốt'), (5, 12, 2, 'Mũ này không tốt'),
 (2, 13, 1, 'Mũ này rất xấu'), (3, 14, 2, 'Mũ này không tốt'), (4, 15, 3, 'Mũ này tốt');
 
-select * from Users;
-select * from Categories;
-select * from Products;
-select * from Products limit 9 offset 0;
-select * from Products where `CategoryID` = 6 limit 9 offset 0;
-SELECT * FROM (SELECT * FROM Products ORDER BY `ProductID` DESC LIMIT 5) Prd ORDER BY `ProductID`;
-select * from Orders;
-select * from OrderDetails;
-select * from Reviews where UserID = 2 and ProductID = 1;
-select sum(OrderDetails.Quantity) from OrderDetails;
-drop table Orders;
-drop table OrderDetails;
+drop database HelmetManager;
