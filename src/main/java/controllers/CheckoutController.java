@@ -6,6 +6,7 @@ import beans.ProductCart;
 import dao.CategoryDao;
 import dao.CheckoutDao;
 import dao.CheckoutDetailDao;
+import dao.ProductDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,10 +64,10 @@ public class CheckoutController extends HttpServlet {
 
         for (Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
             CheckoutDetailBean checkoutDetail = new CheckoutDetailBean();
-            checkoutDetail.getProductBean().setProductId(entry.getKey());
-            checkoutDetail.getCheckoutBean().setOrderId(i);
-            checkoutDetail.setQuantity(entry.getValue().getQuantity());
             try {
+                checkoutDetail.setProductBean(new ProductDao().getProductById(entry.getKey()));
+                checkoutDetail.setCheckoutBean(new CheckoutDao().getCheckoutByOrderId(i));
+                checkoutDetail.setQuantity(entry.getValue().getQuantity());
                 checkoutDetailDao.addCheckoutDetail(checkoutDetail);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
