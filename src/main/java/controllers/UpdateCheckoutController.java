@@ -37,7 +37,7 @@ public class UpdateCheckoutController extends HttpServlet {
             }
         } catch (ClassNotFoundException | SQLException e) {
             req.setAttribute("message", "Thao tác không thành công. Hãy thử lại lần sau.");
-            req.getRequestDispatcher("order-management").forward(req, resp);
+            req.getRequestDispatcher("form-order").forward(req, resp);
         }
     }
 }
