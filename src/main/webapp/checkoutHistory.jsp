@@ -9,6 +9,7 @@
 <% List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList"); %>
 <% List<CheckoutBean> checkoutList = (List<CheckoutBean>) request.getAttribute("checkoutList"); %>
 <% List<CheckoutDetailBean> checkoutDetailList; %>
+<% UserBean user = (UserBean) session.getAttribute("user"); %>
 <% int totalPrice = 0; %>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,8 +89,7 @@
                         <% } %>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <% if (session.getAttribute("user") != null) {
-                            UserBean user = (UserBean) session.getAttribute("user"); %>
+                        <% if (user != null) { %>
                         <span class="nav-item nav-link"> <%= user.getUsername()%> </span>
                         <a href="logout" class="nav-item nav-link">Đăng xuất</a>
                         <% } else { %>
@@ -125,8 +125,8 @@
                     <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
                 </div>
                 <div class="float-right">
-                    <% if (bean.getOrderState().equals("Đang chờ duyệt") && bean.getOrderState().equals("Đang giao hàng")) { %>
-                    <a href="" class="btn btn-danger">Hủy giao hàng</a>
+                    <% if (bean.getOrderState().equals("Đang chờ duyệt") || bean.getOrderState().equals("Đang giao hàng")) { %>
+                    <a href="update-checkout?orderId=<%= bean.getOrderId() %>&role=<%= user.getRole() %>&orderState=Đã hủy" class="btn btn-danger">Hủy giao hàng</a>
                     <% } %>
                 </div>
             </div>

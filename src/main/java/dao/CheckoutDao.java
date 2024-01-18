@@ -108,16 +108,16 @@ public class CheckoutDao {
         return checkout;
     }
 
-    public void updateCheckoutStateByOrderId(int orderId, String orderState) throws ClassNotFoundException, SQLException {
-        String sql = "UPDATE Orders SET `OrderState` = ? WHERE `UserID` = ?";
+    public int updateCheckoutStateByOrderId(int orderId, String orderState) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE Orders SET `OrderState` = ? WHERE `OrderID` = ?";
 
         Connection connection = new DBConnect().connect();
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, orderId);
-        statement.setString(2, orderState);
+        statement.setString(1, orderState);
+        statement.setInt(2, orderId);
 
-        statement.executeUpdate();
+        return statement.executeUpdate();
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
