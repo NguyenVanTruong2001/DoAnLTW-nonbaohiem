@@ -125,8 +125,8 @@
                     <p class="m-0">Ngày đặt hàng: <%= bean.getOrderDate() %></p>
                 </div>
                 <div class="float-right">
-                    <% if (bean.getOrderState().equals("Đang chờ duyệt") && bean.getOrderState().equals("Đang giao hàng")) { %>
-                    <a href="" class="btn btn-danger">Hủy giao hàng</a>
+                    <% if (bean.getOrderState().equals("Đang chờ duyệt") || bean.getOrderState().equals("Đang giao hàng")) { %>
+                    <a href="update-checkout?orderId=<%= bean.getOrderId() %>&role=<%= bean.getUserBean().getRole() %>&orderState=Đã hủy" class="btn btn-danger">Hủy giao hàng</a>
                     <% } %>
                 </div>
             </div>
