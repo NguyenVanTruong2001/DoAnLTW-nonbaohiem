@@ -136,9 +136,87 @@ public class ProductDao {
         String sql = "SELECT * FROM Products WHERE `ProductName` LIKE '%" + name + "%'";
 
         Connection connection = new DBConnect().connect();
-
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
+
+        List<ProductBean> productList = new ArrayList<>();
+        while (result.next()) {
+            ProductBean product = new ProductBean();
+            product.setProductId(result.getInt(1));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
+            product.setProductName(result.getString(3));
+            product.setProductImage(result.getString(4));
+            product.setProductDescription(result.getString(5));
+            product.setProductBrand(result.getString(6));
+            product.setProductSize(result.getString(7));
+            product.setProductPrice(result.getInt(8));
+            productList.add(product);
+        }
+
+        connection.close();
+        return productList;
+    }
+
+    public List<ProductBean> getProductByBrand(String brand) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Products WHERE `ProductBrand` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, brand);
+        ResultSet result = statement.executeQuery();
+
+        List<ProductBean> productList = new ArrayList<>();
+        while (result.next()) {
+            ProductBean product = new ProductBean();
+            product.setProductId(result.getInt(1));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
+            product.setProductName(result.getString(3));
+            product.setProductImage(result.getString(4));
+            product.setProductDescription(result.getString(5));
+            product.setProductBrand(result.getString(6));
+            product.setProductSize(result.getString(7));
+            product.setProductPrice(result.getInt(8));
+            productList.add(product);
+        }
+
+        connection.close();
+        return productList;
+    }
+
+    public List<ProductBean> getProductBySize(String size) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Products WHERE `ProductSize` = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, size);
+        ResultSet result = statement.executeQuery();
+
+        List<ProductBean> productList = new ArrayList<>();
+        while (result.next()) {
+            ProductBean product = new ProductBean();
+            product.setProductId(result.getInt(1));
+            product.setCategoryBean(new CategoryDao().getCategoryById(result.getInt(2)));
+            product.setProductName(result.getString(3));
+            product.setProductImage(result.getString(4));
+            product.setProductDescription(result.getString(5));
+            product.setProductBrand(result.getString(6));
+            product.setProductSize(result.getString(7));
+            product.setProductPrice(result.getInt(8));
+            productList.add(product);
+        }
+
+        connection.close();
+        return productList;
+    }
+
+    public List<ProductBean> getProductByPrice(int min, int max) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM Products WHERE `ProductPrice` BETWEEN ? AND ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, min);
+        statement.setInt(2, max);
+        ResultSet result = statement.executeQuery();
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
