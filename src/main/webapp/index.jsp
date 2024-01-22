@@ -40,11 +40,11 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-            <form action="">
+            <form action="<c:url value="/search-product"/>" method="post">
                 <div class="input-group">
-                    <input type="text" class="form-control border-primary" placeholder="Tìm kiếm sản phẩm...">
+                    <input type="text" name="query" class="form-control border-primary" placeholder="Tìm kiếm sản phẩm...">
                     <div class="input-group-append">
-                        <button class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
