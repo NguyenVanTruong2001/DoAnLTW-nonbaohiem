@@ -230,22 +230,6 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <!-- Search Product -->
-                <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="" method="">
-                            <div class="input-group">
-                                <input type="text" class="form-control border-primary" placeholder="Tìm kiếm tên sản phẩm">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Search Product -->
                 <!-- limit 9 offset (page-1)*9 -->
                 <% for (ProductBean p : productList) { %>
                 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
