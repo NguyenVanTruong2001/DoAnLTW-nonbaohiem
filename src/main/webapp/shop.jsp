@@ -123,104 +123,41 @@
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="price-all">
-                        <label class="custom-control-label" for="price-all">Tất cả</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1"><150.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">150.000đ - 300.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">300.000đ - 450.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">450.000đ - 600.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">>600.000đ</label>
-                    </div>
-                </form>
+                <div class="navbar-nav">
+                    <a href="filter-product?type=price&min=0&max=150000" class="nav-item nav-link"><150.000đ</a>
+                    <a href="filter-product?type=price&min=150000&max=300000" class="nav-item nav-link">150.000đ - 300.000đ</a>
+                    <a href="filter-product?type=price&min=300000&max=450000" class="nav-item nav-link">300.000đ - 450.000đ</a>
+                    <a href="filter-product?type=price&min=450000&max=600000" class="nav-item nav-link">450.000đ - 600.000đ</a>
+                    <a href="filter-product?type=price&min=600000&max=<%= Integer.MAX_VALUE%>" class="nav-item nav-link">>600.000đ</a>
+                </div>
             </div>
             <!-- Price End -->
 
             <!-- Color Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Lọc theo thương hiệu</h5>
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="brand-all">
-                        <label class="custom-control-label" for="brand-all">Tất cả</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="brand-1">
-                        <label class="custom-control-label" for="brand-1">Royal Helmet</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="brand-2">
-                        <label class="custom-control-label" for="brand-2">Asia</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="brand-3">
-                        <label class="custom-control-label" for="brand-3">Andes</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="brand-4">
-                        <label class="custom-control-label" for="brand-4">Protec</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="brand-5">
-                        <label class="custom-control-label" for="brand-5">Scoot and Ride</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="brand-6">
-                        <label class="custom-control-label" for="brand-6">ROC</label>
-                    </div>
-                </form>
+                <div class="navbar-nav">
+                    <a href="filter-product?type=brand&brand=Royal Helmet" class="nav-item nav-link">Royal Helmet</a>
+                    <a href="filter-product?type=brand&brand=Asia" class="nav-item nav-link">Asia</a>
+                    <a href="filter-product?type=brand&brand=Andes" class="nav-item nav-link">Andes</a>
+                    <a href="filter-product?type=brand&brand=Protec" class="nav-item nav-link">Protec</a>
+                    <a href="filter-product?type=brand&brand=Scoot and Ride" class="nav-item nav-link">Scoot and Ride</a>
+                    <a href="filter-product?type=brand&brand=ROC" class="nav-item nav-link">ROC</a>
+                </div>
             </div>
             <!-- Color End -->
 
             <!-- Size Start -->
             <div class="mb-5">
                 <h5 class="font-weight-semi-bold mb-4">Lọc theo kích cỡ</h5>
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="size-all">
-                        <label class="custom-control-label" for="size-all">Tất cả</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-1">
-                        <label class="custom-control-label" for="size-1">XS</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-2">
-                        <label class="custom-control-label" for="size-2">S</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-3">
-                        <label class="custom-control-label" for="size-3">M</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-4">
-                        <label class="custom-control-label" for="size-4">L</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-5">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="size-6">
-                        <label class="custom-control-label" for="size-6">XXL</label>
-                    </div>
-                </form>
+                <div class="navbar-nav">
+                    <a href="filter-product?type=size&size=XS" class="nav-item nav-link">XS</a>
+                    <a href="filter-product?type=size&size=S" class="nav-item nav-link">S</a>
+                    <a href="filter-product?type=size&size=M" class="nav-item nav-link">M</a>
+                    <a href="filter-product?type=size&size=L" class="nav-item nav-link">L</a>
+                    <a href="filter-product?type=size&size=XL" class="nav-item nav-link">XL</a>
+                    <a href="filter-product?type=size&size=XXL" class="nav-item nav-link">XXL</a>
+                </div>
             </div>
             <!-- Size End -->
         </div>
