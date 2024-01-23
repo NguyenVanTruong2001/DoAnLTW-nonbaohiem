@@ -17,7 +17,40 @@ public class CheckoutDetailDao {
 
         if (result.next())
             return result.getInt(1);
-        else return -1;
+        else return 0;
+    }
+
+    public int getProfitThisMonthOfYear(int month, int year) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT sum(ProductPrice * Quantity) FROM ((OrderDetails" +
+                " JOIN Orders O ON OrderDetails.OrderID = O.OrderID)" +
+                " JOIN Products P ON OrderDetails.ProductID = P.ProductID)" +
+                " WHERE month(OrderDate) = ? AND year(OrderDate) = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, month);
+        statement.setInt(2, year);
+        ResultSet result = statement.executeQuery();
+
+        if (result.next())
+            return result.getInt(1);
+        else return 0;
+    }
+
+    public int getProfitThisYear(int year) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT sum(ProductPrice * Quantity) FROM ((OrderDetails" +
+                " JOIN Orders O ON OrderDetails.OrderID = O.OrderID)" +
+                " JOIN Products P ON OrderDetails.ProductID = P.ProductID)" +
+                " WHERE year(OrderDate) = ?";
+
+        Connection connection = new DBConnect().connect();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, year);
+        ResultSet result = statement.executeQuery();
+
+        if (result.next())
+            return result.getInt(1);
+        else return 0;
     }
 
     public void addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws ClassNotFoundException, SQLException {
@@ -76,6 +109,7 @@ public class CheckoutDetailDao {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        System.out.println(new CheckoutDetailDao().getTotalSoldProduct());
+        System.out.println(new CheckoutDetailDao().getProfitThisMonthOfYear(5, 2023));
+        System.out.println(new CheckoutDetailDao().getProfitThisYear(2023));
     }
 }
