@@ -1,6 +1,10 @@
 <%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% DecimalFormat format = new DecimalFormat("#,###.#"); %>
+<% int totalProfitThisMonthOfYear = (int) request.getAttribute("totalProfitThisMonthOfYear"); %>
+<% int totalProfitThisYear = (int) request.getAttribute("totalProfitThisYear"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -158,8 +162,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Doanh thu (Tháng <%= Calendar.getInstance().get(Calendar.MONTH) + 1 %>)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">400.000đ</div>
+                                                Doanh thu (Tháng <%= Calendar.getInstance().get(Calendar.MONTH) + 1 %>/<%= Calendar.getInstance().get(Calendar.YEAR) %>)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= format.format(totalProfitThisMonthOfYear)%> &#8363;</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -177,7 +181,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Doanh thu (Năm <%= Calendar.getInstance().get(Calendar.YEAR) %>)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4.800.000đ</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= format.format(totalProfitThisYear)%> &#8363;</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
