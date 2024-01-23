@@ -123,6 +123,17 @@ insert into Products(`CategoryID`, `ProductName`, `ProductImage`, `ProductDescri
     'Mũ bảo hiểm Protec là thương hiệu được ưa chuộng tại thị trường Việt Nam bởi độ an toàn, bền, giá cả phải chăng. Vỏ mũ bảo hiểm Protec Rosa RLWF được làm từ nhựa tổng hợp (ABS) nguyên sinh, có khả năng chịu va đập tốt, chống mài mòn hiệu quả. Mũ bảo hiểm Protec Rosa có thiết kế pha màu kiểu nửa đầu tạo sự thoải mái cho người sử dụng. Mũ bảo hiểm Protec Rosa 2 màu RLWF sử dụng lõi xốp mũ EPS hấp thu xung đột tốt, hạn chế chấn thương tối đa khi xảy ra tai nạn, va chạm. Mũ Protec đã thông qua các quy trình kiểm định nghiêm ngặt về độ va đập, độ đâm xuyên và độ ổn định của khóa mũ.',
     'Protec', 'M', 252000);
 
+insert into Products(`CategoryID`, `ProductName`, `ProductImage`, `ProductDescription`, `ProductBrand`, `ProductSize`, `ProductPrice`) values
+(5, 'Mũ bảo hiểm ROC R19 Đen Cam', 'img/product-img/z4593472351749_1665cc71293bae275a8b430b85e89b4b-2048x2048.jpg',
+    'ROC R19 Đen Cam là dòng nón xe đạp chất lượng của thương hiệu ROC vừa ra mắt nhưng rất thu hút sự quan tâm của khách hàng. Đây là mẫu nón xe đạp đơn giản, gọn nhẹ, thích hợp với mọi người. Là mũ bảo hiểm nổi tiếng tới từ nhãn hiệu ROC, mũ bảo hiểm R19 ngay lập tức gây được cảm tình với người đội nhờ ngoại hình gọn gàng, khỏe khoắn của mình. Khuôn mũ được tạo ra từ những nghiên cứu chuyên sâu về khí động học, thanh thoát, tối ưu giúp giảm đi tối đa lực cản cho người đội khi di chuyển. Những rãnh trên thân mũ được tính toán dựa trên những nghiên cứu chuyên sâu để giúp giảm trọng lượng của mũ, mang lại sự thoải mái nhẹ nhàng cho người đội mà vẫn đảm bảo an toàn tuyệt đối.',
+    'ROC', 'L', 320000),
+(5, 'Mũ bảo hiểm Royal MD17 Vàng', 'img/product-img/28-768x578.jpg',
+    'Royal MD17 Vàng là dòng nón xe đạp chất lượng của thương hiệu Royal Helmet. Đây là mẫu nón xe đạp đơn giản, gọn nhẹ, thích hợp với mọi người. Nón xe đạp Royal MD17 là thiết kế đơn giản, gọn nhé và rất thời trang. Lỗ thông gió được thiết kế kiểu dáng khí động học mang lại cảm giác thông thoáng, thoải mái và giảm lực cản tối đa khi di chuyển với tốc độ cao. Lớp đệm được chế tạo bằng vật liệu Poly Source nén dưới áp suất cao được nhập khẩu từ Mỹ tạo được sự cứng cấp, hấp thụ xung lực khi va đập tốt giúp nón Royal MD17 bảo vệ đầu an toàn cho người sử dụng. Khóa nón được làm bằng khóa bấm rất dễ dàng sử dụng. Bộ lót nón được cách điệu và ép nhiệt hoàn hảo đem lại sự êm ái cũng như việc tháo lắp vệ sinh dễ dàng, thuận tiện cho người sử dụng. Nón có nút điều chỉnh cho vừa vòng đầu phía sau nên ai cũng có thể đội được.',
+    'Royal Helmet', 'L', 480000),
+(5, 'Mũ bảo hiểm ROC R16 V4 Trắng Hồng', 'img/product-img/z4207726503957_e6b53693f96da270ac34fb7041e66e96-300x300.jpg',
+    'ROC R16 V4 Trắng Hồng là dòng nón xe đạp chất lượng của thương hiệu ROC. Đây là mẫu nón xe đạp đơn giản, gọn nhẹ, có kính hít thích hợp với mọi người. Nón xe đạp ROC R16 là thiết kế đơn giản, gọn gàng. Lỗ thông gió được thiết kế kiểu dáng khí động học mang lại cảm giác thông thoáng, thoải mái và giảm lực cản tối đa khi di chuyển. Lớp đệm được chế tạo bằng vật liệu Poly Source nén dưới áp suất cao được nhập khẩu từ Mỹ tạo được sự cứng cấp, hấp thụ xung lực khi va đập tốt giúp nón ROC R16 bảo vệ đầu an toàn cho người sử dụng. Khóa nón ROC R16 được làm bằng khóa bấm rất dễ dàng sử dụng. Nón có kính hít phía trước rất tiện lợi, đặc biệt rất dễ dàng sử dụng. Bộ lót nón được cách điệu và ép nhiệt hoàn hảo đem lại sự êm ái cũng như việc tháo lắp vệ sinh dễ dàng, thuận tiện cho người sử dụng.',
+    'ROC', 'L', 620000);
+
 insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`, `OrderState`) values
 (2, '2023-01-01', 'Tiger Nixon', '0920110425', '2270 Smith Road, Marble Hill, Georgia, 30151', 'Tiền mặt', 'Đã giao hàng'),
 (3, '2023-02-02', 'Garrett Winters', '0920110725', '1926 Pursglove Court, Aubrey, Texas, 76227', 'Tiền mặt', 'Đã giao hàng'),
@@ -130,12 +141,20 @@ insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `P
 (5, '2023-04-04', 'Cedric Kelly', '0920120329', '3440 Margaret Street, Houston, Texas, 77030', 'MoMo', 'Đã giao hàng'),
 (2, '2023-06-06', 'Tiger Nixon', '0920110425', '2270 Smith Road, Marble Hill, Georgia, 30151', 'Tiền mặt', 'Đã giao hàng');
 
+insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`, `OrderState`) values
+(3, '2024-01-02', 'Garrett Winters', '0920110725', '1926 Pursglove Court, Aubrey, Texas, 76227', 'Tiền mặt', 'Đã giao hàng'),
+(4, '2023-01-20', 'Aston Cox', '0920090112', '2575 Golf Course Drive, Arlington, Virginia, 22201', 'Chuyển khoản', 'Đã giao hàng');
+
 insert into OrderDetails values
 (1, 1, 1), (1, 2, 1), (1, 3, 2),
 (2, 4, 2), (2, 5, 1), (2, 6, 2),
 (3, 7, 1), (3, 8, 1), (3, 9, 2),
 (4, 10, 1), (4, 11, 2), (4, 12, 1),
 (5, 13, 3), (5, 14, 3);
+
+insert into OrderDetails values
+(6, 15, 1), (6, 1, 1), (6, 17, 2),
+(7, 16, 1), (7, 18, 1), (7, 2, 2);
 
 insert into Reviews values
 (2, 1, 5, 'Mũ này rất đẹp'), (3, 2, 4, 'Mũ này đẹp'), (4, 3, 3, 'Mũ này tốt'),
