@@ -189,7 +189,7 @@
                                 <tr>
                                     <td><%= bean.getProductBean().getProductId() %></td>
                                     <td><%= bean.getProductBean().getProductName() %></td>
-                                    <td><%= bean.getProductBean().getProductPrice() %></td>
+                                    <td><%= format.format(bean.getProductBean().getProductPrice()) %> &#8363;</td>
                                     <td><%= bean.getQuantity() %></td>
                                     <td><%= format.format(bean.detailPrice()) %> &#8363;</td>
                                 </tr>
