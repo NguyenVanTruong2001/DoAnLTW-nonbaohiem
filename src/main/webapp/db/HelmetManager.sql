@@ -143,7 +143,7 @@ insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `P
 
 insert into Orders(`UserID`, `OrderDate`, `Fullname`, `Telephone`, `Address`, `PaymentMethod`, `OrderState`) values
 (3, '2024-01-02', 'Garrett Winters', '0920110725', '1926 Pursglove Court, Aubrey, Texas, 76227', 'Tiền mặt', 'Đã giao hàng'),
-(4, '2023-01-20', 'Aston Cox', '0920090112', '2575 Golf Course Drive, Arlington, Virginia, 22201', 'Chuyển khoản', 'Đã giao hàng');
+(4, '2024-01-20', 'Aston Cox', '0920090112', '2575 Golf Course Drive, Arlington, Virginia, 22201', 'Chuyển khoản', 'Đã giao hàng');
 
 insert into OrderDetails values
 (1, 1, 1), (1, 2, 1), (1, 3, 2),
@@ -163,4 +163,6 @@ insert into Reviews values
 (3, 10, 4, 'Mũ này đẹp'), (4, 11, 3, 'Mũ này tốt'), (5, 12, 2, 'Mũ này không tốt'),
 (2, 13, 1, 'Mũ này rất xấu'), (3, 14, 2, 'Mũ này không tốt'), (4, 15, 3, 'Mũ này tốt');
 
+drop table Orders;
+drop table OrderDetails;
 drop database HelmetManager;
