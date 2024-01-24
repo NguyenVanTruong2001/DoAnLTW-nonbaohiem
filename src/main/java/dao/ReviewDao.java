@@ -84,6 +84,21 @@ public class ReviewDao {
         return i;
     }
 
+    public int countReviews() throws ClassNotFoundException, SQLException {
+        int i = 0;
+        String sql = "SELECT count(*) FROM Reviews";
+
+        Connection connection = new DBConnect().connect();
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+
+        while (result.next())
+            i = result.getInt(1);
+
+        connection.close();
+        return i;
+    }
+
     public boolean addReview(int userId, int productId, int rating, String comment) throws SQLException, ClassNotFoundException {
         String sql1 = "INSERT INTO Reviews value (?, ?, ?, ?)";
         String sql2 = "SELECT * FROM Reviews WHERE `UserID` = ? AND `ProductID` = ?";

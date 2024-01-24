@@ -91,13 +91,6 @@
                 <span>Đơn hàng</span></a>
         </li>
 
-        <!-- Nav Item - Images -->
-        <li class="nav-item">
-            <a class="nav-link" href="image-management.html">
-                <i class="fas fa-fw fa-image"></i>
-                <span>Hình ảnh</span></a>
-        </li>
-
         <!-- Nav Item - Review -->
         <li class="nav-item">
             <a class="nav-link" href="review-management">
@@ -157,16 +150,17 @@
                 <!-- Page Heading -->
                 <div class="d-flex pb-3">
                     <h1 class="h3 mb-2 text-gray-800">Quản lý sản phẩm</h1>
-                    <% if (message != null) { %>
-                    <div class="alert alert-danger">
-                        <%= message %>
-                    </div>
-                    <% } %>
                     <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#addProduct">
                         <i class="fas fa fa-plus"></i>
                         <span class="pl-2">Thêm sản phẩm</span>
                     </button>
                 </div>
+
+                <% if (message != null) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+                <% } %>
 
                 <!-- The Modal -->
                 <div class="modal fade" id="addProduct">
