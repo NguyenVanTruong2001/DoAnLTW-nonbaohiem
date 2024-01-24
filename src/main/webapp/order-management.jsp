@@ -86,13 +86,6 @@
                 <span>Đơn hàng</span></a>
         </li>
 
-        <!-- Nav Item - Images -->
-        <li class="nav-item">
-            <a class="nav-link" href="image-management.html">
-                <i class="fas fa-fw fa-image"></i>
-                <span>Hình ảnh</span></a>
-        </li>
-
         <!-- Nav Item - Review -->
         <li class="nav-item">
             <a class="nav-link" href="review-management">
