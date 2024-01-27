@@ -133,11 +133,12 @@ public class ProductDao {
     }
 
     public List<ProductBean> getProductByName(String name) throws ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM Products WHERE `ProductName` LIKE '%" + name + "%'";
+        String sql = "SELECT * FROM Products WHERE `ProductName` LIKE ?";
 
         Connection connection = new DBConnect().connect();
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(sql);
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, "%" + name + "%");
+        ResultSet result = statement.executeQuery();
 
         List<ProductBean> productList = new ArrayList<>();
         while (result.next()) {
