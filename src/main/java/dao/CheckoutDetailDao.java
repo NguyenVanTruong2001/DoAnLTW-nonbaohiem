@@ -54,7 +54,7 @@ public class CheckoutDetailDao {
     }
 
     public void addCheckoutDetail(CheckoutDetailBean checkoutDetail) throws ClassNotFoundException, SQLException {
-        String sql = "INSERT INTO OrderDetails(`OrderID`, `ProductID`, `Quantity`) VALUE (?, ?, ?)";
+        String sql = "INSERT INTO OrderDetails VALUE (?, ?, ?)";
 
         Connection connection = new DBConnect().connect();
 
